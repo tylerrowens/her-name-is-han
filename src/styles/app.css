@@ -1,0 +1,143 @@
+@import 'tailwindcss';
+@import './fonts.css';
+
+html {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: greyscale;
+}
+
+body {
+	@apply font-serif;
+	@apply text-blue-5;
+	@apply bg-jade-white;
+}
+
+@theme {
+	--font-serif: 'Otto Regular', serif;
+	--font-stamp: 'Fresco Stamp', monospace;
+	--font-korean: 'Sun Batang Medium', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+	--font-mono: 'Courier New', monospace;
+
+	--spacing-xs-1: 2px;
+	--spacing-xs-2: 5px;
+	--spacing-xs-3: 8px;
+	--spacing-sm-3: 14px;
+	--spacing-md-3: 22px;
+	--spacing-md-4: 36px;
+	--spacing-lg-4: 58px;
+	--spacing-lg-7: 74px;
+	--spacing-lg-5: 95px;
+	--spacing-lg-6: 195px;
+	--spacing-xl-5: 153px;
+	--spacing-xl-6: 248px;
+
+	--breakpoint-lg: 1300px;
+	--breakpoint-sm: 800px;
+
+	--color-black-1: #000000;
+	--color-black-2: #212121;
+	--color-white-1: #ffffff;
+	--color-jade-white: #f6f7f4;
+	--color-blue-1: #0087bc;
+	--color-blue-2: #d4ded1;
+	--color-blue-3: #85b2b3;
+	--color-blue-4: #0276e2;
+	--color-blue-5: #061638;
+	--color-blue-6: #cfe8ee;
+	--color-blue-7: #011d2b;
+	--color-blue-8: #72a3ae;
+	--color-blue-9: #4ed0ff;
+	--color-blue-10: #07303f;
+	--color-winter-sea: #c0fff4;
+	--color-blue-12: #002336;
+	--color-blue-13: #e5f4f4;
+	--color-red-1: #2a0600;
+	--color-gochujang: #620000;
+	--color-chamgireum: #feffa7;
+	--color-yellow-2: #ffffd1;
+	--color-green-1: #f2f6eb;
+	--color-green-2: #f6f7f4;
+	--color-grey-1: #cccccc;
+	--color-grey-2: #ececec;
+	--color-grey-3: #f3f3f3;
+	--color-grey-4: #9197a6;
+	--color-grey-5: #a3a3a3;
+	--color-grey-6: #d6d6d6;
+	--color-cream-1: #fdfcf5;
+	--color-brown-1: #793e00;
+	--color-brown-2: #452916;
+	--color-doenjang: #7d4403;
+}
+
+@utility main-grid {
+	@apply grid grid-cols-10 gap-[10px] sm:grid-cols-24 sm:gap-[10px];
+}
+
+@utility page-x {
+	@apply px-[22px] lg:px-[50px];
+}
+
+@utility large-serif {
+	@apply font-serif text-[65px] leading-[0.98] tracking-[0.8px];
+}
+
+@utility medium-serif {
+	@apply font-serif text-[48px] leading-[1.03] tracking-[.8px];
+}
+
+@utility card-serif {
+	@apply font-serif text-[30px] leading-[1.04] tracking-[.6px];
+}
+
+@utility card-serif-2 {
+	@apply font-serif text-[25px] leading-[1.04] tracking-[.6px];
+}
+
+@utility about-card-serif {
+	@apply font-serif text-[40px] leading-[1.04] tracking-[.6px];
+}
+
+@utility nav-title-serif {
+	@apply font-serif text-[30px] leading-[1.04] tracking-[-.07px];
+}
+
+@utility body-serif {
+	@apply font-serif text-[15px] leading-[1.35] tracking-[0.4px];
+}
+
+@utility post-title-serif {
+	@apply font-serif text-[18px] leading-[1.35] tracking-[0.4px];
+}
+
+@utility menu-serif {
+	@apply font-serif text-[14px] leading-[1.35] tracking-[0.3px];
+}
+
+@utility small-serif {
+	@apply font-serif text-[13px] leading-[1.22] tracking-[0.4px];
+}
+
+@utility legal-serif {
+	@apply font-serif text-[11px] leading-[1.22] tracking-[0.3px];
+}
+
+@utility korean-secondary {
+	@apply font-korean text-[32px] leading-[1.35] tracking-[0.2px];
+}
+
+@utility date-stamp {
+	@apply font-stamp text-[16px] leading-[0.98] tracking-[1px];
+}
+
+@utility korean-date {
+	@apply font-korean text-[14px] leading-[0.98] tracking-[-1px];
+}
+
+@utility mono {
+	@apply font-mono text-[16px] leading-[0.98] tracking-[0.2px];
+}
+
+@utility small-caps {
+	font-variant: all-small-caps;
+}

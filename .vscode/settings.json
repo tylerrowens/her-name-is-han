@@ -1,0 +1,18 @@
+{
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
+	"editor.formatOnSave": true,
+	"[svelte]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"tailwindCSS.experimental.configFile": {
+		"src/app.css": "html, body"
+	  },
+	  "tailwindCSS.includeLanguages": {
+		"svelte": "html"
+	  },
+	  "editor.quickSuggestions": {
+		"strings": "on"
+	  }
+}
