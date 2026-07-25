@@ -1,4 +1,4 @@
-<article class="flex flex-col items-center mt-lg-5 mb-xl-6">
+<article class="flex flex-col items-center mt-lg-5 mb-xl-5">
 	<div class="w-[800px]">
 		<div class="w-fit p-xs-2 shadow-[inset_1.5px_1.5px_7px_rgb(0_0_0_/_0.4)]">
 			<div class="aspect-[4/3] w-[200px] overflow-hidden">
@@ -16,7 +16,5 @@
 </article>
 
 <div class="flex flex-row justify-center my-lg-4">
-	<div class="flex flex-col w-[800px]">
-		
-	</div>
+	<div class="flex flex-col w-[800px]"></div>
 </div>
