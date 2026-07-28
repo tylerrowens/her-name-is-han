@@ -1,8 +1,8 @@
 import {defineType, defineField} from 'sanity'
 
-export const interviewText = defineType({
-  name: 'interviewText',
-  title: 'Interview Text',
+export const interviewEntry = defineType({
+  name: 'interviewEntry',
+  title: 'Interview Entry',
   type: 'object',
   fields: [
     defineField({
@@ -12,10 +12,10 @@ export const interviewText = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-        name: 'dialogue',
-        title: 'Dialogue',
-        type: 'text',
-        validation: (rule) => rule.required(),
-    })
+      name: 'dialogue',
+      title: 'Dialogue',
+      type: 'simplePortableText',
+      validation: (rule) => rule.required(),
+    }),
   ],
 })

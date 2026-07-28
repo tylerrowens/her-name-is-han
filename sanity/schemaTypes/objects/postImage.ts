@@ -32,7 +32,7 @@ export const postImage = defineType({
     defineField({
       name: 'caption',
       title: 'Caption',
-      type: 'string',
+      type: 'simplePortableText',
     }),
   ],
 })
