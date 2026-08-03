@@ -74,8 +74,7 @@ export const blogPost = defineType({
       name: 'featuredText',
       title: 'Featured Text',
       type: 'simplePortableText',
-      validation: (rule) =>
-        rule.required().max(180).error('Enter a featured text of 100 characters or fewer.'),
+      validation: (rule) => rule.required().error('Enter a featured text.'),
     }),
     defineField({
       name: 'content',

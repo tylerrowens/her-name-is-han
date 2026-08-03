@@ -1,13 +1,28 @@
+<script lang="ts">
+	import { PortableText } from '@portabletext/svelte';
+	import type { PostImageData } from '$lib/types/blog';
+	import SmallCaps from '$lib/sanity/SmallCaps.svelte';
+
+	interface Props {
+		src: string;
+		alt: string;
+		caption: PostImageData['caption'];
+	}
+
+	let { src, alt, caption }: Props = $props();
+</script>
+
 <article class="flex flex-col items-center my-lg-5">
 	<div class="w-[300px] justify-items-center">
 		<div class="p-xs-2 shadow-[inset_1.5px_1.5px_7px_rgb(0_0_0_/_0.4)]">
 			<div class="aspect-[3/4] w-[150px] overflow-hidden">
-				<img class="h-full w-full object-cover" src="/images/article-5.jpg" alt="" />
+				<img class="h-full w-full object-cover" {src} {alt} />
 			</div>
 		</div>
-
-		<div class="pt-sm-3">
-			<p class="small-serif small-caps text-center">Vio’s daughter</p>
-		</div>
+		{#if caption}
+			<div class="pt-sm-3 small-serif text-center">
+				<PortableText value={caption} components={{ marks: { smallCaps: SmallCaps } }} />
+			</div>
+		{/if}
 	</div>
 </article>

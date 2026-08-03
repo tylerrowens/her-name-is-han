@@ -115,7 +115,7 @@ body {
 }
 
 @utility small-serif {
-	@apply font-serif text-[13px] leading-[1.22] tracking-[0.4px];
+	@apply font-serif text-[12px] leading-[1.22] tracking-[0.4px];
 }
 
 @utility legal-serif {

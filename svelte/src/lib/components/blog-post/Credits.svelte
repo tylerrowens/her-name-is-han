@@ -1,11 +1,23 @@
+<script lang="ts">
+	import type { BlogPostData } from '$lib/types/blog';
+
+	interface Props {
+		credits: NonNullable<BlogPostData['credits']>;
+	}
+
+	let { credits }: Props = $props();
+</script>
+
 <article class="bg-chamgireum text-doenjang">
 	<div class="flex flex-col h-[600px] w-full justify-center items-center">
-		<p class="card-serif-2 text-center w-[550px]">
-			Photography and Interviews <br /> Kenneth Lam
-		</p>
+		{#each credits.credits as credit (credit._key)}
+			<p class="card-serif-2 text-center w-[550px]">
+				{credit.creditTitle} <br />
+				{credit.creditName}
+			</p>
+		{/each}
 		<p class="card-serif-2 text-center w-[500px] mt-[25px]">
-			A Seat At Our Table is on view from 9 March – 12 October 2024 at SPACE Ilford, 10 Oakfield Rd,
-			IG1 1ZJ
+			{credits.additionalInfo}
 		</p>
 	</div>
 

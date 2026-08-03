@@ -1,0 +1,1 @@
+import{g as e,v as t}from"../chunks/BZsOCkuN.js";import"../chunks/xihTtKlq.js";var n=t(`<h1 class="body-serif">Shop</h1>`);function r(t){e(t,n())}export{r as component};

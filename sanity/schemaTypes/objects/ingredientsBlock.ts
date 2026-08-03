@@ -11,7 +11,7 @@ export const ingredientsBlock = defineType({
       type: 'array',
       of: [
         defineArrayMember({
-          type: 'simplePortableText',
+          type: 'string',
         }),
       ],
       validation: (rule) => rule.required().min(1).error('Add at least one ingredient.'),

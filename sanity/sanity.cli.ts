@@ -5,6 +5,20 @@ export default defineCliConfig({
     projectId: 'ihj0t38y',
     dataset: 'production'
   },
+
+  schemaExtraction: {
+    enabled: true,
+    path: 'schema.json'
+  },
+
+  typegen: {
+    enabled: true,
+    path: '../svelte/src/**/*.{ts,svelte}',
+    schema: 'schema.json',
+    generates: '../svelte/src/lib/sanity/sanity.types.ts',
+    overloadClientMethods: true
+  },
+
   deployment: {
     /**
      * Enable auto-updates for studios.

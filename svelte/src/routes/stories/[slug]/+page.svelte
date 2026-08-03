@@ -1,35 +1,39 @@
-<script>
-	import BlogNav from '$lib/components/blog-post/BlogNav.svelte';
-	import Credits from '$lib/components/blog-post/Credits.svelte';
-	import Interview from '$lib/components/blog-post/Interview.svelte';
-	import LargeImage from '$lib/components/blog-post/LargeImage.svelte';
-	import MediumImage from '$lib/components/blog-post/MediumImage.svelte';
-	import PostHeader from '$lib/components/blog-post/PostHeader.svelte';
+<script lang="ts">
+	import type { PageProps } from './$types';
+
+	import TextBlock from '$lib/components/blog-post/TextBlock.svelte';
+	import PostImage from '$lib/components/blog-post/PostImage.svelte';
+	import ImageDiptique from '$lib/components/blog-post/ImageDiptique.svelte';
 	import PullQuote from '$lib/components/blog-post/PullQuote.svelte';
-	import SmallImage from '$lib/components/blog-post/SmallImage.svelte';
-	import TinyImage from '$lib/components/blog-post/TinyImage.svelte';
-	import TypeBlock from '$lib/components/blog-post/TypeBlock.svelte';
-	import Diptique from '$lib/components/blog-post/Diptique.svelte';
-	import Ingredients from '$lib/components/blog-post/Ingredients.svelte';
-	import Instructions from '$lib/components/blog-post/Instructions.svelte';
-	import FeaturedCard from '$lib/components/blog-main/FeaturedCard.svelte';
+	import InterviewEntry from '$lib/components/blog-post/InterviewEntry.svelte';
+	import IngredientsBlock from '$lib/components/blog-post/IngredientsBlock.svelte';
+	import InstructionsBlock from '$lib/components/blog-post/InstructionsBlock.svelte';
+	import PostHeader from '$lib/components/blog-post/PostHeader.svelte';
+	import Credits from '$lib/components/blog-post/Credits.svelte';
+
+	let { data }: PageProps = $props();
 </script>
 
 <section>
-	<BlogNav />
-	<PostHeader />
-	<SmallImage />
-	<MediumImage />
-	<TypeBlock />
-	<LargeImage />
-	<Diptique />
-	<Interview />
-	<Ingredients />
-	<Instructions />
-	<TypeBlock />
-	<PullQuote />
-	<LargeImage />
-	<TypeBlock />
-	<TinyImage />
-	<Credits />
+<PostHeader post={data.post} />
+
+	{#each data.post.content ?? [] as block (block._key)}
+		{#if block._type === 'textBlock'}
+			<TextBlock {block} />
+		{:else if block._type === 'postImage'}
+			<PostImage {block} />
+		{:else if block._type === 'imageDiptych'}
+			<ImageDiptique {block} />
+		{:else if block._type === 'pullQuote'}
+			<PullQuote {block} />
+		{:else if block._type === 'interviewEntry'}
+			<InterviewEntry {block} />
+		{:else if block._type === 'ingredientsBlock'}
+			<IngredientsBlock {block} />
+		{:else if block._type === 'instructionsBlock'}
+			<InstructionsBlock {block} />
+		{/if}
+	{/each}
+
+	<Credits credits={data.post.credits}/>
 </section>
