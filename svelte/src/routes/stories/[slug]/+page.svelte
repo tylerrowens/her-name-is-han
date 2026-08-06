@@ -10,12 +10,13 @@
 	import InstructionsBlock from '$lib/components/blog-post/InstructionsBlock.svelte';
 	import PostHeader from '$lib/components/blog-post/PostHeader.svelte';
 	import Credits from '$lib/components/blog-post/Credits.svelte';
+	import BlogNav from '$lib/components/blog-post/BlogNav.svelte';
 
 	let { data }: PageProps = $props();
 </script>
 
-<section>
-<PostHeader post={data.post} />
+<section class="mt-lg-6">
+	<PostHeader post={data.post} />
 
 	{#each data.post.content ?? [] as block (block._key)}
 		{#if block._type === 'textBlock'}
@@ -35,5 +36,5 @@
 		{/if}
 	{/each}
 
-	<Credits credits={data.post.credits}/>
+	<Credits credits={data.post.credits} />
 </section>

@@ -16,7 +16,7 @@
 				{credit.creditName}
 			</p>
 		{/each}
-		<p class="card-serif-2 text-center w-[500px] mt-[25px]">
+		<p class="card-serif-2 text-center w-[500px] mt-md-4">
 			{credits.additionalInfo}
 		</p>
 	</div>

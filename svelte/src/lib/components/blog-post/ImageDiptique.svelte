@@ -2,6 +2,7 @@
 	import { PortableText } from '@portabletext/svelte';
 	import { urlFor } from '$lib/sanity/image';
 	import type { ImageDiptychData } from '$lib/types/blog';
+	import SmallCaps from '$lib/sanity/SmallCaps.svelte';
 
 	interface Props {
 		block: ImageDiptychData;
@@ -30,7 +31,7 @@
 	</div>
 	{#if block.caption}
 		<div class="pt-sm-3 small-serif text-center">
-			<PortableText value={block.caption} />
+			<PortableText value={block.caption} components={{ marks: { smallCaps: SmallCaps } }} />
 		</div>
 	{/if}
 </article>

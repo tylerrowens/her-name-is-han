@@ -1,4 +1,4 @@
-<footer class="relative h-[1080px] w-full overflow-hidden bg-green-1">
+<footer class="relative h-screen w-full overflow-hidden bg-green-1">
 	<img
 		src="/images/footer-background.jpg"
 		alt=""

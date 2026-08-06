@@ -23,9 +23,9 @@
 
 	const variantClasses = $derived(
 		{
-			blue: 'bg-blue-9 text-blue-5',
+			blue: 'bg-card-1-bg text-blue-5',
 			navy: 'bg-blue-10 text-grey-5',
-			brown: 'bg-brown-2 text-grey-5'
+			brown: 'bg-chamgireum text-grey-5'
 		}[variant]
 	);
 </script>

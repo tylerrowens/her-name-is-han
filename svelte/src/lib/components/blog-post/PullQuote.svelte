@@ -9,7 +9,7 @@
 </script>
 
 <article>
-	<div class="flex flex-col my-xl-6">
+	<div class="flex flex-col my-xl-5">
 		<p class="medium-serif text-center self-center w-[1000px]">
 			{block.quote}
 		</p>

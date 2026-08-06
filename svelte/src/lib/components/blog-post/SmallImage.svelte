@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { PortableText } from '@portabletext/svelte';
 	import type { PostImageData } from '$lib/types/blog';
+	import SmallCaps from '$lib/sanity/SmallCaps.svelte';
 
 	interface Props {
 		src: string;
@@ -20,7 +21,7 @@
 		</div>
 		{#if caption}
 			<div class="w-[250px] translate-x-[100px] pt-sm-3 small-serif text-justify">
-				<PortableText value={caption} />
+				<PortableText value={caption} components={{ marks: { smallCaps: SmallCaps } }} />
 			</div>
 		{/if}
 	</div>
