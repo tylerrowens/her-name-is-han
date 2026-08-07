@@ -1,9 +1,11 @@
 import {defineType, defineField} from 'sanity'
+import {BlockquoteIcon} from '@sanity/icons/Blockquote'
 
 export const interviewEntry = defineType({
   name: 'interviewEntry',
   title: 'Interview Entry',
   type: 'object',
+  icon: BlockquoteIcon,
   fields: [
     defineField({
       name: 'speakerName',
@@ -18,4 +20,15 @@ export const interviewEntry = defineType({
       validation: (rule) => rule.required(),
     }),
   ],
+  preview: {
+    select: {
+      speakerName: 'speakerName',
+    },
+    prepare({speakerName}) {
+      return {
+        title: 'Interview Entry',
+        subtitle: speakerName,
+      }
+    },
+  },
 })

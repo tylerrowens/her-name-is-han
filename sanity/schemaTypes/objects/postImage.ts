@@ -20,10 +20,10 @@ export const postImage = defineType({
       type: 'string',
       options: {
         list: [
-          {title: 'Large', value: 'large'},
-          {title: 'Medium', value: 'medium'},
-          {title: 'Small', value: 'small'},
-          {title: 'Tiny', value: 'tiny'},
+          {title: 'Large Image', value: 'large'},
+          {title: 'Medium Image', value: 'medium'},
+          {title: 'Small Image', value: 'small'},
+          {title: 'Tiny Image', value: 'tiny'},
         ],
         layout: 'dropdown',
       },
@@ -35,4 +35,23 @@ export const postImage = defineType({
       type: 'simplePortableText',
     }),
   ],
+  preview: {
+    select: {
+      size: 'size',
+      media: 'image',
+    },
+    prepare({size, media}) {
+      const sizeTitles: Record<string, string> = {
+        large: 'Large Image',
+        medium: 'Medium Image',
+        small: 'Small Image',
+        tiny: 'Tiny Image',
+      }
+
+      return {
+        title: sizeTitles[size] ?? 'Image',
+        media,
+      }
+    },
+  },
 })

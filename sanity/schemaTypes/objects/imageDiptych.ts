@@ -23,4 +23,16 @@ export const imageDiptych = defineType({
       type: 'simplePortableText',
     }),
   ],
+  preview: {
+    select: {
+      media: 'image1',
+      title: 'title',
+    },
+    prepare({media, title}) {
+      return {
+        media: media,
+        title: 'Diptych Image',
+      }
+    },
+  },
 })
