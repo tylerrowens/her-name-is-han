@@ -10,17 +10,33 @@ export const BLOG_POST_QUERY = defineQuery(`
         "slug": slug.current,
         author,
         publishedDate,
-        categories,
+        "categories": coalesce(categories, []),
 
-        mainImage {
-            alt,
-            crop,
-            hotspot,
-            asset-> {
-                _id,
-                url,
-                metadata {
-                    dimensions
+        mainMedia {
+            mediaType,
+
+            image {
+                alt,
+                crop,
+                hotspot,
+                asset-> {
+                    _id,
+                    url,
+                    metadata {
+                        dimensions
+                    }
+                }
+            },
+
+            video {
+                asset-> {
+                    _id,
+                    assetId,
+                    playbackId,
+                    filename,
+                    status,
+                    "aspectRatio": data.aspect_ratio,
+                    "duration": data.duration
                 }
             }
         },
@@ -81,17 +97,77 @@ export const BLOG_POST_QUERY = defineQuery(`
             "slug": slug.current,
             author,
             publishedDate,
-            categories,
-            mainImage {
+            "categories": coalesce(categories, []),
+            mainMedia {
+                mediaType,
+
+                image {
+                    alt,
+                    crop,
+                    hotspot,
+                    asset-> {
+                        _id,
+                        url,
+                        metadata {
+                        dimensions
+                        }
+                    }
+                },
+
+                video {
+                    asset-> {
+                        _id,
+                        assetId,
+                        playbackId,
+                        filename,
+                        status,
+                        "aspectRatio": data.aspect_ratio,
+                        "duration": data.duration
+                    }
+                }
+            }
+        
+        }
+    }
+`);
+
+export const BLOG_OVERVIEW_QUERY = defineQuery(`
+    *[
+        _type == "blogPost" &&
+        defined(slug.current)
+    ] | order(publishedDate desc) {
+        _id,
+        title,
+        "slug": slug.current,
+        author,
+        publishedDate,
+        "categories": coalesce(categories, []),
+
+                mainMedia {
+            mediaType,
+
+            image {
                 alt,
                 crop,
                 hotspot,
-                assets-> {
+                asset-> {
                     _id,
                     url,
                     metadata {
                         dimensions
                     }
+                }
+            },
+
+            video {
+                asset-> {
+                    _id,
+                    assetId,
+                    playbackId,
+                    filename,
+                    status,
+                    "aspectRatio": data.aspect_ratio,
+                    "duration": data.duration
                 }
             }
         }

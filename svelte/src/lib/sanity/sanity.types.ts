@@ -15,6 +15,27 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type MainMedia = {
+  _type: "mainMedia";
+  mediaType?: "image" | "video";
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  video?: MuxVideo;
+};
+
 export type SimplePortableText = Array<{
   children?: Array<{
     marks?: Array<string>;
@@ -42,13 +63,6 @@ export type TextBlock = {
 export type PullQuote = {
   _type: "pullQuote";
   quote?: string;
-};
-
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
 export type PostImage = {
@@ -128,14 +142,7 @@ export type BlogPost = {
   author?: string;
   publishedDate?: string;
   categories?: Array<string>;
-  mainImage?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
+  mainMedia?: MainMedia;
   featuredText?: SimplePortableText;
   content?: Array<{
     _key: string;
@@ -174,10 +181,114 @@ export type SanityImageHotspot = {
   width?: number;
 };
 
+export type MuxVideoAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "mux.videoAsset";
+};
+
+export type MuxVideo = {
+  _type: "mux.video";
+  asset?: MuxVideoAssetReference;
+};
+
 export type Slug = {
   _type: "slug";
   current?: string;
   source?: string;
+};
+
+export type MuxVideoAsset = {
+  _id: string;
+  _type: "mux.videoAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  status?: string;
+  assetId?: string;
+  playbackId?: string;
+  filename?: string;
+  thumbTime?: number;
+  data?: MuxAssetData;
+};
+
+export type MuxAssetData = {
+  _type: "mux.assetData";
+  resolution_tier?: string;
+  upload_id?: string;
+  created_at?: string;
+  id?: string;
+  status?: string;
+  max_stored_resolution?: string;
+  passthrough?: string;
+  encoding_tier?: string;
+  video_quality?: string;
+  master_access?: string;
+  aspect_ratio?: string;
+  duration?: number;
+  max_stored_frame_rate?: number;
+  mp4_support?: string;
+  max_resolution_tier?: string;
+  tracks?: Array<{
+    _key: string;
+  } & MuxTrack>;
+  playback_ids?: Array<{
+    _key: string;
+  } & MuxPlaybackId>;
+  static_renditions?: MuxStaticRenditions;
+  master?: MuxMasterFile;
+};
+
+export type MuxMasterFile = {
+  _type: "mux.masterFile";
+  status?: string;
+  url?: string;
+};
+
+export type MuxStaticRenditions = {
+  _type: "mux.staticRenditions";
+  status?: string;
+  files?: Array<{
+    _key: string;
+  } & MuxStaticRenditionFile>;
+};
+
+export type MuxStaticRenditionFile = {
+  _type: "mux.staticRenditionFile";
+  name?: string;
+  ext?: string;
+  height?: number;
+  width?: number;
+  bitrate?: number;
+  filesize?: string;
+  type?: string;
+  status?: string;
+  resolution_tier?: string;
+  resolution?: string;
+  id?: string;
+  passthrough?: string;
+};
+
+export type MuxPlaybackId = {
+  _type: "mux.playbackId";
+  id?: string;
+  policy?: string;
+};
+
+export type MuxTrack = {
+  _type: "mux.track";
+  id?: string;
+  type?: string;
+  max_width?: number;
+  max_frame_rate?: number;
+  duration?: number;
+  max_height?: number;
+  language_code?: string;
+  name?: string;
+  status?: string;
+  text_source?: string;
+  text_type?: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -277,27 +388,41 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = SimplePortableText | TextBlock | PullQuote | SanityImageAssetReference | PostImage | InterviewEntry | InstructionsBlock | IngredientsBlock | ImageDiptych | CreditsBlock | BlogPostReference | BlogPost | SanityImageCrop | SanityImageHotspot | Slug | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = SanityImageAssetReference | MainMedia | SimplePortableText | TextBlock | PullQuote | PostImage | InterviewEntry | InstructionsBlock | IngredientsBlock | ImageDiptych | CreditsBlock | BlogPostReference | BlogPost | SanityImageCrop | SanityImageHotspot | MuxVideoAssetReference | MuxVideo | Slug | MuxVideoAsset | MuxAssetData | MuxMasterFile | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 
 // Source: ../svelte/src/lib/sanity/queries.ts
 // Variable: BLOG_POST_QUERY
-// Query: *[        _type == "blogPost" &&        slug.current == $slug    ] [0] {        _id,        title,        "slug": slug.current,        author,        publishedDate,        categories,        mainImage {            alt,            crop,            hotspot,            asset-> {                _id,                url,                metadata {                    dimensions                }            }        },        featuredText,        content[] {            ...,            _type == "postImage" => {                image {                    alt,                    crop,                    hotspot,                    asset-> {                        _id,                        url,                        metadata {                            dimensions                        }                    }                }            },            _type == "imageDiptych" => {                image1 {                    alt,                    crop,                    hotspot,                    asset-> {                        _id,                        url,                        metadata {                            dimensions                        }                    }                },                image2 {                    alt,                    crop,                    hotspot,                    asset-> {                        _id,                        url,                        metadata {                            dimensions                        }                    }                }            }        },        credits,        relatedStories[]-> {            _id,            title,            "slug": slug.current,            author,            publishedDate,            categories,            mainImage {                alt,                crop,                hotspot,                assets-> {                    _id,                    url,                    metadata {                        dimensions                    }                }            }        }    }
+// Query: *[        _type == "blogPost" &&        slug.current == $slug    ] [0] {        _id,        title,        "slug": slug.current,        author,        publishedDate,        "categories": coalesce(categories, []),        mainMedia {            mediaType,            image {                alt,                crop,                hotspot,                asset-> {                    _id,                    url,                    metadata {                        dimensions                    }                }            },            video {                asset-> {                    _id,                    assetId,                    playbackId,                    filename,                    status,                    "aspectRatio": data.aspect_ratio,                    "duration": data.duration                }            }        },        featuredText,        content[] {            ...,            _type == "postImage" => {                image {                    alt,                    crop,                    hotspot,                    asset-> {                        _id,                        url,                        metadata {                            dimensions                        }                    }                }            },            _type == "imageDiptych" => {                image1 {                    alt,                    crop,                    hotspot,                    asset-> {                        _id,                        url,                        metadata {                            dimensions                        }                    }                },                image2 {                    alt,                    crop,                    hotspot,                    asset-> {                        _id,                        url,                        metadata {                            dimensions                        }                    }                }            }        },        credits,        relatedStories[]-> {            _id,            title,            "slug": slug.current,            author,            publishedDate,            "categories": coalesce(categories, []),            mainMedia {                mediaType,                image {                    alt,                    crop,                    hotspot,                    asset-> {                        _id,                        url,                        metadata {                        dimensions                        }                    }                },                video {                    asset-> {                        _id,                        assetId,                        playbackId,                        filename,                        status,                        "aspectRatio": data.aspect_ratio,                        "duration": data.duration                    }                }            }                }    }
 export type BLOG_POST_QUERY_RESULT = {
   _id: string;
   title: string | null;
   slug: string | null;
   author: string | null;
   publishedDate: string | null;
-  categories: Array<string> | null;
-  mainImage: {
-    alt: string | null;
-    crop: SanityImageCrop | null;
-    hotspot: SanityImageHotspot | null;
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        dimensions: SanityImageDimensions | null;
+  categories: Array<string> | Array<never>;
+  mainMedia: {
+    mediaType: "image" | "video" | null;
+    image: {
+      alt: string | null;
+      crop: SanityImageCrop | null;
+      hotspot: SanityImageHotspot | null;
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          dimensions: SanityImageDimensions | null;
+        } | null;
+      } | null;
+    } | null;
+    video: {
+      asset: {
+        _id: string;
+        assetId: string | null;
+        playbackId: string | null;
+        filename: string | null;
+        status: string | null;
+        aspectRatio: string | null;
+        duration: number | null;
       } | null;
     } | null;
   } | null;
@@ -376,21 +501,80 @@ export type BLOG_POST_QUERY_RESULT = {
     slug: string | null;
     author: string | null;
     publishedDate: string | null;
-    categories: Array<string> | null;
-    mainImage: {
-      alt: string | null;
-      crop: SanityImageCrop | null;
-      hotspot: SanityImageHotspot | null;
-      assets: null;
+    categories: Array<string> | Array<never>;
+    mainMedia: {
+      mediaType: "image" | "video" | null;
+      image: {
+        alt: string | null;
+        crop: SanityImageCrop | null;
+        hotspot: SanityImageHotspot | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            dimensions: SanityImageDimensions | null;
+          } | null;
+        } | null;
+      } | null;
+      video: {
+        asset: {
+          _id: string;
+          assetId: string | null;
+          playbackId: string | null;
+          filename: string | null;
+          status: string | null;
+          aspectRatio: string | null;
+          duration: number | null;
+        } | null;
+      } | null;
     } | null;
   }> | null;
 } | null;
+
+// Source: ../svelte/src/lib/sanity/queries.ts
+// Variable: BLOG_OVERVIEW_QUERY
+// Query: *[        _type == "blogPost" &&        defined(slug.current)    ] | order(publishedDate desc) {        _id,        title,        "slug": slug.current,        author,        publishedDate,        "categories": coalesce(categories, []),                mainMedia {            mediaType,            image {                alt,                crop,                hotspot,                asset-> {                    _id,                    url,                    metadata {                        dimensions                    }                }            },            video {                asset-> {                    _id,                    assetId,                    playbackId,                    filename,                    status,                    "aspectRatio": data.aspect_ratio,                    "duration": data.duration                }            }        }    }
+export type BLOG_OVERVIEW_QUERY_RESULT = Array<{
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  author: string | null;
+  publishedDate: string | null;
+  categories: Array<string> | Array<never>;
+  mainMedia: {
+    mediaType: "image" | "video" | null;
+    image: {
+      alt: string | null;
+      crop: SanityImageCrop | null;
+      hotspot: SanityImageHotspot | null;
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          dimensions: SanityImageDimensions | null;
+        } | null;
+      } | null;
+    } | null;
+    video: {
+      asset: {
+        _id: string;
+        assetId: string | null;
+        playbackId: string | null;
+        filename: string | null;
+        status: string | null;
+        aspectRatio: string | null;
+        duration: number | null;
+      } | null;
+    } | null;
+  } | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n    *[\n        _type == \"blogPost\" &&\n        slug.current == $slug\n    ] [0] {\n        _id,\n        title,\n        \"slug\": slug.current,\n        author,\n        publishedDate,\n        categories,\n\n        mainImage {\n            alt,\n            crop,\n            hotspot,\n            asset-> {\n                _id,\n                url,\n                metadata {\n                    dimensions\n                }\n            }\n        },\n\n        featuredText,\n\n        content[] {\n            ...,\n\n            _type == \"postImage\" => {\n                image {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                            dimensions\n                        }\n                    }\n                }\n            },\n\n            _type == \"imageDiptych\" => {\n                image1 {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                            dimensions\n                        }\n                    }\n                },\n                image2 {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                            dimensions\n                        }\n                    }\n                }\n            }\n        },\n\n        credits,\n\n        relatedStories[]-> {\n            _id,\n            title,\n            \"slug\": slug.current,\n            author,\n            publishedDate,\n            categories,\n            mainImage {\n                alt,\n                crop,\n                hotspot,\n                assets-> {\n                    _id,\n                    url,\n                    metadata {\n                        dimensions\n                    }\n                }\n            }\n        }\n    }\n": BLOG_POST_QUERY_RESULT;
+    "\n    *[\n        _type == \"blogPost\" &&\n        slug.current == $slug\n    ] [0] {\n        _id,\n        title,\n        \"slug\": slug.current,\n        author,\n        publishedDate,\n        \"categories\": coalesce(categories, []),\n\n        mainMedia {\n            mediaType,\n\n            image {\n                alt,\n                crop,\n                hotspot,\n                asset-> {\n                    _id,\n                    url,\n                    metadata {\n                        dimensions\n                    }\n                }\n            },\n\n            video {\n                asset-> {\n                    _id,\n                    assetId,\n                    playbackId,\n                    filename,\n                    status,\n                    \"aspectRatio\": data.aspect_ratio,\n                    \"duration\": data.duration\n                }\n            }\n        },\n\n        featuredText,\n\n        content[] {\n            ...,\n\n            _type == \"postImage\" => {\n                image {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                            dimensions\n                        }\n                    }\n                }\n            },\n\n            _type == \"imageDiptych\" => {\n                image1 {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                            dimensions\n                        }\n                    }\n                },\n                image2 {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                            dimensions\n                        }\n                    }\n                }\n            }\n        },\n\n        credits,\n\n        relatedStories[]-> {\n            _id,\n            title,\n            \"slug\": slug.current,\n            author,\n            publishedDate,\n            \"categories\": coalesce(categories, []),\n            mainMedia {\n                mediaType,\n\n                image {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                        dimensions\n                        }\n                    }\n                },\n\n                video {\n                    asset-> {\n                        _id,\n                        assetId,\n                        playbackId,\n                        filename,\n                        status,\n                        \"aspectRatio\": data.aspect_ratio,\n                        \"duration\": data.duration\n                    }\n                }\n            }\n        \n        }\n    }\n": BLOG_POST_QUERY_RESULT;
+    "\n    *[\n        _type == \"blogPost\" &&\n        defined(slug.current)\n    ] | order(publishedDate desc) {\n        _id,\n        title,\n        \"slug\": slug.current,\n        author,\n        publishedDate,\n        \"categories\": coalesce(categories, []),\n\n                mainMedia {\n            mediaType,\n\n            image {\n                alt,\n                crop,\n                hotspot,\n                asset-> {\n                    _id,\n                    url,\n                    metadata {\n                        dimensions\n                    }\n                }\n            },\n\n            video {\n                asset-> {\n                    _id,\n                    assetId,\n                    playbackId,\n                    filename,\n                    status,\n                    \"aspectRatio\": data.aspect_ratio,\n                    \"duration\": data.duration\n                }\n            }\n        }\n    }\n": BLOG_OVERVIEW_QUERY_RESULT;
   }
 }
 

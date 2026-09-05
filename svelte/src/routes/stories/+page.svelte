@@ -1,16 +1,132 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
-	import FeaturedPosts from '$lib/components/blog-main/FeaturedPosts.svelte';
-	import BlogPosts from '$lib/components/blog-main/BlogPosts.svelte';
+	import BlogCard from '$lib/components/blog-main/BlogCard.svelte';
+	import PlaylistCard from '$lib/components/blog-main/PlaylistCard.svelte';
+	import Swiper from 'swiper';
+	import 'swiper/css';
+	import 'swiper/css/bundle';
+	import RecipeCard from '$lib/components/blog-main/RecipeCard.svelte';
+	import type { SwiperOptions } from 'swiper/types';
 
 	let { data }: { data: PageData } = $props();
+
+	const categories = [
+		{ label: 'All', value: 'all', count: data.blogPosts.length },
+		{
+			label: 'Feature',
+			value: 'feature',
+			count: data.blogPosts.filter((post) => post.categories?.includes('feature')).length
+		},
+		{
+			label: 'News',
+			value: 'news',
+			count: data.blogPosts.filter((post) => post.categories?.includes('news')).length
+		},
+		{
+			label: 'Recipe',
+			value: 'recipe',
+			count: data.blogPosts.filter((post) => post.categories?.includes('recipe')).length
+		},
+		{
+			label: 'Playlist',
+			value: 'playlist',
+			count: data.blogPosts.filter((post) => post.categories?.includes('playlist')).length
+		}
+	] as const;
+
+	let selectedCategory = $state<string>('all');
+
+	let filteredPosts = $derived(
+		selectedCategory === 'all'
+			? data.blogPosts
+			: data.blogPosts.filter((post) => post.categories?.includes(selectedCategory))
+	);
+
+	let playlistCarousel: HTMLDivElement;
+	let recipeCarousel: HTMLDivElement;
+
+	const swiperOptions = {
+		cssMode: true,
+		slidesPerView: 'auto',
+		spaceBetween: 14,
+		slidesOffsetBefore: 200,
+		slidesOffsetAfter: 14,
+		mousewheel: true
+	} satisfies SwiperOptions;
+
+	onMount(() => {
+		const playlistSwiper = new Swiper(playlistCarousel, swiperOptions);
+		const recipeSwiper = new Swiper(recipeCarousel, swiperOptions);
+
+		return () => {
+			playlistSwiper.destroy(true, true);
+			recipeSwiper.destroy(true, true);
+		};
+	});
 </script>
 
-<section>
-<div>
-	<FeaturedPosts {...data.featuredPosts} />
-</div>
-<div>
-	<BlogPosts {...data.blogPosts} />
-</div>
+<section class="">
+	<div class="bg-chamgireum pt-lg-6">
+	</div>
+
+	<nav class="bg-white">
+		<ul class="flex flex-row gap-md-3 justify-center py-sm-3 card-serif-2">
+			{#each categories as category}
+				<li>
+					<button type="button" onclick={() => (selectedCategory = category.value)}>
+						{category.label}
+						<span class="[font-variant-position:super]">{category.count}</span>
+					</button>
+				</li>
+			{/each}
+		</ul>
+	</nav>
+
+	<div class="bg-jade-white">
+		<div class=" mx-md-3 grid grid-cols-1 gap-md-4 pb-[120px] pt-lg-4 sm:grid-cols-3 lg:mx-lg-6">
+			{#each filteredPosts as post (post._id)}
+				<BlogCard {post} />
+			{/each}
+		</div>
+	</div>
+
+	<div class="bg-ganjang">
+		<p class="page-x pt-[50px] nav-title-serif text-ash">Han’s Playlist</p>
+		<div bind:this={playlistCarousel} class="swiper flex items-center">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide !w-[360px]"><PlaylistCard /></div>
+				<div class="swiper-slide !w-[360px]"><PlaylistCard /></div>
+				<div class="swiper-slide !w-[360px]"><PlaylistCard /></div>
+				<div class="swiper-slide !w-[360px]"><PlaylistCard /></div>
+				<div class="swiper-slide !w-[360px]"><PlaylistCard /></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="bg-chamgireum">
+		<p class="page-x pt-[50px] nav-title-serif text-jjokbit">Han’s Recipes</p>
+		<div bind:this={recipeCarousel} class="swiper flex items-center">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide !w-[360px]"><RecipeCard /></div>
+				<div class="swiper-slide !w-[360px]"><RecipeCard /></div>
+				<div class="swiper-slide !w-[360px]"><RecipeCard /></div>
+				<div class="swiper-slide !w-[360px]"><RecipeCard /></div>
+				<div class="swiper-slide !w-[360px]"><RecipeCard /></div>
+			</div>
+		</div>
+	</div>
 </section>
+
+<style>
+	.swiper {
+		width: 100%;
+	}
+
+	.swiper-slide {
+		font-size: 18px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+</style>

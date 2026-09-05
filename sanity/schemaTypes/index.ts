@@ -9,6 +9,7 @@ import {postImage} from './objects/postImage'
 import {pullQuote} from './objects/pullQuote'
 import {textBlock} from './objects/textBlock'
 import {simplePortableText} from './objects/simplePortableText'
+import { mainMedia } from './objects/mainMedia'
 
 export const schemaTypes = [
   blogPost,
@@ -21,4 +22,5 @@ export const schemaTypes = [
   pullQuote,
   textBlock,
   simplePortableText,
+  mainMedia,
 ]

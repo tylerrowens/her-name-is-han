@@ -54,21 +54,10 @@ export const blogPost = defineType({
       validation: (rule) => rule.required().min(1).unique().error('Select at least one category.'),
     }),
     defineField({
-      name: 'mainImage',
-      title: 'Main Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        defineField({
-          name: 'alt',
-          title: 'Alternative Text',
-          type: 'string',
-          validation: (rule) => rule.required().error('Add alt text.'),
-        }),
-      ],
-      validation: (rule) => rule.required().error('Upload an image.'),
+      name: 'mainMedia',
+      title: 'Main Media',
+      type: 'mainMedia',
+      validation: (rule) => rule.required().error('Add main media.'),
     }),
     defineField({
       name: 'featuredText',

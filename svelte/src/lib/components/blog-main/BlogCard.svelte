@@ -1,21 +1,35 @@
 <script lang="ts">
-	import type { BlogPost } from '$lib/types/blog';
+	import type { BLOG_OVERVIEW_QUERY_RESULT } from '$lib/sanity/sanity.types';
+	import Media from '$lib/components/Media.svelte';
 
-	let { image, title, author, tags, year, day, month }: BlogPost = $props();
+	type BlogPostSummary = BLOG_OVERVIEW_QUERY_RESULT[number];
+
+	interface Props {
+		post: BlogPostSummary;
+	}
+
+	let { post }: Props = $props();
+
+	let formattedDate = $derived(post.publishedDate?.replaceAll('-', ' ') ?? '');
+
+	let formattedCategories = $derived(post.categories?.join(', '));
 </script>
 
 <section>
-	<div class="p-[clamp(3px,2cqw,8px)] shadow-[inset_1.5px_1.5px_7px_rgb(0_0_0_/_0.4)]">
+	<a href={`/stories/${post.slug ?? ''}`}>
 		<div class="aspect-[4/3] w-full overflow-hidden">
-			<img class="h-full w-full object-cover" src={image} alt="" />
+			<Media media={post.mainMedia} title={post.title} />
 		</div>
-	</div>
-	<div>
-		<p class="pt-sm-3 post-title-serif small-caps">{title}</p>
-		<div class="pt-sm-3 pb-lg-4 small-serif">
-			<p><span class="small-caps">by</span> {author}</p>
-			<p class="small-caps pt-xs-1">{tags}</p>
-			<p class="pt-sm-3 date-stamp">{year} 0{month} 0{day} </p>
+
+		<div>
+			<p class="pt-sm-3 post-title-serif small-caps">{post.title}</p>
+			<div class="pt-sm-3 pb-lg-4 small-serif">
+				<p><span class="small-caps">by</span> {post.author}</p>
+				<p class="small-caps pt-xs-1">{formattedCategories}</p>
+				<time class="pt-sm-3 date-stamp" datetime={post.publishedDate ?? undefined}
+					>{formattedDate}</time
+				>
+			</div>
 		</div>
-	</div>
+	</a>
 </section>

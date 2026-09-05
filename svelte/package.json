@@ -37,10 +37,12 @@
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
+		"@mux/mux-player": "^3.13.2",
 		"@portabletext/svelte": "^3.0.1",
 		"@portabletext/types": "^4.0.2",
 		"@sanity/client": "^7.25.0",
 		"@sanity/image-url": "^2.1.1",
-		"groq": "^6.8.0"
+		"groq": "^6.8.0",
+		"swiper": "^14.1.0"
 	}
 }

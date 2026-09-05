@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { PortableText } from '@portabletext/svelte';
 	import SmallCaps from '$lib/sanity/SmallCaps.svelte';
-	import { urlFor } from '$lib/sanity/image';
 	import type { BLOG_POST_QUERY_RESULT } from '$lib/sanity/sanity.types';
+	import Media from '$lib/components/Media.svelte';
 
 	type Post = NonNullable<BLOG_POST_QUERY_RESULT>;
 
@@ -12,14 +12,12 @@
 
 	let { post }: Props = $props();
 
-	const mainImageUrl = $derived(post.mainImage?.asset ? urlFor(post.mainImage).url() : null);
-
-	const categoryList = $derived(post.categories?.join(', ') ?? '');
+	const categoryList = $derived(post.categories.join(', ') ?? '');
 </script>
 
 <article>
 	<div class="flex flex-col my-lg-5">
-		<h1 class="self-center large-serif">{post.title}</h1>
+		<h1 class="self-center large-serif text-center w-[600px]">{post.title}</h1>
 	</div>
 
 	<div class="flex flex-row justify-center gap-[200px] my-lg-5">
@@ -35,11 +33,7 @@
 	<div class="flex flex-row justify-center">
 		<div class="flex flex-col w-[800px]">
 			<div class="aspect-[4/3] self-center overflow-hidden border-2 border-black">
-				<img
-					class="h-full w-full object-cover"
-					src={mainImageUrl}
-					alt={post.mainImage?.alt ?? ''}
-				/>
+				<Media media={post.mainMedia} title={post.title} />
 			</div>
 		</div>
 	</div>
