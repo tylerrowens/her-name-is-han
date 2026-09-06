@@ -124,6 +124,17 @@ export type CreditsBlock = {
   additionalInfo?: string;
 };
 
+export type StoriesPage = {
+  _id: string;
+  _type: "storiesPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  englishTitle?: string;
+  koreanTitle?: string;
+  topBanner?: MainMedia;
+};
+
 export type BlogPostReference = {
   _ref: string;
   _type: "reference";
@@ -388,7 +399,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = SanityImageAssetReference | MainMedia | SimplePortableText | TextBlock | PullQuote | PostImage | InterviewEntry | InstructionsBlock | IngredientsBlock | ImageDiptych | CreditsBlock | BlogPostReference | BlogPost | SanityImageCrop | SanityImageHotspot | MuxVideoAssetReference | MuxVideo | Slug | MuxVideoAsset | MuxAssetData | MuxMasterFile | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = SanityImageAssetReference | MainMedia | SimplePortableText | TextBlock | PullQuote | PostImage | InterviewEntry | InstructionsBlock | IngredientsBlock | ImageDiptych | CreditsBlock | StoriesPage | BlogPostReference | BlogPost | SanityImageCrop | SanityImageHotspot | MuxVideoAssetReference | MuxVideo | Slug | MuxVideoAsset | MuxAssetData | MuxMasterFile | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 
 // Source: ../svelte/src/lib/sanity/queries.ts
 // Variable: BLOG_POST_QUERY
@@ -569,12 +580,48 @@ export type BLOG_OVERVIEW_QUERY_RESULT = Array<{
   } | null;
 }>;
 
+// Source: ../svelte/src/lib/sanity/queries.ts
+// Variable: STORIES_PAGE_QUERY
+// Query: *[ _type == "storiesPage" ][0] {        _id,        englishTitle,        koreanTitle,        topBanner {            mediaType,            image {                alt,                crop,                hotspot,                asset-> {                    _id,                    url,                    metadata {                        dimensions                    }                }            },            video {                asset-> {                    _id,                    assetId,                    playbackId,                    filename,                    status,                    "aspectRatio": data.aspect_ratio,                    "duration": data.duration                }            }        }    }
+export type STORIES_PAGE_QUERY_RESULT = {
+  _id: string;
+  englishTitle: string | null;
+  koreanTitle: string | null;
+  topBanner: {
+    mediaType: "image" | "video" | null;
+    image: {
+      alt: string | null;
+      crop: SanityImageCrop | null;
+      hotspot: SanityImageHotspot | null;
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          dimensions: SanityImageDimensions | null;
+        } | null;
+      } | null;
+    } | null;
+    video: {
+      asset: {
+        _id: string;
+        assetId: string | null;
+        playbackId: string | null;
+        filename: string | null;
+        status: string | null;
+        aspectRatio: string | null;
+        duration: number | null;
+      } | null;
+    } | null;
+  } | null;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n    *[\n        _type == \"blogPost\" &&\n        slug.current == $slug\n    ] [0] {\n        _id,\n        title,\n        \"slug\": slug.current,\n        author,\n        publishedDate,\n        \"categories\": coalesce(categories, []),\n\n        mainMedia {\n            mediaType,\n\n            image {\n                alt,\n                crop,\n                hotspot,\n                asset-> {\n                    _id,\n                    url,\n                    metadata {\n                        dimensions\n                    }\n                }\n            },\n\n            video {\n                asset-> {\n                    _id,\n                    assetId,\n                    playbackId,\n                    filename,\n                    status,\n                    \"aspectRatio\": data.aspect_ratio,\n                    \"duration\": data.duration\n                }\n            }\n        },\n\n        featuredText,\n\n        content[] {\n            ...,\n\n            _type == \"postImage\" => {\n                image {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                            dimensions\n                        }\n                    }\n                }\n            },\n\n            _type == \"imageDiptych\" => {\n                image1 {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                            dimensions\n                        }\n                    }\n                },\n                image2 {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                            dimensions\n                        }\n                    }\n                }\n            }\n        },\n\n        credits,\n\n        relatedStories[]-> {\n            _id,\n            title,\n            \"slug\": slug.current,\n            author,\n            publishedDate,\n            \"categories\": coalesce(categories, []),\n            mainMedia {\n                mediaType,\n\n                image {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                        dimensions\n                        }\n                    }\n                },\n\n                video {\n                    asset-> {\n                        _id,\n                        assetId,\n                        playbackId,\n                        filename,\n                        status,\n                        \"aspectRatio\": data.aspect_ratio,\n                        \"duration\": data.duration\n                    }\n                }\n            }\n        \n        }\n    }\n": BLOG_POST_QUERY_RESULT;
     "\n    *[\n        _type == \"blogPost\" &&\n        defined(slug.current)\n    ] | order(publishedDate desc) {\n        _id,\n        title,\n        \"slug\": slug.current,\n        author,\n        publishedDate,\n        \"categories\": coalesce(categories, []),\n\n                mainMedia {\n            mediaType,\n\n            image {\n                alt,\n                crop,\n                hotspot,\n                asset-> {\n                    _id,\n                    url,\n                    metadata {\n                        dimensions\n                    }\n                }\n            },\n\n            video {\n                asset-> {\n                    _id,\n                    assetId,\n                    playbackId,\n                    filename,\n                    status,\n                    \"aspectRatio\": data.aspect_ratio,\n                    \"duration\": data.duration\n                }\n            }\n        }\n    }\n": BLOG_OVERVIEW_QUERY_RESULT;
+    "\n    *[ _type == \"storiesPage\" ][0] {\n        _id,\n        englishTitle,\n        koreanTitle,\n        topBanner {\n            mediaType,\n\n            image {\n                alt,\n                crop,\n                hotspot,\n                asset-> {\n                    _id,\n                    url,\n                    metadata {\n                        dimensions\n                    }\n                }\n            },\n\n            video {\n                asset-> {\n                    _id,\n                    assetId,\n                    playbackId,\n                    filename,\n                    status,\n                    \"aspectRatio\": data.aspect_ratio,\n                    \"duration\": data.duration\n                }\n            }\n\n        }\n    }\n    ": STORIES_PAGE_QUERY_RESULT;
   }
 }
 

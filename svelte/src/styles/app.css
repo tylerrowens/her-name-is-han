@@ -21,7 +21,6 @@ body {
 
 	--spacing-xs-1: 2px;
 	--spacing-xs-2: 5px;
-	--spacing-xs-3: 8px;
 	--spacing-md-3: 22px;
 	--spacing-lg-7: 74px;
 	--spacing-xl-6: 248px;
@@ -37,6 +36,7 @@ body {
 	--spacing-md-3: 22px;
 	--spacing-sm-3: 14px;
 	--spacing-lg-6: 195px;
+	--spacing-xs-3: 8px;
 
 	/* PRIORITY COLORS*/
 	--color-jade-white: #f6f7f4;
@@ -49,6 +49,7 @@ body {
 	--color-ash: #a3a3a3;
 	--color-celestial: #0276e2;
 	--color-untitled: #f6f7e7;
+	--color-aegean: #002336;
 
 	--color-black-1: #000000;
 	--color-black-2: #212121;
@@ -95,7 +96,7 @@ body {
 }
 
 @utility card-serif-2 {
-	@apply font-serif text-[25px] leading-[1.04] tracking-[.6px];
+	@apply font-serif text-[22px] leading-[1.04] tracking-[0px];
 }
 
 @utility main-grid {
@@ -123,7 +124,7 @@ body {
 }
 
 @utility post-title-serif {
-	@apply font-serif text-[18px] leading-[1.35] tracking-[0.4px];
+	@apply font-serif text-[15px] leading-[1.35] tracking-[0.4px];
 }
 
 @utility menu-serif {
@@ -139,7 +140,7 @@ body {
 }
 
 @utility date-stamp {
-	@apply font-stamp text-[16px] leading-[0.98] tracking-[1px];
+	@apply font-stamp text-[12px] leading-[0.98] tracking-[1px];
 }
 
 @utility korean-date {
@@ -152,4 +153,9 @@ body {
 
 @utility small-caps {
 	font-variant: all-small-caps;
+}
+
+@utility trim-cap {
+	text-box-trim: trim-both;
+	text-box-edge: cap alphabetic;
 }

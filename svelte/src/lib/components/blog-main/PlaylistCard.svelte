@@ -12,8 +12,8 @@
 		</div>
 	</div>
 	<div class="text-ash">
-		<p class="pt-sm-3 post-title-serif small-caps">Han’s Playlist: #1</p>
-		<div class="pt-sm-3 small-serif">
+		<p class="pt-sm-3 post-title-serif small-caps trim-cap">Han’s Playlist: #1</p>
+		<div class="pt-sm-3 small-serif trim-cap">
 			<p><span class="small-caps">by </span> name</p>
 			<p class="small-caps pt-xs-1">playlist</p>
 		</div>

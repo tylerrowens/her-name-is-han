@@ -173,3 +173,40 @@ export const BLOG_OVERVIEW_QUERY = defineQuery(`
         }
     }
 `);
+
+export const STORIES_PAGE_QUERY = defineQuery(`
+    *[ _type == "storiesPage" ][0] {
+        _id,
+        englishTitle,
+        koreanTitle,
+        topBanner {
+            mediaType,
+
+            image {
+                alt,
+                crop,
+                hotspot,
+                asset-> {
+                    _id,
+                    url,
+                    metadata {
+                        dimensions
+                    }
+                }
+            },
+
+            video {
+                asset-> {
+                    _id,
+                    assetId,
+                    playbackId,
+                    filename,
+                    status,
+                    "aspectRatio": data.aspect_ratio,
+                    "duration": data.duration
+                }
+            }
+
+        }
+    }
+    `);

@@ -1,4 +1,5 @@
 import {blogPost} from './documents/blogPost'
+import { storiesPage } from './documents/storiesPage'
 
 import {creditsBlock} from './objects/creditsBlock'
 import {imageDiptych} from './objects/imageDiptych'
@@ -13,6 +14,7 @@ import { mainMedia } from './objects/mainMedia'
 
 export const schemaTypes = [
   blogPost,
+  storiesPage,
   creditsBlock,
   imageDiptych,
   ingredientsBlock,

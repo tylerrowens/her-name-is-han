@@ -4,6 +4,7 @@
 	import BlogCard from '$lib/components/blog-main/BlogCard.svelte';
 	import PlaylistCard from '$lib/components/blog-main/PlaylistCard.svelte';
 	import Swiper from 'swiper';
+	import Media from '$lib/components/Media.svelte';
 	import 'swiper/css';
 	import 'swiper/css/bundle';
 	import RecipeCard from '$lib/components/blog-main/RecipeCard.svelte';
@@ -14,7 +15,7 @@
 	const categories = [
 		{ label: 'All', value: 'all', count: data.blogPosts.length },
 		{
-			label: 'Feature',
+			label: 'Features',
 			value: 'feature',
 			count: data.blogPosts.filter((post) => post.categories?.includes('feature')).length
 		},
@@ -24,12 +25,12 @@
 			count: data.blogPosts.filter((post) => post.categories?.includes('news')).length
 		},
 		{
-			label: 'Recipe',
+			label: 'Recipes',
 			value: 'recipe',
 			count: data.blogPosts.filter((post) => post.categories?.includes('recipe')).length
 		},
 		{
-			label: 'Playlist',
+			label: 'Playlists',
 			value: 'playlist',
 			count: data.blogPosts.filter((post) => post.categories?.includes('playlist')).length
 		}
@@ -67,14 +68,30 @@
 </script>
 
 <section class="">
-	<div class="bg-chamgireum pt-lg-6">
+	<div class="bg-chamgireum">
+		<div class="aspect-[5/2] w-full overflow-hidden relative">
+			<div
+				class="absolute inset-0 z-10 flex items-center justify-center text-jade-white text-center small-caps"
+			>
+				<div class="text-center">
+					<p class="post-title-serif trim-cap">{data.storiesPage?.englishTitle}</p>
+					<p class="font-korean text-[20px] trim-cap pt-xs-3">{data.storiesPage?.koreanTitle}</p>
+				</div>
+			</div>
+			<Media media={data.storiesPage?.topBanner ?? null} />
+		</div>
 	</div>
 
 	<nav class="bg-white">
-		<ul class="flex flex-row gap-md-3 justify-center py-sm-3 card-serif-2">
+		<ul class="flex flex-row gap-md-4 justify-center py-sm-3 card-serif-2">
 			{#each categories as category}
 				<li>
-					<button type="button" onclick={() => (selectedCategory = category.value)}>
+					<button
+						type="button"
+						class:text-ash={selectedCategory !== category.value}
+						class="transition-colors duration-400 ease-out hover:text-aegean"
+						onclick={() => (selectedCategory = category.value)}
+					>
 						{category.label}
 						<span class="[font-variant-position:super]">{category.count}</span>
 					</button>
@@ -104,7 +121,7 @@
 		</div>
 	</div>
 
-	<div class="bg-chamgireum">
+	<div class="bg-jade-white">
 		<p class="page-x pt-[50px] nav-title-serif text-jjokbit">Han’s Recipes</p>
 		<div bind:this={recipeCarousel} class="swiper flex items-center">
 			<div class="swiper-wrapper">

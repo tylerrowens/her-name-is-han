@@ -7,8 +7,8 @@
 		/>
 
 		<div class="text-jjokbit">
-			<p class="pt-sm-3 post-title-serif small-caps">Lorem Ipsum</p>
-			<div class="pt-sm-3 small-serif pr-md-4">
+			<p class="pt-sm-3 post-title-serif small-caps trim-cap">Lorem Ipsum</p>
+			<div class="pt-sm-3 small-serif pr-md-4 trim-cap">
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
 					ut labore et dolore magna aliqua.

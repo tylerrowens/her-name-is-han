@@ -23,7 +23,7 @@
 	<img class="block h-full w-full object-cover" src={imageUrl} alt={media.image?.alt ?? ''} />
 {:else if media?.mediaType === 'video' && playbackId}
 	<mux-player
-		class="block h-full w-full [--media-object-fit:cover]"
+		class="block h-full w-full [--controls:none] [--media-object-fit:cover]"
 		playback-id={playbackId}
 		metadata-video-id={media.video?.asset?.assetId ?? undefined}
 		metadata-video-title={title ?? undefined}

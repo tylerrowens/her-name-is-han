@@ -32,7 +32,7 @@
 	</div>
 	<div class="flex flex-row justify-center">
 		<div class="flex flex-col w-[800px]">
-			<div class="aspect-[4/3] self-center overflow-hidden border-2 border-black">
+			<div class="aspect-[4/3] w-full self-center overflow-hidden border-2 border-black">
 				<Media media={post.mainMedia} title={post.title} />
 			</div>
 		</div>
