@@ -13,6 +13,42 @@ body {
 	@apply bg-jade-white;
 }
 
+/* Step 1: Define the total duration of the transition sequence */
+::view-transition-group(root) {
+	animation-duration: 0.4s; /* Total time for both pages combined */
+}
+
+/* Step 2: Animate the outgoing page out immediately */
+::view-transition-old(root) {
+	animation-name: fade-out 0.2s cubic-bezier(0.32, 0, 0.67, 0) forwards;
+	animation-fill-mode: forwards;
+}
+
+/* Step 3: Delay the incoming page until the outgoing page is gone */
+::view-transition-new(root) {
+	animation-name: fade-in 0.2s cubic-bezier(0.33, 1, 0.68, 1) 0.2s both;
+	animation-delay: 0.2s; /* Matches the duration of the fade-out */
+}
+
+/* Step 4: Define standard keyframes without overlapping transparency */
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
 @theme {
 	--font-serif: 'Otto Regular', serif;
 	--font-stamp: 'Fresco Stamp', monospace;
@@ -31,11 +67,11 @@ body {
 	/* PRIORITY SPACING SCALE*/
 	--spacing-lg-5: 95px;
 	--spacing-lg-4: 58px;
-	--spacing-xl-5: 153px;
+	--spacing-xl-5: 100px;
 	--spacing-md-4: 36px;
 	--spacing-md-3: 22px;
 	--spacing-sm-3: 14px;
-	--spacing-lg-6: 195px;
+	--spacing-lg-6: 170px;
 	--spacing-xs-3: 8px;
 
 	/* PRIORITY COLORS*/

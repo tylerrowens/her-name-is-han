@@ -50,10 +50,16 @@
 	const swiperOptions = {
 		cssMode: true,
 		slidesPerView: 'auto',
-		spaceBetween: 14,
-		slidesOffsetBefore: 200,
-		slidesOffsetAfter: 14,
-		mousewheel: true
+		spaceBetween: 15,
+		slidesOffsetAfter: 15,
+		slidesOffsetBefore: 22,
+		mousewheel: true,
+		breakpoints: {
+			1300: {
+				slidesPerView: 3,
+				slidesOffsetBefore: 170
+			}
+		}
 	} satisfies SwiperOptions;
 
 	onMount(() => {
@@ -101,35 +107,39 @@
 	</nav>
 
 	<div class="bg-jade-white">
-		<div class=" mx-md-3 grid grid-cols-1 gap-md-4 pb-[120px] pt-lg-4 sm:grid-cols-3 lg:mx-lg-6">
+		<div
+			class=" mx-md-3 grid grid-cols-1 gap-x-md-4 pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))] pt-lg-4 sm:grid-cols-3 lg:mx-lg-6"
+		>
 			{#each filteredPosts as post (post._id)}
 				<BlogCard {post} />
 			{/each}
 		</div>
 	</div>
 
-	<div class="bg-ganjang">
-		<p class="page-x pt-[50px] nav-title-serif text-ash">Han’s Playlist</p>
+	<div class="pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))]">
+		<p class="pb-lg-5 nav-title-serif text-jjokbit ml-md-3 lg:ml-lg-6">Han’s Playlist<br/><span class="text-ash">The secret recipe for a great time shared at the table.</span></p>
 		<div bind:this={playlistCarousel} class="swiper flex items-center">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide !w-[360px]"><PlaylistCard /></div>
-				<div class="swiper-slide !w-[360px]"><PlaylistCard /></div>
-				<div class="swiper-slide !w-[360px]"><PlaylistCard /></div>
-				<div class="swiper-slide !w-[360px]"><PlaylistCard /></div>
-				<div class="swiper-slide !w-[360px]"><PlaylistCard /></div>
+				<div class="swiper-slide !w-[460px]"><PlaylistCard /></div>
+				<div class="swiper-slide !w-[460px]"><PlaylistCard /></div>
+				<div class="swiper-slide !w-[460px]"><PlaylistCard /></div>
+				<div class="swiper-slide !w-[460px]"><PlaylistCard /></div>
+				<div class="swiper-slide !w-[460px]"><PlaylistCard /></div>
+				<div class="swiper-slide !w-[460px]"><PlaylistCard /></div>
 			</div>
 		</div>
 	</div>
 
-	<div class="bg-jade-white">
-		<p class="page-x pt-[50px] nav-title-serif text-jjokbit">Han’s Recipes</p>
+	<div class="pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))]">
+		<p class="pb-lg-5 nav-title-serif text-jjokbit ml-md-3 lg:ml-lg-6">Han’s Recipes<br/><span class="text-ash">From our kitchen to yours.</span></p>
 		<div bind:this={recipeCarousel} class="swiper flex items-center">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide !w-[360px]"><RecipeCard /></div>
-				<div class="swiper-slide !w-[360px]"><RecipeCard /></div>
-				<div class="swiper-slide !w-[360px]"><RecipeCard /></div>
-				<div class="swiper-slide !w-[360px]"><RecipeCard /></div>
-				<div class="swiper-slide !w-[360px]"><RecipeCard /></div>
+				<div class="swiper-slide !w-[460px]"><RecipeCard /></div>
+				<div class="swiper-slide !w-[460px]"><RecipeCard /></div>
+				<div class="swiper-slide !w-[460px]"><RecipeCard /></div>
+				<div class="swiper-slide !w-[460px]"><RecipeCard /></div>
+				<div class="swiper-slide !w-[460px]"><RecipeCard /></div>
+				<div class="swiper-slide !w-[460px]"><RecipeCard /></div>
 			</div>
 		</div>
 	</div>

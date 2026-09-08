@@ -1,5 +1,5 @@
-<article class="w-full my-xl-5">
-	<div class="aspect-[3/4] bg-celestial text-chamgireum relative border-[1px] border-jade-white">
+<article class="w-full">
+	<div class="aspect-[3/4] bg-celestial text-chamgireum relative">
 		<div class="absolute top-[15px] left-[-65px]">
 			<div class="-rotate-45 origin-top-right w-[270px]">
 				<p class="medium-serif">Late Night Conversations</p>
@@ -11,11 +11,15 @@
 			</div>
 		</div>
 	</div>
-	<div class="text-ash">
-		<p class="pt-sm-3 post-title-serif small-caps trim-cap">Han’s Playlist: #1</p>
-		<div class="pt-sm-3 small-serif trim-cap">
-			<p><span class="small-caps">by </span> name</p>
-			<p class="small-caps pt-xs-1">playlist</p>
+	<div>
+		<p
+			class="pt-sm-3 body-serif small-caps trim-cap transition-colors duration-200 ease-out hover:text-ash"
+		>
+			Han’s Playlist: #1
+		</p>
+		<div class="pt-md-4 pb-lg-4 small-serif leading-[.35]">
+			<p><span class="small-caps trim-cap">by </span> name</p>
+			<p class="small-caps pt-xs-3 trim-cap">playlist</p>
 		</div>
 	</div>
 </article>

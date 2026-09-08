@@ -20,6 +20,7 @@ export const blogPost = defineType({
         source: 'title',
         maxLength: 96,
       },
+      validation: (Rule) => Rule.required().error('Generate slug'),
     }),
     defineField({
       name: 'author',

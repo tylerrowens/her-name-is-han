@@ -1,5 +1,6 @@
 import {blogPost} from './documents/blogPost'
-import { storiesPage } from './documents/storiesPage'
+import {storiesPage} from './documents/storiesPage'
+import {location} from './documents/location'
 
 import {creditsBlock} from './objects/creditsBlock'
 import {imageDiptych} from './objects/imageDiptych'
@@ -10,11 +11,12 @@ import {postImage} from './objects/postImage'
 import {pullQuote} from './objects/pullQuote'
 import {textBlock} from './objects/textBlock'
 import {simplePortableText} from './objects/simplePortableText'
-import { mainMedia } from './objects/mainMedia'
+import {mainMedia} from './objects/mainMedia'
 
 export const schemaTypes = [
   blogPost,
   storiesPage,
+  location,
   creditsBlock,
   imageDiptych,
   ingredientsBlock,

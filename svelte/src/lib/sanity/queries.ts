@@ -209,4 +209,50 @@ export const STORIES_PAGE_QUERY = defineQuery(`
 
         }
     }
-    `);
+`);
+
+export const LOCATIONS_PAGE_QUERY = defineQuery(`
+    *[_type == "location"] | order(_createdAt asc) {
+        _id,
+        name,
+        "slug": slug.current,
+        locationType,
+
+        images[] {
+            _key,
+            alt,
+            crop,
+            hotspot,
+            asset-> {
+                _id,
+                url,
+                metadata {
+                    dimensions
+                }
+            }
+        },
+
+        description,
+
+        hours[] {
+            _key,
+            days,
+            times,
+        },
+
+        address,
+        mapsUrl,
+        phone,
+        reservationUrl,
+        additionalInformation,
+    }
+`);
+
+export const LOCATIONS_NAV_QUERY = defineQuery(`
+    *[_type == "location"] | order(_createdAt asc) {
+        _id,
+        name,
+        "slug": slug.current,
+        locationType,
+    }
+`);
