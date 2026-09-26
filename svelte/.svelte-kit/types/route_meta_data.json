@@ -6,7 +6,8 @@
 	"/locations": [
 		"src/routes/locations/+page.server.ts"
 	],
-	"/menu": [],
+	"/menu/[location]": [],
+	"/menu/[location]/[meal]": [],
 	"/shop": [],
 	"/shop/[handle]": [],
 	"/stories": [

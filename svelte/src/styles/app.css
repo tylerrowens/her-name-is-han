@@ -83,6 +83,7 @@ body {
 	--color-doenjang: #7d4403;
 	--color-ganjang: #2a0600;
 	--color-ash: #a3a3a3;
+	--color-web-grey: #f0eee7;
 	--color-celestial: #0276e2;
 	--color-untitled: #f6f7e7;
 	--color-aegean: #002336;
@@ -123,8 +124,12 @@ body {
 	@apply font-serif text-[15px] leading-[1.25] tracking-[0.4px];
 }
 
+@utility nav-serif {
+	@apply font-serif text-[13px] leading-[1.25] tracking-[0.4px];
+}
+
 @utility small-serif {
-	@apply font-serif text-[12px] leading-[1.22] tracking-[0.4px];
+	@apply font-serif text-[11px] leading-[1.22] tracking-[0.4px];
 }
 
 @utility medium-serif {
@@ -156,7 +161,7 @@ body {
 }
 
 @utility nav-title-serif {
-	@apply font-serif text-[30px] leading-[1.04] tracking-[-.07px];
+	@apply font-serif text-[25px] leading-[1.04] tracking-[-.07px];
 }
 
 @utility post-title-serif {
