@@ -1,5 +1,4 @@
 <script lang="ts">
-	import './layout.css';
 	import '../styles/app.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import NewsletterForm from '$lib/components/NewsletterForm.svelte';

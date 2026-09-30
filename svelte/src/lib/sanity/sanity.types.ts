@@ -15,11 +15,103 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type MenuImageDiptych = {
+  _type: "menuImageDiptych";
+  leftImage?: MenuPhoto;
+  rightImage?: MenuPhoto;
+};
+
+export type MenuImage = {
+  _type: "menuImage";
+  layout?: "fullbleed" | "mediumLandscape" | "mediumSquare" | "smallLeft" | "smallRight";
+  image?: MenuPhoto;
+};
+
 export type SanityImageAssetReference = {
   _ref: string;
   _type: "reference";
   _weak?: boolean;
   [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type MenuPhoto = {
+  _type: "menuPhoto";
+  asset?: SanityImageAssetReference;
+  media?: unknown;
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+  caption?: string;
+};
+
+export type WineItem = {
+  _type: "wineItem";
+  title?: string;
+  description?: string;
+  glassPrice?: number;
+  bottlePrice?: number;
+};
+
+export type WineSubsection = {
+  _type: "wineSubsection";
+  title?: string;
+  items?: Array<{
+    _key: string;
+  } & WineItem>;
+};
+
+export type WineSection = {
+  _type: "wineSection";
+  title?: string;
+  subsections?: Array<{
+    _key: string;
+  } & WineSubsection>;
+  images?: Array<{
+    _key: string;
+  } & MenuImage | {
+    _key: string;
+  } & MenuImageDiptych>;
+};
+
+export type MenuAddon = {
+  _type: "menuAddon";
+  title?: string;
+  price?: number;
+};
+
+export type MenuItem = {
+  _type: "menuItem";
+  title?: string;
+  koreantitle?: string;
+  description?: string;
+  price?: number;
+  addons?: Array<{
+    _key: string;
+  } & MenuAddon>;
+};
+
+export type FoodSection = {
+  _type: "foodSection";
+  title?: string;
+  items?: Array<{
+    _key: string;
+  } & MenuItem>;
+  images?: Array<{
+    _key: string;
+  } & MenuImage | {
+    _key: string;
+  } & MenuImageDiptych>;
+};
+
+export type MenuSection = {
+  _type: "menuSection";
+  title?: string;
+  backgroundColor?: "blue" | "yellow";
+  content?: Array<{
+    _key: string;
+  } & FoodSection | {
+    _key: string;
+  } & WineSection>;
 };
 
 export type MainMedia = {
@@ -124,6 +216,49 @@ export type CreditsBlock = {
   additionalInfo?: string;
 };
 
+export type Menu = {
+  _id: string;
+  _type: "menu";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  internalTitle?: string;
+  title?: string;
+  slug?: Slug;
+  sections?: Array<{
+    _key: string;
+  } & MenuSection>;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type MenuReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "menu";
+};
+
 export type Location = {
   _id: string;
   _type: "location";
@@ -154,28 +289,9 @@ export type Location = {
   phone?: string;
   reservationUrl?: string;
   additionalInformation?: SimplePortableText;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
-
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
+  menus?: Array<{
+    _key: string;
+  } & MenuReference>;
 };
 
 export type StoriesPage = {
@@ -431,7 +547,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = SanityImageAssetReference | MainMedia | SimplePortableText | TextBlock | PullQuote | PostImage | InterviewEntry | InstructionsBlock | IngredientsBlock | ImageDiptych | CreditsBlock | Location | SanityImageCrop | SanityImageHotspot | Slug | StoriesPage | BlogPostReference | BlogPost | MuxVideoAssetReference | MuxVideo | MuxVideoAsset | MuxAssetData | MuxMasterFile | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = MenuImageDiptych | MenuImage | SanityImageAssetReference | MenuPhoto | WineItem | WineSubsection | WineSection | MenuAddon | MenuItem | FoodSection | MenuSection | MainMedia | SimplePortableText | TextBlock | PullQuote | PostImage | InterviewEntry | InstructionsBlock | IngredientsBlock | ImageDiptych | CreditsBlock | Menu | SanityImageCrop | SanityImageHotspot | Slug | MenuReference | Location | StoriesPage | BlogPostReference | BlogPost | MuxVideoAssetReference | MuxVideo | MuxVideoAsset | MuxAssetData | MuxMasterFile | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 
 // Source: ../svelte/src/lib/sanity/queries.ts
 // Variable: BLOG_POST_QUERY
@@ -691,6 +807,175 @@ export type LOCATIONS_NAV_QUERY_RESULT = Array<{
   locationType: Array<string> | null;
 }>;
 
+// Source: ../svelte/src/lib/sanity/queries.ts
+// Variable: MENU_PAGE_QUERY
+// Query: *[      _type == "location" &&      slug.current == $location    ][0]{      _id,      name,      "slug": slug.current,        "menuMatchCount": count(        (menus[]->)[          _type == "menu" &&          slug.current == $meal        ]      ),        "menu": (menus[]->)[        _type == "menu" &&        slug.current == $meal      ][0]{        _id,        title,        "slug": slug.current,          sections[]{          _key,          _type,          title,          backgroundColor,            content[]{            _key,            _type,            title,              _type == "foodSection" => {              items[]{                _key,                _type,                title,                koreantitle,                description,                price,                  addons[]{                  _key,                  _type,                  title,                  price                }              }            },              _type == "wineSection" => {              subsections[]{                _key,                _type,                title,                  items[]{                  _key,                  _type,                  title,                  description,                  glassPrice,                  bottlePrice                }              }            },              images[]{              _key,              _type,                _type == "menuImage" => {                layout,                  image{                  _type,                  alt,                  caption,                  crop,                  hotspot,                    asset->{                    _id,                    _type,                    url,                    metadata{                      dimensions,                      lqip                    }                  }                }              },                _type == "menuImageDiptych" => {                leftImage{                  _type,                  alt,                  caption,                  crop,                  hotspot,                    asset->{                    _id,                    _type,                    url,                    metadata{                      dimensions,                      lqip                    }                  }                },                  rightImage{                  _type,                  alt,                  caption,                  crop,                  hotspot,                    asset->{                    _id,                    _type,                    url,                    metadata{                      dimensions,                      lqip                    }                  }                }              }            }          }        }      }    }
+export type MENU_PAGE_QUERY_RESULT = {
+  _id: string;
+  name: string | null;
+  slug: string | null;
+  menuMatchCount: number | null;
+  menu: {
+    _id: string;
+    title: string | null;
+    slug: string | null;
+    sections: Array<{
+      _key: string;
+      _type: "menuSection";
+      title: string | null;
+      backgroundColor: "blue" | "yellow" | null;
+      content: Array<{
+        _key: string;
+        _type: "foodSection";
+        title: string | null;
+        items: Array<{
+          _key: string;
+          _type: "menuItem";
+          title: string | null;
+          koreantitle: string | null;
+          description: string | null;
+          price: number | null;
+          addons: Array<{
+            _key: string;
+            _type: "menuAddon";
+            title: string | null;
+            price: number | null;
+          }> | null;
+        }> | null;
+        images: Array<{
+          _key: string;
+          _type: "menuImage";
+          layout: "fullbleed" | "mediumLandscape" | "mediumSquare" | "smallLeft" | "smallRight" | null;
+          image: {
+            _type: "menuPhoto";
+            alt: string | null;
+            caption: string | null;
+            crop: SanityImageCrop | null;
+            hotspot: SanityImageHotspot | null;
+            asset: {
+              _id: string;
+              _type: "sanity.imageAsset";
+              url: string | null;
+              metadata: {
+                dimensions: SanityImageDimensions | null;
+                lqip: string | null;
+              } | null;
+            } | null;
+          } | null;
+        } | {
+          _key: string;
+          _type: "menuImageDiptych";
+          leftImage: {
+            _type: "menuPhoto";
+            alt: string | null;
+            caption: string | null;
+            crop: SanityImageCrop | null;
+            hotspot: SanityImageHotspot | null;
+            asset: {
+              _id: string;
+              _type: "sanity.imageAsset";
+              url: string | null;
+              metadata: {
+                dimensions: SanityImageDimensions | null;
+                lqip: string | null;
+              } | null;
+            } | null;
+          } | null;
+          rightImage: {
+            _type: "menuPhoto";
+            alt: string | null;
+            caption: string | null;
+            crop: SanityImageCrop | null;
+            hotspot: SanityImageHotspot | null;
+            asset: {
+              _id: string;
+              _type: "sanity.imageAsset";
+              url: string | null;
+              metadata: {
+                dimensions: SanityImageDimensions | null;
+                lqip: string | null;
+              } | null;
+            } | null;
+          } | null;
+        }> | null;
+      } | {
+        _key: string;
+        _type: "wineSection";
+        title: string | null;
+        subsections: Array<{
+          _key: string;
+          _type: "wineSubsection";
+          title: string | null;
+          items: Array<{
+            _key: string;
+            _type: "wineItem";
+            title: string | null;
+            description: string | null;
+            glassPrice: number | null;
+            bottlePrice: number | null;
+          }> | null;
+        }> | null;
+        images: Array<{
+          _key: string;
+          _type: "menuImage";
+          layout: "fullbleed" | "mediumLandscape" | "mediumSquare" | "smallLeft" | "smallRight" | null;
+          image: {
+            _type: "menuPhoto";
+            alt: string | null;
+            caption: string | null;
+            crop: SanityImageCrop | null;
+            hotspot: SanityImageHotspot | null;
+            asset: {
+              _id: string;
+              _type: "sanity.imageAsset";
+              url: string | null;
+              metadata: {
+                dimensions: SanityImageDimensions | null;
+                lqip: string | null;
+              } | null;
+            } | null;
+          } | null;
+        } | {
+          _key: string;
+          _type: "menuImageDiptych";
+          leftImage: {
+            _type: "menuPhoto";
+            alt: string | null;
+            caption: string | null;
+            crop: SanityImageCrop | null;
+            hotspot: SanityImageHotspot | null;
+            asset: {
+              _id: string;
+              _type: "sanity.imageAsset";
+              url: string | null;
+              metadata: {
+                dimensions: SanityImageDimensions | null;
+                lqip: string | null;
+              } | null;
+            } | null;
+          } | null;
+          rightImage: {
+            _type: "menuPhoto";
+            alt: string | null;
+            caption: string | null;
+            crop: SanityImageCrop | null;
+            hotspot: SanityImageHotspot | null;
+            asset: {
+              _id: string;
+              _type: "sanity.imageAsset";
+              url: string | null;
+              metadata: {
+                dimensions: SanityImageDimensions | null;
+                lqip: string | null;
+              } | null;
+            } | null;
+          } | null;
+        }> | null;
+      }> | null;
+    }> | null;
+  } | null;
+} | null;
+
 // Query TypeMap
 declare global {
   interface SanityQueries {
@@ -699,6 +984,7 @@ declare global {
     "\n    *[ _type == \"storiesPage\" ][0] {\n        _id,\n        englishTitle,\n        koreanTitle,\n        topBanner {\n            mediaType,\n\n            image {\n                alt,\n                crop,\n                hotspot,\n                asset-> {\n                    _id,\n                    url,\n                    metadata {\n                        dimensions\n                    }\n                }\n            },\n\n            video {\n                asset-> {\n                    _id,\n                    assetId,\n                    playbackId,\n                    filename,\n                    status,\n                    \"aspectRatio\": data.aspect_ratio,\n                    \"duration\": data.duration\n                }\n            }\n\n        }\n    }\n": STORIES_PAGE_QUERY_RESULT;
     "\n    *[_type == \"location\"] | order(_createdAt asc) {\n        _id,\n        name,\n        \"slug\": slug.current,\n        locationType,\n\n        images[] {\n            _key,\n            alt,\n            crop,\n            hotspot,\n            asset-> {\n                _id,\n                url,\n                metadata {\n                    dimensions\n                }\n            }\n        },\n\n        description,\n\n        hours[] {\n            _key,\n            days,\n            times,\n        },\n\n        address,\n        mapsUrl,\n        phone,\n        reservationUrl,\n        additionalInformation,\n    }\n": LOCATIONS_PAGE_QUERY_RESULT;
     "\n    *[_type == \"location\"] | order(_createdAt asc) {\n        _id,\n        name,\n        \"slug\": slug.current,\n        locationType,\n    }\n": LOCATIONS_NAV_QUERY_RESULT;
+    "\n    *[\n      _type == \"location\" &&\n      slug.current == $location\n    ][0]{\n      _id,\n      name,\n      \"slug\": slug.current,\n  \n      \"menuMatchCount\": count(\n        (menus[]->)[\n          _type == \"menu\" &&\n          slug.current == $meal\n        ]\n      ),\n  \n      \"menu\": (menus[]->)[\n        _type == \"menu\" &&\n        slug.current == $meal\n      ][0]{\n        _id,\n        title,\n        \"slug\": slug.current,\n  \n        sections[]{\n          _key,\n          _type,\n          title,\n          backgroundColor,\n  \n          content[]{\n            _key,\n            _type,\n            title,\n  \n            _type == \"foodSection\" => {\n              items[]{\n                _key,\n                _type,\n                title,\n                koreantitle,\n                description,\n                price,\n  \n                addons[]{\n                  _key,\n                  _type,\n                  title,\n                  price\n                }\n              }\n            },\n  \n            _type == \"wineSection\" => {\n              subsections[]{\n                _key,\n                _type,\n                title,\n  \n                items[]{\n                  _key,\n                  _type,\n                  title,\n                  description,\n                  glassPrice,\n                  bottlePrice\n                }\n              }\n            },\n  \n            images[]{\n              _key,\n              _type,\n  \n              _type == \"menuImage\" => {\n                layout,\n  \n                image{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                }\n              },\n  \n              _type == \"menuImageDiptych\" => {\n                leftImage{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                },\n  \n                rightImage{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  ": MENU_PAGE_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

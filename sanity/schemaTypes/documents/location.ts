@@ -149,6 +149,58 @@ export const location = defineType({
       title: 'Additional Information',
       type: 'simplePortableText',
     }),
+
+    defineField({
+      name: 'menus',
+      title: 'Menus',
+      type: 'array',
+      description:
+        'Arrange menus in navigation order. The first is the default. Leave empty for locations without menus.',
+      of: [
+        defineArrayMember({
+          type: 'reference',
+          to: [{type: 'menu'}],
+        }),
+      ],
+      validation: (rule) =>
+        rule.unique().custom(async (value, context) => {
+          if (!value?.length) return true
+
+          const ids = value
+            .map((entry) => (entry as {_ref?: string})._ref)
+            .filter((id): id is string => Boolean(id))
+
+          if (!ids.length) return true
+
+          const client = context.getClient({apiVersion: '2025-02-19'}).withConfig({
+            perspective: 'drafts',
+            useCdn: false,
+          })
+
+          const menus = await client.fetch<Array<{slug?: string}>>(
+            `*[_type == "menu" && _id in $ids]{
+              "slug": slug.current
+            }`,
+            {ids},
+          )
+
+          const seen = new Set<string>()
+
+          for (const menu of menus) {
+            if (!menu.slug) {
+              return 'Each selected menu needs a meal URL slug.'
+            }
+
+            if (seen.has(menu.slug)) {
+              return `Two selected menus use "${menu.slug}". Each menu at this location needs a different meal slug.`
+            }
+
+            seen.add(menu.slug)
+          }
+
+          return true
+        }),
+    }),
   ],
 
   preview: {

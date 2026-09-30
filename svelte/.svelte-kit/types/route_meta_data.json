@@ -7,7 +7,9 @@
 		"src/routes/locations/+page.server.ts"
 	],
 	"/menu/[location]": [],
-	"/menu/[location]/[meal]": [],
+	"/menu/[location]/[meal]": [
+		"src/routes/menu/[location]/[meal]/+page.server.ts"
+	],
 	"/shop": [],
 	"/shop/[handle]": [],
 	"/stories": [
