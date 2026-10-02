@@ -16,15 +16,15 @@
 	let { section }: Props = $props();
 </script>
 
-<div class="flex flex-col">
+<div class="flex flex-col gap-md-4">
 	{#if section.title}
-		<p class="body-serif small-caps trim-cap pb-lg-4 text-center">
+		<p class="card-serif-2 small-caps trim-cap text-center">
 			{section.title}
 		</p>
 	{/if}
 
 	{#each section.subsections ?? [] as subsection, index (subsection._key)}
-		<div class="self-center pb-sm-3">
+		<div class="self-center ">
 			<div class="grid grid-cols-[300px_50px] gap-md-4 trim-cap">
 				<p class="small-serif small-caps trim-cap">({subsection.title})</p>
 

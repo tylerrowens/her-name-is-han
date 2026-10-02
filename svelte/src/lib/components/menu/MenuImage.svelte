@@ -20,7 +20,7 @@
 
 	let { block }: Props = $props();
 </script>
-
+<div class="py-md-3">
 {#if block._type === 'menuImage'}
 	{#if block.image?.asset}
 		{#if block.layout === 'fullbleed'}
@@ -43,3 +43,4 @@
         />
 	{/if}
 {/if}
+</div>

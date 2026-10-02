@@ -20,15 +20,15 @@
 </script>
 
 {#if image.asset}
-	<article class="flex flex-col items-center my-lg-5">
-		<div class="w-[calc(350px_+_var(--spacing-md-4))]">
+	<article class="flex flex-col items-center">
+		<div class="w-full px-[15px] sm:w-[calc(350px_+_var(--spacing-md-4))] sm:px-[0px]">
 			<div class="w-fit ml-auto">
 				<div class="aspect-[4/3] w-[140px] overflow-hidden">
 					<img class="h-full w-full object-cover" src={urlFor(image).url()} alt={image.alt ?? ''} />
 				</div>
 
 				{#if image.caption}
-					<div class="pt-sm-3 small-serif text-center">
+					<div class="pt-sm-3 small-serif text-center small-caps">
 						<p>{image.caption}</p>
 					</div>
 				{/if}

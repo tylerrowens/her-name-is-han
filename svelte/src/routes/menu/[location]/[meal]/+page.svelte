@@ -20,7 +20,7 @@
 			<MenuSectionTitle {section} row={index + 1} endRow={sections.length + 1} />
 			<div
 				style:--section-row={index + 1}
-				class="sm:col-start-2 sm:row-start-[var(--section-row)]
+				class="flex flex-col gap-lg-4 sm:col-start-2 sm:row-start-[var(--section-row)]
 	min-h-[calc(100dvh-var(--menu-offset))] py-lg-4"
 			>
 				{#each section.content ?? [] as group (group._key)}

@@ -20,7 +20,7 @@
 </script>
 
 {#if image.asset}
-	<article class="flex flex-col my-lg-5">
+	<article class="flex flex-col">
 		<div class="flex flex-row justify-center">
 			<div class="flex flex-col w-full">
 				<div class="aspect-[4/3] w-full overflow-hidden">
@@ -35,7 +35,7 @@
 				</div>
 
 				{#if image.caption}
-					<div class="pt-sm-3 small-serif text-center">
+					<div class="pt-sm-3 small-serif text-center small-caps">
 						<p>{image.caption}</p>
 					</div>
 				{/if}

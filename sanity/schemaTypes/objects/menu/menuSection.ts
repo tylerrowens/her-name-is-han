@@ -19,8 +19,9 @@ export const menuSection = defineType({
       type: 'string',
       options: {
         list: [
-          {title: 'Light Blue', value: 'blue'},
-          {title: 'Pale Yellow', value: 'yellow'},
+          {title: 'Blue', value: 'blue'},
+          {title: 'Yellow', value: 'yellow'},
+          {title: 'Purple', value: 'purple'},
         ],
         layout: 'radio',
       },

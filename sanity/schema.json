@@ -566,6 +566,10 @@
               {
                 "type": "string",
                 "value": "yellow"
+              },
+              {
+                "type": "string",
+                "value": "purple"
               }
             ]
           },

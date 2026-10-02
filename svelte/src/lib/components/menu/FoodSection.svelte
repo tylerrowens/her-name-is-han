@@ -17,9 +17,9 @@
 	let { section }: Props = $props();
 </script>
 
-<div class="flex flex-col">
+<div class="flex flex-col gap-md-4">
 	{#if section.title}
-		<p class="body-serif small-caps text-center trim-cap pb-lg-4">{section.title}</p>
+		<p class="small-caps text-center card-serif-2 trim-cap">{section.title}</p>
 	{/if}
 
 	{#each section.items ?? [] as item (item._key)}

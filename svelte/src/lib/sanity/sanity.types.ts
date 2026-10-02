@@ -106,7 +106,7 @@ export type FoodSection = {
 export type MenuSection = {
   _type: "menuSection";
   title?: string;
-  backgroundColor?: "blue" | "yellow";
+  backgroundColor?: "blue" | "yellow" | "purple";
   content?: Array<{
     _key: string;
   } & FoodSection | {
@@ -823,7 +823,7 @@ export type MENU_PAGE_QUERY_RESULT = {
       _key: string;
       _type: "menuSection";
       title: string | null;
-      backgroundColor: "blue" | "yellow" | null;
+      backgroundColor: "blue" | "purple" | "yellow" | null;
       content: Array<{
         _key: string;
         _type: "foodSection";

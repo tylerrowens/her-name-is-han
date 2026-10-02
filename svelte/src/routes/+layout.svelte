@@ -22,7 +22,7 @@
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 <div class="flex min-h-dvh flex-col">
 	<header
-		class="page-x fixed top-0 inset-x-0 py-sm-3 h-[60px] z-50 grid grid-cols-[1fr_auto_1fr] content-center"
+		class="page-x fixed top-0 inset-x-0 py-sm-3 h-[60px] z-50 grid grid-cols-[1fr_auto_1fr] bg-jade-white content-center"
 	>
 		<nav class="justify-self-start flex gap-md-3 nav-serif small-caps trim-cap items-center">
 			<a>Menu</a>

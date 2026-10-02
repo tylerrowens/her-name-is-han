@@ -9,7 +9,7 @@
 </script>
 
 <header
-	class="page-x fixed top-[60px] h-[30px] inset-x-0 z-50 grid grid-cols-[1fr_auto_1fr] content-center"
+	class="page-x fixed top-[60px] h-[60px] py-sm-3 inset-x-0 z-50 grid grid-cols-[1fr_auto_1fr] content-center bg-jade-white"
 >
 	<nav class="justify-self-start flex gap-md-3 card-serif-2 small-caps items-center">
 		<p>Nomad Menu</p>

@@ -16,7 +16,7 @@
 </script>
 
 <div class="self-center">
-	<div class="grid grid-cols-[300px_50px] gap-md-4 pb-md-4 trim-cap">
+	<div class="grid grid-cols-[300px_50px] gap-md-4 trim-cap">
 		<div>
 			<p class="body-serif small-caps trim-cap">{item.title}</p>
 
