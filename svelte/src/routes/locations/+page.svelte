@@ -1,24 +1,27 @@
 <script lang="ts">
+	import LocationSection from '$lib/components/location/LocationSection.svelte';
 	import type { PageData } from './$types';
-	import LocationCard from '$lib/components/LocationCard.svelte';
-
 	let { data }: { data: PageData } = $props();
 </script>
 
-<section>
-	<h1 class="sticky top-[150px] page-x post-title-serif small-caps col-start-4 self-start">
-		Locations
-	</h1>
-	<div class="flex flex-col w-full justify-center gap-[200px] mb-[250px] pl-[900px] pt-[150px]">
-		{#each data.locations as location, index}
-			<div
-				class="h-[660px] w-[420px] shrink-0"
-				class:rotate-[0deg]={index % 3 === 0}
-				class:rotate-[-1.38deg]={index % 3 === 1}
-				class:rotate-[1.66deg]={index % 3 === 2}
-			>
-				<LocationCard {...location} />
-			</div>
-		{/each}
+<section class="pt-[120px]">
+	<div class="flex flex-col pb-[120px]">
+		<div class="w-[350px] text-center trim-cap self-center nav-serif">
+			<p class="pb-md-3">
+				We’re here for all of life’s moments. Walk-ins are always welcome, and online reservations
+				are available for parties of up to 7.
+			</p>
+			<p>
+				For groups of 8 or more, or for catering inquiries, please contact us at
+				hernameishan@handhospitality.com
+			</p>
+		</div>
+	</div>
+	<div class="w-100dvw">
+		<div class="flex flex-col justify-center items-center pb-[120px] gap-[120px]">
+			{#each data.locations as location (location._id)}
+				<LocationSection {location} />
+			{/each}
+		</div>
 	</div>
 </section>

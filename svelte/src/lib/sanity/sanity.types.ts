@@ -284,7 +284,7 @@ export type Location = {
     _type: "hoursGroup";
     _key: string;
   }>;
-  address?: string;
+  address?: SimplePortableText;
   mapsUrl?: string;
   phone?: string;
   reservationUrl?: string;
@@ -790,7 +790,7 @@ export type LOCATIONS_PAGE_QUERY_RESULT = Array<{
     days: string | null;
     times: Array<string> | null;
   }> | null;
-  address: string | null;
+  address: SimplePortableText | null;
   mapsUrl: string | null;
   phone: string | null;
   reservationUrl: string | null;

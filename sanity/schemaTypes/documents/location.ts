@@ -118,8 +118,7 @@ export const location = defineType({
     defineField({
       name: 'address',
       title: 'Address',
-      type: 'text',
-      rows: 2,
+      type: 'simplePortableText',
       validation: (Rule) => Rule.required().error('Add address.'),
     }),
 
