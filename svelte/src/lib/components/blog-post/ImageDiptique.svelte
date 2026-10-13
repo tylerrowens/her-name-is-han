@@ -18,9 +18,9 @@
 	const image2Alt = $derived(block.image2?.alt ?? '');
 </script>
 
-<article class="flex flex-col my-lg-5">
+<article class="flex flex-col my-lg-5 page-x sm:mx-[0px]">
 	<div class="flex justify-center">
-		<div class="grid w-[800px] grid-cols-2 gap-sm-3">
+		<div class="grid w-full sm:w-[800px] grid-cols-2 gap-sm-3">
 			<div class="aspect-[3/4] overflow-hidden">
 				<img class="h-full w-auto object-cover" src={image1Url} alt={image1Alt} />
 			</div>
@@ -30,7 +30,7 @@
 		</div>
 	</div>
 	{#if block.caption}
-		<div class="pt-sm-3 small-serif text-center">
+		<div class="pt-sm-3 mx-auto w-full sm:w-[400px] small-serif text-center">
 			<PortableText value={block.caption} components={{ marks: { smallCaps: SmallCaps } }} />
 		</div>
 	{/if}

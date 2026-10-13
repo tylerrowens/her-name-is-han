@@ -1,20 +1,50 @@
 <script lang="ts">
+	import { PortableText } from '@portabletext/svelte';
+
+	interface LocationNavItem {
+		_id: string;
+		name: string | null;
+		slug: string | null;
+		addressText: string | null;
+		mapsUrl: string | null;
+	}
+
+	interface Props {
+		locations: LocationNavItem[];
+	}
+
+	let { locations }: Props = $props();
 </script>
 
-<div class="bg-menu-blue w-dvw h-auto page-x pt-[60px] pb-[30px]">
-	<div class="grid grid-cols-[auto_minmax(0,1fr)_auto] flex items-baseline pb-[20px]">
-		<span class="nav-title-serif pr-xs-2 trim-cap">Nomad</span>
-		<span class="dots flex-1 opacity-25"></span>
-		<span class="justify-self-end pl-xs-2 nav-serif small-caps trim-cap"
-			>17 E 31st, New York, ny 10016</span
-		>
-	</div>
-	<div class="grid grid-cols-[auto_minmax(0,1fr)_auto] flex items-baseline pb-[20px]">
-		<span class="nav-title-serif pr-xs-2 trim-cap">Upper East Side</span>
-		<span class="dots flex-1 opacity-25"></span>
-		<span class="justify-self-end pl-xs-2 nav-serif small-caps trim-cap">Coming Soon!</span>
-	</div>
-	<div class="nav-serif small-caps trim-cap pt-[10px]">Explore all</div>
+<div class="bg-location-nav w-dvw h-auto page-x pt-[60px] pb-[30px]">
+	<a href="/locations" class="nav-serif trim-cap pb-[30px] small-caps">Explore all</a>
+
+	{#each locations as location (location._id)}
+		{#if location.slug}
+			<div class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-baseline pb-[20px]">
+				<a
+					href={`/locations#${encodeURIComponent(location.slug)}`}
+					class="nav-title-serif pr-xs-2 trim-cap"
+				>
+					{location.name}
+				</a>
+
+				<span class="dots flex-1 opacity-25"></span>
+
+				{#if location.addressText}
+					{#if location.mapsUrl}
+						<a
+							href={location.mapsUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="justify-self-end pl-xs-2 nav-serif small-caps trim-cap"
+							>{location.addressText}</a
+						>
+					{/if}
+				{/if}
+			</div>
+		{/if}
+	{/each}
 </div>
 
 <style>

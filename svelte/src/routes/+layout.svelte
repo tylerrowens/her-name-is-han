@@ -6,9 +6,11 @@
 	import MenuDropDown from '$lib/components/nav/MenuDropDown.svelte';
 	import ReservationsDropDown from '$lib/components/nav/ReservationsDropDown.svelte';
 	import { onNavigate } from '$app/navigation';
+	import { fade } from 'svelte/transition';
 	import type { Snippet } from 'svelte';
+	import type { LayoutProps } from './$types';
 
-	let { children } = $props();
+	let { children, data }: LayoutProps = $props();
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -25,12 +27,15 @@
 	let openDropdown = $state<Dropdown | null>(null);
 </script>
 
+<svelte:body onmouseleave={() => (openDropdown = null)} />
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 <div class="flex min-h-dvh flex-col relative">
 	<header
 		class="page-x w-full fixed top-0 inset-x-0 py-sm-3 h-[60px] z-50 grid grid-cols-[1fr_auto_1fr] content-center"
 	>
-		<nav class="justify-self-start flex gap-md-3 nav-serif small-caps trim-cap items-center">
+		<nav
+			class="hidden sm:flex justify-self-start flex gap-md-3 nav-serif small-caps trim-cap items-center"
+		>
 			<button
 				type="button"
 				aria-expanded={openDropdown === 'menu'}
@@ -58,22 +63,43 @@
 				onclick={() => (openDropdown = 'reservations')}>Reservations &#x2197</button
 			>
 		</nav>
-		<a class="nav-title-serif justify-center trim-cap"> Her name is Han.</a>
-		<nav class="justify-self-end flex gap-md-3 nav-serif small-caps trim-cap items-center">
+		<nav class="sm:hidden flex justify-self-start items-center nav-serif small-caps trim-cap">
+			<button> Menu </button>
+		</nav>
+		<a class="card-serif-2 sm:nav-title-serif justify-center trim-cap"> Her name is Han.</a>
+		<nav
+			class="hidden sm:flex justify-self-end gap-md-3 nav-serif small-caps trim-cap items-center"
+		>
 			<button>About</button>
 			<button>Stories</button>
 			<button>Shop</button>
+			<button>Cart (1)</button>
+		</nav>
+		<nav class="sm:hidden flex justify-self-end items-center nav-serif small-caps trim-cap">
+			<button> Cart (1) </button>
 		</nav>
 	</header>
-	<div class="absolute fixed z-49 top-0" onpointerleave={() => (openDropdown = null)}>
-		{#if openDropdown === 'menu'}
-			<MenuDropDown />
-		{:else if openDropdown === 'locations'}
-			<LocationsDropDown />
-		{:else if openDropdown === 'reservations'}
-			<ReservationsDropDown />
+
+	<div class="absolute fixed z-49 top-0" onmouseleave={() => (openDropdown = null)}>
+		{#if openDropdown}
+			<div transition:fade={{ duration: 130 }}>
+				{#if openDropdown === 'menu'}
+					<div>
+						<MenuDropDown menus={data.menuNav} />
+					</div>
+				{:else if openDropdown === 'locations'}
+					<div>
+						<LocationsDropDown locations={data.locationsNav} />
+					</div>
+				{:else if openDropdown === 'reservations'}
+					<div>
+						<ReservationsDropDown reservations={data.reservationNav} />
+					</div>
+				{/if}
+			</div>
 		{/if}
 	</div>
+
 	<div class="flex-1">
 		{@render children()}
 	</div>

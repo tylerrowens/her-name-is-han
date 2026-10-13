@@ -15,8 +15,8 @@
 	let { item }: Props = $props();
 </script>
 
-<div class="self-center">
-	<div class="grid grid-cols-[300px_50px] gap-md-4 trim-cap">
+<div class="self-center w-full sm:w-auto">
+	<div class="grid grid-cols-[1fr_50px] px-[15px] gap-md-4 trim-cap sm:grid-cols-[300px_50px] sm:px-[0px]">
 		<div>
 			<p class="body-serif small-caps trim-cap">{item.title}</p>
 

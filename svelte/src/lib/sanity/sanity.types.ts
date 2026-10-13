@@ -799,12 +799,41 @@ export type LOCATIONS_PAGE_QUERY_RESULT = Array<{
 
 // Source: ../svelte/src/lib/sanity/queries.ts
 // Variable: LOCATIONS_NAV_QUERY
-// Query: *[_type == "location"] | order(_createdAt asc) {        _id,        name,        "slug": slug.current,        locationType,    }
+// Query: *[_type == "location"] | order(_createdAt asc) {        _id,        name,        "slug": slug.current,        locationType,        "addressText": pt::text(address),        mapsUrl,    }
 export type LOCATIONS_NAV_QUERY_RESULT = Array<{
   _id: string;
   name: string | null;
   slug: string | null;
   locationType: Array<string> | null;
+  addressText: string;
+  mapsUrl: string | null;
+}>;
+
+// Source: ../svelte/src/lib/sanity/queries.ts
+// Variable: MENU_NAV_QUERY
+// Query: *[_type == "location" && defined(slug.current)] | order(_createdAt asc) {      _id,      name,      "slug": slug.current,      "menus": (menus[]->)[_type == "menu" && defined(slug.current)]{        _id,        title,        "slug": slug.current      }    }
+export type MENU_NAV_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  slug: string | null;
+  menus: Array<{
+    _id: string;
+    title: string | null;
+    slug: string | null;
+  }> | null;
+}>;
+
+// Source: ../svelte/src/lib/sanity/queries.ts
+// Variable: RESERVATION_NAV_QUERY
+// Query: *[_type == "location" && defined(reservationUrl) && reservationUrl != ""] | order(_createdAt asc) {      _id,      name,      reservationUrl,      "menus": (menus[]->)[_type == "menu" && defined(slug.current)]{        _id,        title,      }  }
+export type RESERVATION_NAV_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  reservationUrl: string | null;
+  menus: Array<{
+    _id: string;
+    title: string | null;
+  }> | null;
 }>;
 
 // Source: ../svelte/src/lib/sanity/queries.ts
@@ -983,7 +1012,9 @@ declare global {
     "\n    *[\n        _type == \"blogPost\" &&\n        defined(slug.current)\n    ] | order(publishedDate desc) {\n        _id,\n        title,\n        \"slug\": slug.current,\n        author,\n        publishedDate,\n        \"categories\": coalesce(categories, []),\n\n                mainMedia {\n            mediaType,\n\n            image {\n                alt,\n                crop,\n                hotspot,\n                asset-> {\n                    _id,\n                    url,\n                    metadata {\n                        dimensions\n                    }\n                }\n            },\n\n            video {\n                asset-> {\n                    _id,\n                    assetId,\n                    playbackId,\n                    filename,\n                    status,\n                    \"aspectRatio\": data.aspect_ratio,\n                    \"duration\": data.duration\n                }\n            }\n        }\n    }\n": BLOG_OVERVIEW_QUERY_RESULT;
     "\n    *[ _type == \"storiesPage\" ][0] {\n        _id,\n        englishTitle,\n        koreanTitle,\n        topBanner {\n            mediaType,\n\n            image {\n                alt,\n                crop,\n                hotspot,\n                asset-> {\n                    _id,\n                    url,\n                    metadata {\n                        dimensions\n                    }\n                }\n            },\n\n            video {\n                asset-> {\n                    _id,\n                    assetId,\n                    playbackId,\n                    filename,\n                    status,\n                    \"aspectRatio\": data.aspect_ratio,\n                    \"duration\": data.duration\n                }\n            }\n\n        }\n    }\n": STORIES_PAGE_QUERY_RESULT;
     "\n    *[_type == \"location\"] | order(_createdAt asc) {\n        _id,\n        name,\n        \"slug\": slug.current,\n        locationType,\n\n        images[] {\n            _key,\n            alt,\n            crop,\n            hotspot,\n            asset-> {\n                _id,\n                url,\n                metadata {\n                    dimensions\n                }\n            }\n        },\n\n        description,\n\n        hours[] {\n            _key,\n            days,\n            times,\n        },\n\n        address,\n        mapsUrl,\n        phone,\n        reservationUrl,\n        additionalInformation,\n    }\n": LOCATIONS_PAGE_QUERY_RESULT;
-    "\n    *[_type == \"location\"] | order(_createdAt asc) {\n        _id,\n        name,\n        \"slug\": slug.current,\n        locationType,\n    }\n": LOCATIONS_NAV_QUERY_RESULT;
+    "\n    *[_type == \"location\"] | order(_createdAt asc) {\n        _id,\n        name,\n        \"slug\": slug.current,\n        locationType,\n        \"addressText\": pt::text(address),\n        mapsUrl,\n    }\n": LOCATIONS_NAV_QUERY_RESULT;
+    "\n*[_type == \"location\" && defined(slug.current)] | order(_createdAt asc) {\n      _id,\n      name,\n      \"slug\": slug.current,\n      \"menus\": (menus[]->)[_type == \"menu\" && defined(slug.current)]{\n        _id,\n        title,\n        \"slug\": slug.current\n      }\n    }\n": MENU_NAV_QUERY_RESULT;
+    "\n  *[_type == \"location\" && defined(reservationUrl) && reservationUrl != \"\"] | order(_createdAt asc) {\n      _id,\n      name,\n      reservationUrl,\n      \"menus\": (menus[]->)[_type == \"menu\" && defined(slug.current)]{\n        _id,\n        title,\n      }\n  }\n": RESERVATION_NAV_QUERY_RESULT;
     "\n    *[\n      _type == \"location\" &&\n      slug.current == $location\n    ][0]{\n      _id,\n      name,\n      \"slug\": slug.current,\n  \n      \"menuMatchCount\": count(\n        (menus[]->)[\n          _type == \"menu\" &&\n          slug.current == $meal\n        ]\n      ),\n  \n      \"menu\": (menus[]->)[\n        _type == \"menu\" &&\n        slug.current == $meal\n      ][0]{\n        _id,\n        title,\n        \"slug\": slug.current,\n  \n        sections[]{\n          _key,\n          _type,\n          title,\n          backgroundColor,\n  \n          content[]{\n            _key,\n            _type,\n            title,\n  \n            _type == \"foodSection\" => {\n              items[]{\n                _key,\n                _type,\n                title,\n                koreantitle,\n                description,\n                price,\n  \n                addons[]{\n                  _key,\n                  _type,\n                  title,\n                  price\n                }\n              }\n            },\n  \n            _type == \"wineSection\" => {\n              subsections[]{\n                _key,\n                _type,\n                title,\n  \n                items[]{\n                  _key,\n                  _type,\n                  title,\n                  description,\n                  glassPrice,\n                  bottlePrice\n                }\n              }\n            },\n  \n            images[]{\n              _key,\n              _type,\n  \n              _type == \"menuImage\" => {\n                layout,\n  \n                image{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                }\n              },\n  \n              _type == \"menuImageDiptych\" => {\n                leftImage{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                },\n  \n                rightImage{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  ": MENU_PAGE_QUERY_RESULT;
   }
 }

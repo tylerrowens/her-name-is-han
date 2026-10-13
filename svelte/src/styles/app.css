@@ -92,9 +92,12 @@ body {
 	--color-celestial: #0276e2;
 	--color-untitled: #f6f7e7;
 	--color-aegean: #002336;
-	--color-menu-blue: #D2EAEC;
-	--color-menu-yellow: #FFFFD3;
-	--color-menu-purple: #C5DAFF;
+	--color-menu-blue: #d2eaec;
+	--color-menu-yellow: #ffffd3;
+	--color-menu-purple: #c5daff;
+	--color-menu-nav: #c8e7ff;
+	--color-location-nav: #d0f0f6;
+	--color-reservation-nav: #B7EBFF;
 
 	--color-black-1: #000000;
 	--color-black-2: #212121;
@@ -129,7 +132,7 @@ body {
 }
 
 @utility body-serif {
-	@apply font-serif text-[15px] leading-[1.25] tracking-[0.4px];
+	@apply font-serif text-[17px] leading-[1.25] tracking-[0.4px];
 }
 
 @utility nav-serif {
@@ -137,7 +140,7 @@ body {
 }
 
 @utility small-serif {
-	@apply font-serif text-[11px] leading-[1.22] tracking-[0.4px];
+	@apply font-serif text-[12px] leading-[1.22] tracking-[0.4px];
 }
 
 @utility medium-serif {
@@ -145,7 +148,7 @@ body {
 }
 
 @utility card-serif-2 {
-	@apply font-serif text-[22px] leading-[1.04] tracking-[0px];
+	@apply font-serif text-[22px] leading-[1.2] tracking-[0px];
 }
 
 @utility main-grid {
@@ -153,7 +156,7 @@ body {
 }
 
 @utility page-x {
-	@apply px-[22px] lg:px-[50px];
+	@apply px-[15px] lg:px-[50px];
 }
 
 @utility page-y {

@@ -15,24 +15,26 @@
 	const categoryList = $derived(post.categories.join(', ') ?? '');
 </script>
 
-<article>
+<article class="page-x sm:mx-[0px]">
 	<div class="flex flex-col my-lg-5">
-		<h1 class="self-center large-serif text-center w-[600px]">{post.title}</h1>
+		<h1 class="self-center card-serif-2 sm:large-serif text-center w-full sm:w-[600px]">{post.title}</h1>
 	</div>
 
-	<div class="flex flex-row justify-center gap-[200px] my-lg-5">
+	<div
+		class="flex flex-col text-center sm:text-left sm:flex-row justify-center sm:gap-[200px] my-lg-5"
+	>
 		<p class="body-serif"><span class="small-caps">By</span> {post.author}</p>
 		<div>
 			<p class="date-stamp mb-xs-3">
 				2026 <span class="korean-date">년</span> 07 <span class="korean-date">월</span> 09
 				<span class="korean-date">일</span>
 			</p>
-			<p class="small-serif small-caps">{categoryList}</p>
+			<p class="hidden sm:block small-serif small-caps">{categoryList}</p>
 		</div>
 	</div>
 	<div class="flex flex-row justify-center">
-		<div class="flex flex-col w-[800px]">
-			<div class="aspect-[4/3] w-full self-center overflow-hidden border-2 border-black">
+		<div class="flex flex-col w-full sm:w-[800px]">
+			<div class="aspect-[4/3] w-full self-center overflow-hidden">
 				<Media media={post.mainMedia} title={post.title} />
 			</div>
 		</div>
@@ -40,7 +42,7 @@
 
 	{#if post.featuredText}
 		<div class="flex flex-col my-lg-4">
-			<div class="w-[440px] self-center body-serif">
+			<div class="w-full sm:w-[440px] self-center body-serif">
 				<PortableText value={post.featuredText} components={{ marks: { smallCaps: SmallCaps } }} />
 			</div>
 		</div>

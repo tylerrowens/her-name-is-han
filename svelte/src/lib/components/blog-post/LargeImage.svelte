@@ -12,14 +12,14 @@
 	let { src, alt, caption }: Props = $props();
 </script>
 
-<article class="flex flex-col my-lg-5">
+<article class="flex flex-col my-lg-5 page-x sm:mx-[0px]">
 	<div class="flex flex-row justify-center">
-		<div class="flex flex-col w-[800px]">
+		<div class="flex flex-col w-full sm:w-[800px]">
 			<div class="aspect-[4/3] self-center overflow-hidden">
 				<img class="h-full w-full object-cover" {src} {alt} />
 			</div>
 			{#if caption}
-				<div class="pt-sm-3 small-serif text-center">
+				<div class="pt-sm-3 mx-auto w-full sm:w-[400px] small-serif text-center">
 					<PortableText value={caption} components={{ marks: { smallCaps: SmallCaps } }} />
 				</div>
 			{/if}

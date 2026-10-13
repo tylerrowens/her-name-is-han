@@ -254,7 +254,34 @@ export const LOCATIONS_NAV_QUERY = defineQuery(`
         name,
         "slug": slug.current,
         locationType,
+        "addressText": pt::text(address),
+        mapsUrl,
     }
+`);
+
+export const MENU_NAV_QUERY = defineQuery(`
+*[_type == "location" && defined(slug.current)] | order(_createdAt asc) {
+      _id,
+      name,
+      "slug": slug.current,
+      "menus": (menus[]->)[_type == "menu" && defined(slug.current)]{
+        _id,
+        title,
+        "slug": slug.current
+      }
+    }
+`);
+
+export const RESERVATION_NAV_QUERY = defineQuery(`
+  *[_type == "location" && defined(reservationUrl) && reservationUrl != ""] | order(_createdAt asc) {
+      _id,
+      name,
+      reservationUrl,
+      "menus": (menus[]->)[_type == "menu" && defined(slug.current)]{
+        _id,
+        title,
+      }
+  }
 `);
 
 export const MENU_PAGE_QUERY = defineQuery(`

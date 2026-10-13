@@ -43,6 +43,6 @@ flex h-[var(--title-collapsed)] w-full
 flex-col items-center justify-center text-center
 sm:static sm:h-full"
 	>
-		<p class="trim-cap body-serif small-caps sm:about-card-serif">{section.title}</p>
+		<p class="trim-cap body-serif sm:about-card-serif">{section.title}</p>
 	</div>
 </div>

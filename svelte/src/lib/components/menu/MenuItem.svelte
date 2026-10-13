@@ -24,7 +24,7 @@
 				<p class="body-serif small-caps trim-cap">{item.title}</p>
 
 				{#if item.koreantitle}
-					<p class="font-korean trim-cap text-[11px]">{item.koreantitle}</p>
+					<p class="font-korean trim-cap text-[12px]">{item.koreantitle}</p>
 				{/if}
 			</div>
 			{#if item.description}
@@ -42,7 +42,7 @@
 			class="grid grid-cols-[1fr_50px] px-[15px] gap-md-4 trim-cap sm:grid-cols-[300px_50px] sm:px-[0px]"
 		>
 			<div>
-				<p class="body-serif small-caps trim-cap pt-sm-3 pl-md-4">{addon.title}</p>
+				<p class="body-serif small-caps trim-cap pt-sm-3 sm:pl-md-4">{addon.title}</p>
 			</div>
 			<div>
 				{#if addon.price != null}

@@ -24,22 +24,27 @@
 	{/if}
 
 	{#each section.subsections ?? [] as subsection, index (subsection._key)}
-		<div class="self-center ">
-			<div class="grid grid-cols-[300px_50px] gap-md-4 trim-cap">
-				<p class="small-serif small-caps trim-cap">({subsection.title})</p>
+		<div class="flex flex-col gap-sm-3">
+			<div class="self-center w-full sm:w-auto">
+				<div
+					class="grid grid-cols-[1fr_50px] px-[15px] gap-md-4 trim-cap sm:grid-cols-[300px_50px] sm:px-[0px]"
+				>
+					<p class="small-serif small-caps trim-cap">({subsection.title})</p>
 
-				{#if index === 0}
-					<div class="grid grid-cols-[20px_10px_20px] trim-cap">
-						<p class="small-serif small-caps trim-cap text-center">g</p>
-						<p class="small-serif small-caps trim-cap text-center"></p>
-						<p class="small-serif small-caps trim-cap text-center">b</p>
-					</div>
-				{/if}
+					{#if index === 0}
+						<div class="grid grid-cols-[20px_10px_20px] trim-cap">
+							<p class="small-serif small-caps trim-cap text-center">g</p>
+							<p class="small-serif small-caps trim-cap text-center"></p>
+							<p class="small-serif small-caps trim-cap text-center">b</p>
+						</div>
+					{/if}
+				</div>
+			</div>
+			<div class="flex flex-col gap-md-4">
+				{#each subsection.items ?? [] as item (item._key)}
+					<WineItem {item} />
+				{/each}
 			</div>
 		</div>
-
-		{#each subsection.items ?? [] as item (item._key)}
-			<WineItem {item} />
-		{/each}
 	{/each}
 </div>

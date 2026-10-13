@@ -1,24 +1,58 @@
 <script lang="ts">
+	interface ReservationNavItem {
+		_id: string;
+		name: string | null;
+		reservationUrl: string | null;
+		menus:
+			| {
+					_id: string;
+					title: string | null;
+			  }[]
+			| null;
+	}
+
+	interface Props {
+		reservations: ReservationNavItem[];
+	}
+
+	let { reservations }: Props = $props();
+
+	function formatMenus(menus: ReservationNavItem['menus']): string {
+		const titles = (menus ?? []).flatMap((menu) => (menu.title ? [menu.title] : []));
+
+		return new Intl.ListFormat('en-US', {
+			style: 'long',
+			type: 'conjunction'
+		}).format(titles);
+	}
 </script>
 
-<div class="bg-menu-blue w-dvw h-auto page-x pt-[60px] pb-[30px]">
+<div class="bg-reservation-nav w-dvw h-auto page-x pt-[60px] pb-[30px]">
 	<div class="nav-serif trim-cap pb-[30px] small-caps">book A Reservation below</div>
-	<div class="pb-[20px]">
-		<div class="grid grid-cols-[auto_minmax(0,1fr)_auto] flex items-baseline">
-			<span class="nav-title-serif pr-xs-2 trim-cap">Nomad</span>
-			<span class="dots flex-1 opacity-25"></span>
-			<span class="justify-self-end pl-xs-2 nav-serif small-caps trim-cap">Book &#x2197</span>
-		</div>
-		<p class="nav-serif trim-cap small-caps pt-[10px]">open for brunch, lunch, and dinner</p>
-	</div>
-	<div class="pb-[20px]">
-		<div class="grid grid-cols-[auto_minmax(0,1fr)_auto] flex items-baseline">
-			<span class="nav-title-serif pr-xs-2 trim-cap">Nomad</span>
-			<span class="dots flex-1 opacity-25"></span>
-			<span class="justify-self-end pl-xs-2 nav-serif small-caps trim-cap">Book &#x2197</span>
-		</div>
-		<p class="nav-serif trim-cap small-caps pt-[10px]">open for brunch, lunch, and dinner</p>
-	</div>
+
+	{#each reservations as reservation (reservation._id)}
+		{@const menuList = formatMenus(reservation.menus)}
+		{#if reservation.reservationUrl}
+			<div class="pb-[20px]">
+				<div class="grid grid-cols-[auto_minmax(0,1fr)_auto] flex items-baseline">
+					<a href={reservation.reservationUrl} class="nav-title-serif pr-xs-2 trim-cap"
+						>{reservation.name}</a
+					>
+					<span class="dots flex-1 opacity-25"></span>
+					<a
+						href={reservation.reservationUrl}
+						class="justify-self-end pl-xs-2 nav-serif small-caps trim-cap">Book &#x2197</a
+					>
+				</div>
+				{#if menuList}
+					<p class="nav-serif trim-cap small-caps pt-[10px]">
+						Open for {menuList}
+					</p>
+				{/if}
+			</div>
+		{/if}
+	{/each}
+
 	<div class="grid grid-cols-[40dvw_40dvw] gap-x-md-4">
 		<div class="nav-serif trim-cap pt-[10px] w-[40dvw]">
 			We’re here for all of life’s moments. Walk-ins are always welcome, and online reservations are

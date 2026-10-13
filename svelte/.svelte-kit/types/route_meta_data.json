@@ -1,21 +1,35 @@
 {
-	"/": [],
+	"/": [
+		"src/routes/+layout.server.ts",
+		"src/routes/+layout.server.ts"
+	],
 	"/about": [
-		"src/routes/about/+page.server.ts"
+		"src/routes/about/+page.server.ts",
+		"src/routes/+layout.server.ts"
 	],
 	"/locations": [
-		"src/routes/locations/+page.server.ts"
+		"src/routes/locations/+page.server.ts",
+		"src/routes/+layout.server.ts"
 	],
-	"/menu/[location]": [],
+	"/menu/[location]": [
+		"src/routes/+layout.server.ts"
+	],
 	"/menu/[location]/[meal]": [
-		"src/routes/menu/[location]/[meal]/+page.server.ts"
+		"src/routes/menu/[location]/[meal]/+page.server.ts",
+		"src/routes/+layout.server.ts"
 	],
-	"/shop": [],
-	"/shop/[handle]": [],
+	"/shop": [
+		"src/routes/+layout.server.ts"
+	],
+	"/shop/[handle]": [
+		"src/routes/+layout.server.ts"
+	],
 	"/stories": [
-		"src/routes/stories/+page.server.ts"
+		"src/routes/stories/+page.server.ts",
+		"src/routes/+layout.server.ts"
 	],
 	"/stories/[slug]": [
-		"src/routes/stories/[slug]/+page.server.ts"
+		"src/routes/stories/[slug]/+page.server.ts",
+		"src/routes/+layout.server.ts"
 	]
 }

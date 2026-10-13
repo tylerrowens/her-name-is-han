@@ -73,25 +73,27 @@
 	});
 </script>
 
-<section class="">
+<section class="w-full">
 	<div class="bg-chamgireum">
-		<div class="aspect-[5/2] w-full overflow-hidden relative">
+		<div class="aspect-[3/4] sm:aspect-[5/2] w-full overflow-hidden relative">
 			<div
-				class="absolute inset-0 z-10 flex items-center justify-center text-jade-white text-center small-caps"
+				class="absolute inset-0 z-10 flex items-center justify-center text-jade-white text-center"
 			>
 				<div class="text-center">
-					<p class="post-title-serif trim-cap">{data.storiesPage?.englishTitle}</p>
-					<p class="font-korean text-[20px] trim-cap pt-xs-3">{data.storiesPage?.koreanTitle}</p>
+					<p class="post-title-serif trim-cap small-caps">{data.storiesPage?.englishTitle}</p>
+					<p class="font-korean text-[14px] trim-cap pt-xs-3">{data.storiesPage?.koreanTitle}</p>
 				</div>
 			</div>
 			<Media media={data.storiesPage?.topBanner ?? null} />
 		</div>
 	</div>
 
-	<nav class="bg-white">
-		<ul class="flex flex-row gap-md-4 justify-center py-sm-3 card-serif-2">
+	<nav class="overflow-x-auto scrollbar-none bg-white pr-[10px]" aria-label="Story categories">
+		<ul
+			class="flex page-x flex-row flex-nowrap gap-md-4 justify-start sm:justify-center py-sm-3 card-serif-2"
+		>
 			{#each categories as category}
-				<li>
+				<li class="shrink-0 last:pr-[15px] sm:last:pr-[0px]">
 					<button
 						type="button"
 						class:text-ash={selectedCategory !== category.value}
@@ -108,7 +110,7 @@
 
 	<div class="bg-jade-white">
 		<div
-			class=" mx-md-3 grid grid-cols-1 gap-x-md-4 pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))] pt-lg-4 sm:grid-cols-3 lg:mx-lg-6"
+			class="page-x grid grid-cols-1 gap-x-md-4 pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))] pt-lg-4 sm:grid-cols-3 lg:mx-lg-6"
 		>
 			{#each filteredPosts as post (post._id)}
 				<BlogCard {post} />
@@ -116,8 +118,12 @@
 		</div>
 	</div>
 
-	<div class="pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))]">
-		<p class="pb-lg-5 nav-title-serif text-jjokbit ml-md-3 lg:ml-lg-6">Han’s Playlist<br/><span class="text-ash">The secret recipe for a great time shared at the table.</span></p>
+	<div class="hidden pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))]">
+		<p class="pb-lg-5 nav-title-serif text-jjokbit ml-md-3 lg:ml-lg-6">
+			Han’s Playlist<br /><span class="text-ash"
+				>The secret recipe for a great time shared at the table.</span
+			>
+		</p>
 		<div bind:this={playlistCarousel} class="swiper flex items-center">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide !w-[460px]"><PlaylistCard /></div>
@@ -130,8 +136,10 @@
 		</div>
 	</div>
 
-	<div class="pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))]">
-		<p class="pb-lg-5 nav-title-serif text-jjokbit ml-md-3 lg:ml-lg-6">Han’s Recipes<br/><span class="text-ash">From our kitchen to yours.</span></p>
+	<div class="hidden pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))]">
+		<p class="pb-lg-5 nav-title-serif text-jjokbit ml-md-3 lg:ml-lg-6">
+			Han’s Recipes<br /><span class="text-ash">From our kitchen to yours.</span>
+		</p>
 		<div bind:this={recipeCarousel} class="swiper flex items-center">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide !w-[460px]"><RecipeCard /></div>

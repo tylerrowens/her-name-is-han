@@ -15,7 +15,7 @@
 	let { data }: PageProps = $props();
 </script>
 
-<section class="mt-lg-6">
+<section class="mt-lg-6 w-full">
 	<PostHeader post={data.post} />
 
 	{#each data.post.content ?? [] as block (block._key)}

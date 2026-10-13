@@ -12,17 +12,17 @@
 	let { src, alt, caption }: Props = $props();
 </script>
 
-<article class="flex flex-col items-center my-lg-5">
-	<div class="w-[800px]">
-		<div class="w-fit p-xs-2 shadow-[inset_1.5px_1.5px_7px_rgb(0_0_0_/_0.4)]">
-			<div class="aspect-[4/3] w-[200px] overflow-hidden">
+<article class="flex flex-col items-center my-lg-5 page-x sm:mx-[0px]">
+	<div class="w-full sm:w-[800px]">
+		<div class="w-fit">
+			<div class="aspect-[4/3] w-full sm:w-[200px] overflow-hidden">
 				<img class="h-full w-full object-cover" {src} {alt} />
 			</div>
+			{#if caption}
+				<div class="pt-sm-3 w-full sm:w-[200px] small-serif text-center">
+					<PortableText value={caption} components={{ marks: { smallCaps: SmallCaps } }} />
+				</div>
+			{/if}
 		</div>
-		{#if caption}
-			<div class="w-[250px] translate-x-[100px] pt-sm-3 small-serif text-justify">
-				<PortableText value={caption} components={{ marks: { smallCaps: SmallCaps } }} />
-			</div>
-		{/if}
 	</div>
 </article>

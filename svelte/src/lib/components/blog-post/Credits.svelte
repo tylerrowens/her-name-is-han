@@ -9,14 +9,14 @@
 </script>
 
 <article class="bg-chamgireum text-doenjang">
-	<div class="flex flex-col h-[600px] w-full justify-center items-center">
+	<div class="flex flex-col h-[600px] w-full justify-center items-center page-x sm:mx-[0px]">
 		{#each credits.credits as credit (credit._key)}
-			<p class="card-serif-2 text-center w-[550px]">
+			<p class="card-serif-2 text-center w-full sm:w-[550px]">
 				{credit.creditTitle} <br />
 				{credit.creditName}
 			</p>
 		{/each}
-		<p class="card-serif-2 text-center w-[500px] mt-md-4">
+		<p class="card-serif-2 text-center w-full sm:w-[500px] mt-md-4">
 			{credits.additionalInfo}
 		</p>
 	</div>
