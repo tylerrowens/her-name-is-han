@@ -136,7 +136,7 @@ body {
 }
 
 @utility nav-serif {
-	@apply font-serif text-[13px] leading-[1.25] tracking-[0.4px];
+	@apply font-serif text-[14px] leading-[1.25] tracking-[0.4px];
 }
 
 @utility small-serif {

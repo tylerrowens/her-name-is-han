@@ -5,6 +5,7 @@
 	import LocationsDropDown from '$lib/components/nav/LocationsDropDown.svelte';
 	import MenuDropDown from '$lib/components/nav/MenuDropDown.svelte';
 	import ReservationsDropDown from '$lib/components/nav/ReservationsDropDown.svelte';
+	import MobileNavOverlay from '$lib/components/nav-mobile/MobileNavOverlay.svelte';
 	import { onNavigate } from '$app/navigation';
 	import { fade } from 'svelte/transition';
 	import type { Snippet } from 'svelte';
@@ -25,6 +26,12 @@
 
 	type Dropdown = 'menu' | 'locations' | 'reservations';
 	let openDropdown = $state<Dropdown | null>(null);
+
+	let mobileNavOpen = $state(false);
+
+	function closeMobileNav() {
+		mobileNavOpen = false;
+	}
 </script>
 
 <svelte:body onmouseleave={() => (openDropdown = null)} />
@@ -52,7 +59,7 @@
 				onpointerenter={(event) => {
 					if (event.pointerType === 'mouse') openDropdown = 'locations';
 				}}
-				onclick={() => (openDropdown = 'menu')}>Locations</button
+				onclick={() => (openDropdown = 'locations')}>Locations</button
 			>
 			<button
 				type="button"
@@ -64,7 +71,14 @@
 			>
 		</nav>
 		<nav class="sm:hidden flex justify-self-start items-center nav-serif small-caps trim-cap">
-			<button> Menu </button>
+			<button
+				type="button"
+				aria-expanded={mobileNavOpen}
+				aria-controls="mobile-navigation"
+				onclick={() => (mobileNavOpen = !mobileNavOpen)}
+			>
+				{mobileNavOpen ? 'Close' : 'Menu'}
+			</button>
 		</nav>
 		<a class="card-serif-2 sm:nav-title-serif justify-center trim-cap"> Her name is Han.</a>
 		<nav
@@ -76,9 +90,20 @@
 			<button>Cart (1)</button>
 		</nav>
 		<nav class="sm:hidden flex justify-self-end items-center nav-serif small-caps trim-cap">
-			<button> Cart (1) </button>
+			<button> (1) </button>
 		</nav>
 	</header>
+
+	{#if mobileNavOpen}
+		<div class="w-full h-full">
+			<MobileNavOverlay
+				locationsNav={data.locationsNav}
+				menuNav={data.menuNav}
+				reservationNav={data.reservationNav}
+				onClose={closeMobileNav}
+			/>
+		</div>
+	{/if}
 
 	<div class="absolute fixed z-49 top-0" onmouseleave={() => (openDropdown = null)}>
 		{#if openDropdown}

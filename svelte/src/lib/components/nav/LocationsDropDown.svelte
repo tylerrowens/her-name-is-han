@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { PortableText } from '@portabletext/svelte';
-
 	interface LocationNavItem {
 		_id: string;
 		name: string | null;
@@ -17,7 +15,7 @@
 </script>
 
 <div class="bg-location-nav w-dvw h-auto page-x pt-[60px] pb-[30px]">
-	<a href="/locations" class="nav-serif trim-cap pb-[30px] small-caps">Explore all</a>
+	<a href="/locations" class="block nav-serif trim-cap pb-[30px] small-caps">Explore all</a>
 
 	{#each locations as location (location._id)}
 		{#if location.slug}
