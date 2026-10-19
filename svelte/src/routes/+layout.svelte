@@ -6,22 +6,38 @@
 	import MenuDropDown from '$lib/components/nav/MenuDropDown.svelte';
 	import ReservationsDropDown from '$lib/components/nav/ReservationsDropDown.svelte';
 	import MobileNavOverlay from '$lib/components/nav-mobile/MobileNavOverlay.svelte';
+	import { headerHeroContext, type ReportHeaderHero } from '$lib/nav/header-hero-context';
+	import { setContext } from 'svelte';
+	import { page } from '$app/state';
+	import { tick } from 'svelte';
 	import { onNavigate } from '$app/navigation';
 	import { fade } from 'svelte/transition';
-	import type { Snippet } from 'svelte';
 	import type { LayoutProps } from './$types';
 
 	let { children, data }: LayoutProps = $props();
 
 	onNavigate((navigation) => {
-		if (!document.startViewTransition) return;
+		if (!document.startViewTransition) {
+			return () => {
+				closeMobileNavForNavigation();
+			};
+		}
 
 		return new Promise<void>((resolve) => {
 			document.startViewTransition(async () => {
 				resolve();
 				await navigation.complete;
+
+				closeMobileNavForNavigation();
+				await tick();
 			});
 		});
+	});
+
+	let heroBehindHeader = $state<boolean | null>(null);
+
+	setContext<ReportHeaderHero>(headerHeroContext, (visible) => {
+		heroBehindHeader = visible;
 	});
 
 	type Dropdown = 'menu' | 'locations' | 'reservations';
@@ -29,7 +45,78 @@
 
 	let mobileNavOpen = $state(false);
 
+	let heroHeader = $derived(
+		page.route.id === '/stories' &&
+			(heroBehindHeader ?? true) &&
+			openDropdown === null &&
+			!mobileNavOpen
+	);
+
+	let restoreScrollOnClose = true;
+
+	$effect(() => {
+		if (!mobileNavOpen) return;
+
+		const scrollY = window.scrollY;
+		const body = document.body;
+
+		const previousPosition = body.style.position;
+		const previousTop = body.style.top;
+		const previousWidth = body.style.width;
+		const previousOverflow = body.style.overflow;
+
+		body.style.position = 'fixed';
+		body.style.top = `-${scrollY}px`;
+		body.style.width = '100%';
+		body.style.overflow = 'hidden';
+
+		return () => {
+			body.style.position = previousPosition;
+			body.style.top = previousTop;
+			body.style.width = previousWidth;
+			body.style.overflow = previousOverflow;
+
+			if (restoreScrollOnClose) {
+				window.scrollTo(0, scrollY);
+			}
+
+			restoreScrollOnClose = true;
+		};
+	});
+
+	$effect(() => {
+		const desktop = window.matchMedia('(min-width: 800px)');
+
+		function handleBreakpoint() {
+			if (desktop.matches) mobileNavOpen = false;
+		}
+
+		desktop.addEventListener('change', handleBreakpoint);
+
+		return () => desktop.removeEventListener('change', handleBreakpoint);
+	});
+
+	$effect(() => {
+		const desktop = window.matchMedia('(max-width: 800px)');
+
+		function handleBreakpoint() {
+			if (desktop.matches) openDropdown = null;
+		}
+
+		desktop.addEventListener('change', handleBreakpoint);
+
+		return () => desktop.removeEventListener('change', handleBreakpoint);
+	});
+
 	function closeMobileNav() {
+		restoreScrollOnClose = true;
+		mobileNavOpen = false;
+	}
+
+	function closeMobileNavForNavigation() {
+		if (!mobileNavOpen) return;
+
+		restoreScrollOnClose = false;
 		mobileNavOpen = false;
 	}
 </script>
@@ -37,8 +124,15 @@
 <svelte:body onmouseleave={() => (openDropdown = null)} />
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 <div class="flex min-h-dvh flex-col relative">
+	<div
+		class="pointer-events-none fixed inset-x-0 top-0 z-30 h-[60px] bg-jade-white transition-opacity duration-400 linear"
+		class:opacity-0={heroHeader}
+		class:opacity-100={!heroHeader}
+	></div>
 	<header
-		class="page-x w-full fixed top-0 inset-x-0 py-sm-3 h-[60px] z-50 grid grid-cols-[1fr_auto_1fr] content-center"
+		class="page-x fixed inset-x-0 top-0 z-50 grid h-[60px] w-full grid-cols-[1fr_auto_1fr] content-center py-sm-3 transition-colors duration-400 linear"
+		class:text-jade-white={heroHeader}
+		class:text-aegean={!heroHeader}
 	>
 		<nav
 			class="hidden sm:flex justify-self-start flex gap-md-3 nav-serif small-caps trim-cap items-center"
@@ -125,10 +219,10 @@
 		{/if}
 	</div>
 
-	<div class="flex-1">
+	<div class="flex-1" inert={mobileNavOpen}>
 		{@render children()}
 	</div>
-	<footer class="relative h-[350px] w-full overflow-hidden bg-aegean">
+	<footer class="relative h-[350px] w-full overflow-hidden bg-aegean" inert={mobileNavOpen}>
 		<div
 			class="ml-md-3 mr-md-3 lg:ml-lg-6 absolute inset-x-0 bottom-[35px] grid grid-cols-[1fr_640px] items-end gap-md-4"
 		>

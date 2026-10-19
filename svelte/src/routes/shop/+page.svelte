@@ -9,15 +9,8 @@
 	</div>
 	<div class="w-full">
 		<div class="flex flex-col items-center">
-			<video
-				class="h-auto w-[700px]"
-				autoplay
-				muted
-				loop
-				<source
-				src="/images/homepage-animation.mp4"
-				type="video/mp4"
-			>
+			<video class="h-auto w-[700px]" autoplay muted loop playsinline>
+				<source src="/images/homepage-animation.mp4" type="video/mp4" />
 			</video>
 		</div>
 	</div>
@@ -62,11 +55,11 @@
 			class="page-x grid grid-cols-1 gap-x-md-4 pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))] pt-lg-4 sm:grid-cols-3 lg:mx-lg-6"
 		>
 			<ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
+			<ProductCard />
+			<ProductCard />
+			<ProductCard />
+			<ProductCard />
+			<ProductCard />
 		</div>
 	</div>
 </section>

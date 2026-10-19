@@ -23,7 +23,7 @@
 			{/if}
 			<div class="grid text-center sm:text-left sm:grid-cols-[1fr_1fr] nav-serif">
 				{#if location.address}
-					<a href={location.mapsUrl} class="nav-serif"
+					<a href={location.mapsUrl} class="nav-serif underline underline-offset-2"
 						><PortableText value={location.address} /></a
 					>
 				{/if}
@@ -46,7 +46,7 @@
 			</div>
 			<a
 				href={location.reservationUrl}
-				class="inline-flex self-center sm:self-start w-[120px] aspect-[145/33] items-center justify-center rounded-[3px] bg-aegean text-jade-white nav-serif"
+				class="inline-flex self-center sm:self-start w-[190px] sm:w-[130px] aspect-[145/33] items-center justify-center rounded-[3px] bg-aegean text-jade-white nav-serif"
 				>Reservations ↗</a
 			>
 		</div>

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, getContext } from 'svelte';
+	import { headerHeroContext, type ReportHeaderHero } from '$lib/nav/header-hero-context';
 	import type { PageData } from './$types';
 	import BlogCard from '$lib/components/blog-main/BlogCard.svelte';
 	import PlaylistCard from '$lib/components/blog-main/PlaylistCard.svelte';
@@ -11,6 +12,29 @@
 	import type { SwiperOptions } from 'swiper/types';
 
 	let { data }: { data: PageData } = $props();
+
+	const reportHeaderHero = getContext<ReportHeaderHero>(headerHeroContext);
+	let heroElement: HTMLDivElement;
+
+	onMount(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const entry = entries[0];
+				if (entry) reportHeaderHero(entry.isIntersecting);
+			},
+			{
+				rootMargin: '-60px 0px 0px 0px',
+				threshold: 0
+			}
+		);
+
+		observer.observe(heroElement);
+
+		return () => {
+			observer.disconnect();
+			reportHeaderHero(null);
+		};
+	});
 
 	const categories = [
 		{ label: 'All', value: 'all', count: data.blogPosts.length },
@@ -44,6 +68,7 @@
 			: data.blogPosts.filter((post) => post.categories?.includes(selectedCategory))
 	);
 
+	//TBD IF WERE USING CAROUSELS
 	let playlistCarousel: HTMLDivElement;
 	let recipeCarousel: HTMLDivElement;
 
@@ -74,8 +99,11 @@
 </script>
 
 <section class="w-full">
-	<div class="bg-chamgireum">
-		<div class="aspect-[3/4] sm:aspect-[5/2] w-full overflow-hidden relative">
+	<div>
+		<div
+			bind:this={heroElement}
+			class="aspect-[3/4] sm:aspect-[5/2] w-full overflow-hidden relative"
+		>
 			<div
 				class="absolute inset-0 z-10 flex items-center justify-center text-jade-white text-center"
 			>
@@ -88,7 +116,7 @@
 		</div>
 	</div>
 
-	<nav class="overflow-x-auto scrollbar-none bg-white pr-[10px]" aria-label="Story categories">
+	<nav class="overflow-x-auto scrollbar-none pr-[10px]" aria-label="Story categories">
 		<ul
 			class="flex page-x flex-row flex-nowrap gap-md-4 justify-start sm:justify-center py-sm-3 card-serif-2"
 		>

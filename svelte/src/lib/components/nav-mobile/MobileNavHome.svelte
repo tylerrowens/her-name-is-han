@@ -10,17 +10,18 @@
 </script>
 
 <section
-	class="w-full h-full bg-jade-white flex flex-col text-center gap-[50px] justify-center small-caps body-serif"
+	class="flex min-h-dvh w-full flex-col justify-between gap-[20px] bg-jade-white
+		pt-[135px] pb-[135px] text-center text-[18px] small-caps trim-cap"
 >
-	<button type="button" onclick={onMenu}>Menu</button>
+	<button class="trim-cap" type="button" onclick={onMenu}>Menu</button>
 
-	<button type="button" onclick={onLocations}>Locations</button>
+	<button class="trim-cap" type="button" onclick={onLocations}>Locations</button>
 
-	<button type="button" onclick={onReservations}>Reservations</button>
+	<button class="trim-cap" type="button" onclick={onReservations}>Reservations</button>
 
-	<a href="/about" onclick={onNavigate}>About</a>
+	<a class="trim-cap" href="/about">About</a>
 
-	<a href="/stories" onclick={onNavigate}>Stories</a>
+	<a class="trim-cap" href="/stories">Stories</a>
 
-	<a href="/shop" onclick={onNavigate}>Shop</a>
+	<a class="trim-cap" href="/shop">Shop</a>
 </section>
