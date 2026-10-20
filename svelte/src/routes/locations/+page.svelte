@@ -4,7 +4,7 @@
 	let { data }: { data: PageData } = $props();
 </script>
 
-<section class="page-x pt-[135px] sm:pt-[140px] sm:px-[0px] sm:h-[100dvh]">
+<section class="page-x pt-[135px] sm:px-[0px] sm:h-[100dvh]">
 	<div class="flex flex-col pb-[120px]">
 		<div class="w-full max-w-[350px] page-x sm:px-[0px] text-center trim-cap self-center nav-serif">
 			<p class="pb-md-3">

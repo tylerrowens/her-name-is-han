@@ -64,7 +64,7 @@ body {
 	--spacing-xl-6: 248px;
 
 	--breakpoint-lg: 1300px;
-	--breakpoint-sm: 800px;
+	--breakpoint-sm: 1024px;
 
 	/* PRIORITY SPACING SCALE*/
 	--spacing-lg-5: 95px;
@@ -97,7 +97,7 @@ body {
 	--color-menu-purple: #c5daff;
 	--color-menu-nav: #c8e7ff;
 	--color-location-nav: #d0f0f6;
-	--color-reservation-nav: #B7EBFF;
+	--color-reservation-nav: #b7ebff;
 
 	--color-black-1: #000000;
 	--color-black-2: #212121;
@@ -156,7 +156,7 @@ body {
 }
 
 @utility page-x {
-	@apply px-[15px] lg:px-[50px];
+	@apply px-[15px] sm:px-[50px] lg:px-[50px];
 }
 
 @utility page-y {
