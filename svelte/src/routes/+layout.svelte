@@ -174,13 +174,15 @@
 				{mobileNavOpen ? 'Close' : 'Menu'}
 			</button>
 		</nav>
-		<a class="card-serif-2 sm:nav-title-serif justify-center trim-cap"> Her name is Han.</a>
+		<a href="/" class="card-serif-2 sm:nav-title-serif justify-center trim-cap">
+			Her name is Han.</a
+		>
 		<nav
 			class="hidden sm:flex justify-self-end gap-md-3 nav-serif small-caps trim-cap items-center"
 		>
-			<button>About</button>
-			<button>Stories</button>
-			<button>Shop</button>
+			<a href="/about">About</a>
+			<a href="/stories">Stories</a>
+			<a href="/shop">Shop</a>
 			<button>Cart (1)</button>
 		</nav>
 		<nav class="sm:hidden flex justify-self-end items-center nav-serif small-caps trim-cap">
@@ -222,41 +224,44 @@
 	<div class="flex-1" inert={mobileNavOpen}>
 		{@render children()}
 	</div>
-	<footer class="relative h-[350px] w-full overflow-hidden bg-aegean" inert={mobileNavOpen}>
-		<div
-			class="ml-md-3 mr-md-3 lg:ml-lg-6 absolute inset-x-0 bottom-[35px] grid grid-cols-[1fr_640px] items-end gap-md-4"
-		>
-			<div class="text-ash body-serif">
-				<p class="small-caps pb-sm-3">Connect with us</p>
 
-				<dl class="inline-grid grid-cols-[max-content_max-content] gap-x-md-3">
-					<dt class="small-caps">Social</dt>
-					<dd>
-						<a
-							class="transition-colors duration-200 ease-out hover:text-jade-white"
-							href="https://www.instagram.com/"
-							target="_blank"
-							rel="noreferrer"
-						>
-							Instagram <span>&#x2197;</span>
-						</a>
-					</dd>
+	{#if page.url.pathname !== '/'}
+		<footer class="relative h-[350px] w-full overflow-hidden bg-aegean" inert={mobileNavOpen}>
+			<div
+				class="ml-md-3 mr-md-3 lg:ml-lg-6 absolute inset-x-0 bottom-[35px] grid grid-cols-[1fr_640px] items-end gap-md-4"
+			>
+				<div class="text-ash body-serif">
+					<p class="small-caps pb-sm-3">Connect with us</p>
 
-					<dt class="small-caps">Contact</dt>
-					<dd>
-						<a
-							class="transition-colors duration-200 ease-out hover:text-jade-white"
-							href="mailto:hernameishan@handhospitality.com"
-						>
-							hernameishan@handhospitality.com <span>&#x2197;</span>
-						</a>
-					</dd>
-				</dl>
+					<dl class="inline-grid grid-cols-[max-content_max-content] gap-x-md-3">
+						<dt class="small-caps">Social</dt>
+						<dd>
+							<a
+								class="transition-colors duration-200 ease-out hover:text-jade-white"
+								href="https://www.instagram.com/"
+								target="_blank"
+								rel="noreferrer"
+							>
+								Instagram <span>&#x2197;</span>
+							</a>
+						</dd>
+
+						<dt class="small-caps">Contact</dt>
+						<dd>
+							<a
+								class="transition-colors duration-200 ease-out hover:text-jade-white"
+								href="mailto:hernameishan@handhospitality.com"
+							>
+								hernameishan@handhospitality.com <span>&#x2197;</span>
+							</a>
+						</dd>
+					</dl>
+				</div>
+
+				<div class="w-full justify-self-end">
+					<NewsletterForm />
+				</div>
 			</div>
-
-			<div class="w-full justify-self-end">
-				<NewsletterForm />
-			</div>
-		</div>
-	</footer>
+		</footer>
+	{/if}
 </div>

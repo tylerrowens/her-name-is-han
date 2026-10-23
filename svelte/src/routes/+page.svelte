@@ -29,7 +29,7 @@
 	let day = $derived(dateParts.find((part) => part.type === 'day')?.value ?? '');
 </script>
 
-<section class="relative flex h-screen w-full flex-col justify-end pb-[30px]">
+<section class="relative flex h-[100dvh] w-full flex-col justify-end pb-[30px]">
 	<div
 		class="absolute flex gap-[10px] flex-col top-[138px] left-1/2 -translate-x-1/2 text-center z-10"
 	>

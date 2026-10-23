@@ -2,14 +2,20 @@
 	import ProductCard from '$lib/components/shop/ProductCard.svelte';
 </script>
 
-<section class="pt-[135px] sm:pt-[140px]">
+<section class="pt-[135px]">
 	<div class="text-center">
 		<p class="post-title-serif small-caps trim-cap">shop</p>
 		<p class="font-korean text-[14px] trim-cap pt-xs-3">가게</p>
 	</div>
 	<div class="w-full py-lg-4">
 		<div class="flex flex-col items-center">
-			<video class="h-auto w-[450px] max-[590px]:w-full max-[590px]:px-[40px]" autoplay muted loop playsinline>
+			<video
+				class="h-auto w-[450px] max-[590px]:w-full max-[590px]:px-[40px]"
+				autoplay
+				muted
+				loop
+				playsinline
+			>
 				<source src="/images/homepage-animation.mp4" type="video/mp4" />
 			</video>
 		</div>

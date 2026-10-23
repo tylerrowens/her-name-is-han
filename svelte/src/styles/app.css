@@ -65,6 +65,8 @@ body {
 
 	--breakpoint-lg: 1300px;
 	--breakpoint-sm: 1024px;
+	--breakpoint-md: 600px;
+	--breakpoint-md-card: 900px;
 
 	/* PRIORITY SPACING SCALE*/
 	--spacing-lg-5: 95px;

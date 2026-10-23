@@ -5,48 +5,61 @@
 	import StaggeredQuote from '$lib/components/about/StaggeredQuote.svelte';
 </script>
 
-<section class="main-grid page-x">
-	<div class="mt-[300px] col-span-17 col-start-8">
-		<h1 class="post-title-serif small-caps">Our story</h1>
-		<p class="mt-[300px] medium-serif">
-			Her name is Han began with the memory of one family’s ordinary days. <br /><br /> Waking up to
-			the familiar sound of chopping vegetables in the kitchen. The aroma of steaming soup filling
-			the house. Quiet conversations lingering late into the night. Small moments, remembered as
-			warmth. <br /><br />Today, her story continues to grow. For some, she's a mother. For some, a
-			daughter, and a friend. For others, someone who effortlessly brightens up the moment. Who she
-			is may change, but her stories feel familiar.<br /><br /> Her name is Han is a place that turns
-			one family’s memory into a living story, connecting us all.
+<section class="page-x">
+	<div class="flex flex-row justify-center pt-[135px] card-serif-2 gap-md-4 sm:gap-lg-6">
+		<nav>Our Story</nav>
+		<nav>Contact</nav>
+		<nav>Press</nav>
+	</div>
+	<div class="flex flex-col pt-[95px] w-full md:max-w-[350px] mx-auto gap-[50px]">
+		<p class="card-serif-2 text-center">
+			Our story began with the memory of one family’s ordinary days.
 		</p>
-		<p class="mt-[100px] korean-secondary">
-			Her name is Han은 마치 소설의 첫 문장처럼 들립니다. 이 문장은, 우리를 그녀의 이야기로
-			초대합니다. 그녀가 누구인지는 중요하지 않을지도 모릅니다. 하지만 그녀의 이야기는 어딘가
-			익숙합니다: 어머니의 사랑, 딸의 기억, 늦은 밤 식사와 조용한 대화를 나누는 친구의 이야기.
-			음식은 늘 이야기를 품고 있습니다. 이것은 지금도 살아가는, 우리 모두의 이야기입니다.
+		<p class="nav-serif text-left">
+			Waking up to the familiar sound of chopping vegetables in the kitchen. The aroma of steaming
+			soup filling the house. Quiet conversations lingering late into the night. Small moments,
+			remembered as warmth. <br /><br /> Today, her story continues to grow. For some, she's a
+			mother. For some, a daughter, and a friend. For others, someone who effortlessly brightens up
+			the moment. Who she is may change, but her stories feel familiar. <br /><br /> Her name is Han is
+			a place that turns one family’s memory into a living story, connecting us all.
 		</p>
+	</div>
+	<div class="flex sm:flex-row text-center gap-[50px] justify-center pt-[50px] flex-col nav-serif">
+		<div class="flex flex-col">
+			<p class="small-caps">Contact</p>
+			<p class="underline underline-offset-2">hernameishan@handhospitality.com</p>
+		</div>
+		<div class="flex flex-col">
+			<p class="small-caps">Instagram</p>
+			<p class="underline underline-offset-2">@hernameishan</p>
+		</div>
 	</div>
 </section>
 
-<section class="main-grid page-x mt-[500px] mb-[500px]"> 
-  
-	
-	<h1 class="sticky top-[50vh] post-title-serif small-caps col-start-4 self-start">
-	  press
-	</h1> 
-  
-	<!-- The quotes container starts exactly at column 9 and spans the rest of your layout -->
-	<div class="col-start-9 col-span-15"> 
-	  <div class="sticky flex justify-self-center rotate-[3.69deg] w-[90%] opacity-95 mb-[500px] top-[120px]"> 
-		<FullQuote /> 
-	  </div> 
-	  <div class="sticky flex justify-self-start rotate-[-1.69deg] w-[70%] opacity-95 mb-[500px] top-[160px]"> 
-		<StaggeredQuote /> 
-	  </div> 
-	  <div class="sticky flex justify-self-end rotate-[7.84deg] w-[49%] opacity-95 mb-[500px] top-[200px]"> 
-		<Dialogue /> 
-	  </div> 
-	  <div class="sticky flex justify-self-end rotate-[-15deg] w-[80%] opacity-95 mb-[500px] top-[120px]"> 
-		<SimpleQuote /> 
-	  </div> 
-	</div> 
-  
-  </section>
+<div class="overflow-x-clip">
+	<section class="page-x w-full md:max-w-[1050px] mt-[135px] mx-auto">
+		<!-- The quotes container starts exactly at column 9 and spans the rest of your layout -->
+		<div class="w-full min-w-0">
+			<div
+				class="sticky flex justify-self-center rotate-[-3.69deg] md-card:w-[90%] opacity-95 mb-[200px] w-full top-[120px]"
+			>
+				<FullQuote />
+			</div>
+			<div
+				class="sticky flex justify-self-center md-card:justify-self-start rotate-[-1.69deg] w-full md-card:w-[70%] opacity-95 mb-[200px] top-[160px]"
+			>
+				<StaggeredQuote />
+			</div>
+			<div
+				class="sticky flex justify-self-center md-card:justify-self-end rotate-[7.84deg] w-full md-card:w-[49%] opacity-95 mb-[200px] top-[150px] sm:top-[200px]"
+			>
+				<Dialogue />
+			</div>
+			<div
+			class="sticky flex justify-self-center rotate-[-3.69deg] md-card:w-[90%] opacity-95 mb-[200px] w-full top-[120px]"
+		>
+			<FullQuote />
+		</div>
+		</div>
+	</section>
+</div>

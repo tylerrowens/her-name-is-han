@@ -3,7 +3,7 @@
 </script>
 
 <article class="w-full">
-	<div class="aspect-[26/9] w-full py-[80px] flex flex-col overflow-hidden items-center bg-winter-sea text-gochujang">
+	<div class="aspect-[1/1] sm:aspect-[26/9] w-full py-[80px] flex flex-col overflow-hidden items-center bg-winter-sea text-gochujang">
 		<div class="mb-[30px]">
 			<p class="card-serif-2 text-center">
 				“Every single person we’ve sent here has texted us something to the effect of, ‘Holy sh*t’
