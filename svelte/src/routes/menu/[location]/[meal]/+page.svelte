@@ -9,6 +9,7 @@
 	import MenuSectionTitle from '$lib/components/menu/MenuSectionTitle.svelte';
 	import FoodSection from '$lib/components/menu/FoodSection.svelte';
 	import WineSection from '$lib/components/menu/WineSection.svelte';
+	import SimpleDrinkSection from '$lib/components/menu/SimpleDrinkSection.svelte';
 </script>
 
 <div class="pt-[120px]">
@@ -21,13 +22,15 @@
 			<div
 				style:--section-row={index + 1}
 				class="flex flex-col gap-lg-4 sm:col-start-2 sm:row-start-[var(--section-row)]
-	min-h-[calc(100dvh-var(--menu-offset))] py-lg-4"
+	min-h-[calc(100dvh-var(--menu-offset))] pt-lg-4 pb-lg-5"
 			>
 				{#each section.content ?? [] as group (group._key)}
 					{#if group._type === 'foodSection'}
 						<FoodSection section={group} />
 					{:else if group._type === 'wineSection'}
 						<WineSection section={group} />
+					{:else if group._type === 'simpleDrinkSection'}
+						<SimpleDrinkSection section={group} />
 					{/if}
 				{/each}
 			</div>

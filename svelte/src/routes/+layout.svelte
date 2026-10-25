@@ -159,7 +159,7 @@
 		class:opacity-100={!heroHeader}
 	></div>
 	<header
-		class="page-x fixed inset-x-0 top-0 z-50 grid h-[60px] w-full grid-cols-[1fr_auto_1fr] content-center py-sm-3 transition-colors duration-400 linear"
+		class="page-x fixed inset-x-0 top-0 z-50 grid h-[60px] w-full grid-cols-[1fr_auto_1fr] content-center py-sm-3 transition-colors duration-400 linear [view-transition-name:site-nav]"
 		class:text-jade-white={heroHeader}
 		class:text-aegean={!heroHeader}
 	>
@@ -256,7 +256,7 @@
 
 	{#if page.url.pathname !== '/'}
 		<footer
-			class="relative h-[calc(100dvh_-_60px)] sm:h-[307px] w-full overflow-hidden bg-aegean"
+			class="relative h-[calc(100dvh_-_60px)] md:h-[700px] sm:h-[307px] w-full overflow-hidden bg-aegean"
 			inert={mobileNavOpen}
 		>
 			<div

@@ -16,7 +16,9 @@
 </script>
 
 <div class="self-center w-full sm:w-auto">
-	<div class="grid grid-cols-[1fr_50px] px-[15px] gap-md-4 trim-cap sm:grid-cols-[300px_50px] sm:px-[0px]">
+	<div
+		class="grid grid-cols-[1fr_50px] px-[15px] gap-md-4 trim-cap sm:grid-cols-[300px_50px] sm:px-[0px]"
+	>
 		<div>
 			<p class="body-serif small-caps trim-cap">{item.title}</p>
 
@@ -26,15 +28,27 @@
 		</div>
 
 		<div class="grid grid-cols-[20px_10px_20px] trim-cap">
-			<p class="body-serif tabular-nums oldstyle-nums trim-cap text-center">
-				{item.glassPrice ?? ''}
-			</p>
-			<p class="body-serif trim-cap text-center">
-				{item.glassPrice != null && item.bottlePrice != null ? '/' : ''}
-			</p>
-			<p class="body-serif tabular-nums oldstyle-nums trim-cap text-center">
-				{item.bottlePrice ?? ''}
-			</p>
+			{#if item.glassPrice != null}
+				<p
+					class="body-serif tabular-nums oldstyle-nums trim-cap text-center"
+					class:col-start-3={item.bottlePrice == null}
+				>
+					{item.glassPrice}
+				</p>
+			{/if}
+
+			{#if item.glassPrice != null && item.bottlePrice != null}
+				<p class="body-serif trim-cap text-center">/</p>
+			{/if}
+
+			{#if item.bottlePrice != null}
+				<p
+					class="body-serif tabular-nums oldstyle-nums trim-cap text-center"
+					class:col-start-3={item.glassPrice == null}
+				>
+					{item.bottlePrice}
+				</p>
+			{/if}
 		</div>
 	</div>
 </div>

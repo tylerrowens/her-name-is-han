@@ -128,7 +128,7 @@
 		<div class="w-full overflow-x-auto scrollbar-none">
 			<div
 				class="page-x grid grid-flow-col auto-cols-[90%] gap-x-sm-3 sm:gap-x-md-4
-			pb-lg-5 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6"
+			pb-lg-5 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-3 md:grid-flow-col md:grid-cols-none md:auto-cols-[min(90%,600px)] lg:mx-lg-5 xl:mx-lg-6"
 			>
 				<div class=""><PlaylistCard /></div>
 				<div class=""><PlaylistCard /></div>
@@ -142,8 +142,10 @@
 			Han’s Recipes<br /><span class="text-ash">From our kitchen to yours.</span>
 		</p>
 		<div class="bg-jade-white w-full overflow-x-auto scrollbar-none">
-			<div class="page-x grid grid-flow-col auto-cols-[90%] gap-x-sm-3 sm:gap-x-md-4
-			pb-lg-5 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6">
+			<div
+				class="page-x grid grid-flow-col auto-cols-[90%] gap-x-sm-3 sm:gap-x-md-4
+			pb-lg-5 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6"
+			>
 				{#each recipePosts as post (post._id)}
 					<BlogCard {post} />
 				{/each}

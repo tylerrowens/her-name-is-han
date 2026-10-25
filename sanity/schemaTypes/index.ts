@@ -1,7 +1,7 @@
 import {blogPost} from './documents/blogPost'
 import {storiesPage} from './documents/storiesPage'
 import {location} from './documents/location'
-import { menu } from './documents/menu'
+import {menu} from './documents/menu'
 
 import {creditsBlock} from './objects/creditsBlock'
 import {imageDiptych} from './objects/imageDiptych'
@@ -14,16 +14,18 @@ import {textBlock} from './objects/textBlock'
 import {simplePortableText} from './objects/simplePortableText'
 import {mainMedia} from './objects/mainMedia'
 
-import { menuSection } from './objects/menu/menuSection'
-import { foodSection } from './objects/menu/foodSection'
-import { menuItem } from './objects/menu/menuItem'
-import { menuAddon } from './objects/menu/menuAddon'
-import { wineSection } from './objects/menu/wineSection'
-import { wineSubsection } from './objects/menu/wineSubsection'
-import { wineItem } from './objects/menu/wineItem'
-import { menuPhoto } from './objects/menu/menuPhoto'
-import { menuImage } from './objects/menu/menuImage'
-import { menuImageDiptych } from './objects/menu/menuImageDiptych'
+import {menuSection} from './objects/menu/menuSection'
+import {foodSection} from './objects/menu/foodSection'
+import {simpleDrinkSection} from './objects/menu/simpleDrinkSection'
+import {menuItem} from './objects/menu/menuItem'
+import {menuAddon} from './objects/menu/menuAddon'
+import {wineSection} from './objects/menu/wineSection'
+import {wineSubsection} from './objects/menu/wineSubsection'
+import {wineItem} from './objects/menu/wineItem'
+import {menuPhoto} from './objects/menu/menuPhoto'
+import {menuImage} from './objects/menu/menuImage'
+import { drinkItem } from './objects/menu/drinkItem'
+import {menuImageDiptych} from './objects/menu/menuImageDiptych'
 
 export const schemaTypes = [
   blogPost,
@@ -42,7 +44,9 @@ export const schemaTypes = [
   mainMedia,
   menuSection,
   foodSection,
+  simpleDrinkSection,
   menuItem,
+  drinkItem,
   menuAddon,
   wineSection,
   wineSubsection,

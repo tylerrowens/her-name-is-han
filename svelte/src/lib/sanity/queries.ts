@@ -336,6 +336,18 @@ export const MENU_PAGE_QUERY = defineQuery(`
                 }
               }
             },
+
+            _type == "simpleDrinkSection" => {
+             items[]{
+               _key,
+               _type,
+               title,
+              koreantitle,
+              simpleInfo,
+              singleServingPrice,
+              pitcherPrice,
+              }
+            },
   
             _type == "wineSection" => {
               subsections[]{

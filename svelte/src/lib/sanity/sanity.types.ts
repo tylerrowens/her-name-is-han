@@ -79,6 +79,15 @@ export type MenuAddon = {
   price?: number;
 };
 
+export type DrinkItem = {
+  _type: "drinkItem";
+  title?: string;
+  koreantitle?: string;
+  simpleInfo?: string;
+  singleServingPrice?: number;
+  pitcherPrice?: number;
+};
+
 export type MenuItem = {
   _type: "menuItem";
   title?: string;
@@ -88,6 +97,14 @@ export type MenuItem = {
   addons?: Array<{
     _key: string;
   } & MenuAddon>;
+};
+
+export type SimpleDrinkSection = {
+  _type: "simpleDrinkSection";
+  title?: string;
+  items?: Array<{
+    _key: string;
+  } & DrinkItem>;
 };
 
 export type FoodSection = {
@@ -111,7 +128,9 @@ export type MenuSection = {
     _key: string;
   } & FoodSection | {
     _key: string;
-  } & WineSection>;
+  } & WineSection | {
+    _key: string;
+  } & SimpleDrinkSection>;
 };
 
 export type MainMedia = {
@@ -547,7 +566,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = MenuImageDiptych | MenuImage | SanityImageAssetReference | MenuPhoto | WineItem | WineSubsection | WineSection | MenuAddon | MenuItem | FoodSection | MenuSection | MainMedia | SimplePortableText | TextBlock | PullQuote | PostImage | InterviewEntry | InstructionsBlock | IngredientsBlock | ImageDiptych | CreditsBlock | Menu | SanityImageCrop | SanityImageHotspot | Slug | MenuReference | Location | StoriesPage | BlogPostReference | BlogPost | MuxVideoAssetReference | MuxVideo | MuxVideoAsset | MuxAssetData | MuxMasterFile | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = MenuImageDiptych | MenuImage | SanityImageAssetReference | MenuPhoto | WineItem | WineSubsection | WineSection | MenuAddon | DrinkItem | MenuItem | SimpleDrinkSection | FoodSection | MenuSection | MainMedia | SimplePortableText | TextBlock | PullQuote | PostImage | InterviewEntry | InstructionsBlock | IngredientsBlock | ImageDiptych | CreditsBlock | Menu | SanityImageCrop | SanityImageHotspot | Slug | MenuReference | Location | StoriesPage | BlogPostReference | BlogPost | MuxVideoAssetReference | MuxVideo | MuxVideoAsset | MuxAssetData | MuxMasterFile | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 
 // Source: ../svelte/src/lib/sanity/queries.ts
 // Variable: BLOG_POST_QUERY
@@ -838,7 +857,7 @@ export type RESERVATION_NAV_QUERY_RESULT = Array<{
 
 // Source: ../svelte/src/lib/sanity/queries.ts
 // Variable: MENU_PAGE_QUERY
-// Query: *[      _type == "location" &&      slug.current == $location    ][0]{      _id,      name,      "slug": slug.current,        "menuMatchCount": count(        (menus[]->)[          _type == "menu" &&          slug.current == $meal        ]      ),        "menu": (menus[]->)[        _type == "menu" &&        slug.current == $meal      ][0]{        _id,        title,        "slug": slug.current,          sections[]{          _key,          _type,          title,          backgroundColor,            content[]{            _key,            _type,            title,              _type == "foodSection" => {              items[]{                _key,                _type,                title,                koreantitle,                description,                price,                  addons[]{                  _key,                  _type,                  title,                  price                }              }            },              _type == "wineSection" => {              subsections[]{                _key,                _type,                title,                  items[]{                  _key,                  _type,                  title,                  description,                  glassPrice,                  bottlePrice                }              }            },              images[]{              _key,              _type,                _type == "menuImage" => {                layout,                  image{                  _type,                  alt,                  caption,                  crop,                  hotspot,                    asset->{                    _id,                    _type,                    url,                    metadata{                      dimensions,                      lqip                    }                  }                }              },                _type == "menuImageDiptych" => {                leftImage{                  _type,                  alt,                  caption,                  crop,                  hotspot,                    asset->{                    _id,                    _type,                    url,                    metadata{                      dimensions,                      lqip                    }                  }                },                  rightImage{                  _type,                  alt,                  caption,                  crop,                  hotspot,                    asset->{                    _id,                    _type,                    url,                    metadata{                      dimensions,                      lqip                    }                  }                }              }            }          }        }      }    }
+// Query: *[      _type == "location" &&      slug.current == $location    ][0]{      _id,      name,      "slug": slug.current,        "menuMatchCount": count(        (menus[]->)[          _type == "menu" &&          slug.current == $meal        ]      ),        "menu": (menus[]->)[        _type == "menu" &&        slug.current == $meal      ][0]{        _id,        title,        "slug": slug.current,          sections[]{          _key,          _type,          title,          backgroundColor,            content[]{            _key,            _type,            title,              _type == "foodSection" => {              items[]{                _key,                _type,                title,                koreantitle,                description,                price,                  addons[]{                  _key,                  _type,                  title,                  price                }              }            },            _type == "simpleDrinkSection" => {             items[]{               _key,               _type,               title,              koreantitle,              simpleInfo,              singleServingPrice,              pitcherPrice,              }            },              _type == "wineSection" => {              subsections[]{                _key,                _type,                title,                  items[]{                  _key,                  _type,                  title,                  description,                  glassPrice,                  bottlePrice                }              }            },              images[]{              _key,              _type,                _type == "menuImage" => {                layout,                  image{                  _type,                  alt,                  caption,                  crop,                  hotspot,                    asset->{                    _id,                    _type,                    url,                    metadata{                      dimensions,                      lqip                    }                  }                }              },                _type == "menuImageDiptych" => {                leftImage{                  _type,                  alt,                  caption,                  crop,                  hotspot,                    asset->{                    _id,                    _type,                    url,                    metadata{                      dimensions,                      lqip                    }                  }                },                  rightImage{                  _type,                  alt,                  caption,                  crop,                  hotspot,                    asset->{                    _id,                    _type,                    url,                    metadata{                      dimensions,                      lqip                    }                  }                }              }            }          }        }      }    }
 export type MENU_PAGE_QUERY_RESULT = {
   _id: string;
   name: string | null;
@@ -929,6 +948,20 @@ export type MENU_PAGE_QUERY_RESULT = {
         }> | null;
       } | {
         _key: string;
+        _type: "simpleDrinkSection";
+        title: string | null;
+        items: Array<{
+          _key: string;
+          _type: "drinkItem";
+          title: string | null;
+          koreantitle: string | null;
+          simpleInfo: string | null;
+          singleServingPrice: number | null;
+          pitcherPrice: number | null;
+        }> | null;
+        images: null;
+      } | {
+        _key: string;
         _type: "wineSection";
         title: string | null;
         subsections: Array<{
@@ -1015,7 +1048,7 @@ declare global {
     "\n    *[_type == \"location\"] | order(_createdAt asc) {\n        _id,\n        name,\n        \"slug\": slug.current,\n        locationType,\n        \"addressText\": pt::text(address),\n        mapsUrl,\n    }\n": LOCATIONS_NAV_QUERY_RESULT;
     "\n*[_type == \"location\" && defined(slug.current)] | order(_createdAt asc) {\n      _id,\n      name,\n      \"slug\": slug.current,\n      \"menus\": (menus[]->)[_type == \"menu\" && defined(slug.current)]{\n        _id,\n        title,\n        \"slug\": slug.current\n      }\n    }\n": MENU_NAV_QUERY_RESULT;
     "\n  *[_type == \"location\" && defined(reservationUrl) && reservationUrl != \"\"] | order(_createdAt asc) {\n      _id,\n      name,\n      reservationUrl,\n      \"menus\": (menus[]->)[_type == \"menu\" && defined(slug.current)]{\n        _id,\n        title,\n      }\n  }\n": RESERVATION_NAV_QUERY_RESULT;
-    "\n    *[\n      _type == \"location\" &&\n      slug.current == $location\n    ][0]{\n      _id,\n      name,\n      \"slug\": slug.current,\n  \n      \"menuMatchCount\": count(\n        (menus[]->)[\n          _type == \"menu\" &&\n          slug.current == $meal\n        ]\n      ),\n  \n      \"menu\": (menus[]->)[\n        _type == \"menu\" &&\n        slug.current == $meal\n      ][0]{\n        _id,\n        title,\n        \"slug\": slug.current,\n  \n        sections[]{\n          _key,\n          _type,\n          title,\n          backgroundColor,\n  \n          content[]{\n            _key,\n            _type,\n            title,\n  \n            _type == \"foodSection\" => {\n              items[]{\n                _key,\n                _type,\n                title,\n                koreantitle,\n                description,\n                price,\n  \n                addons[]{\n                  _key,\n                  _type,\n                  title,\n                  price\n                }\n              }\n            },\n  \n            _type == \"wineSection\" => {\n              subsections[]{\n                _key,\n                _type,\n                title,\n  \n                items[]{\n                  _key,\n                  _type,\n                  title,\n                  description,\n                  glassPrice,\n                  bottlePrice\n                }\n              }\n            },\n  \n            images[]{\n              _key,\n              _type,\n  \n              _type == \"menuImage\" => {\n                layout,\n  \n                image{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                }\n              },\n  \n              _type == \"menuImageDiptych\" => {\n                leftImage{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                },\n  \n                rightImage{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  ": MENU_PAGE_QUERY_RESULT;
+    "\n    *[\n      _type == \"location\" &&\n      slug.current == $location\n    ][0]{\n      _id,\n      name,\n      \"slug\": slug.current,\n  \n      \"menuMatchCount\": count(\n        (menus[]->)[\n          _type == \"menu\" &&\n          slug.current == $meal\n        ]\n      ),\n  \n      \"menu\": (menus[]->)[\n        _type == \"menu\" &&\n        slug.current == $meal\n      ][0]{\n        _id,\n        title,\n        \"slug\": slug.current,\n  \n        sections[]{\n          _key,\n          _type,\n          title,\n          backgroundColor,\n  \n          content[]{\n            _key,\n            _type,\n            title,\n  \n            _type == \"foodSection\" => {\n              items[]{\n                _key,\n                _type,\n                title,\n                koreantitle,\n                description,\n                price,\n  \n                addons[]{\n                  _key,\n                  _type,\n                  title,\n                  price\n                }\n              }\n            },\n\n            _type == \"simpleDrinkSection\" => {\n             items[]{\n               _key,\n               _type,\n               title,\n              koreantitle,\n              simpleInfo,\n              singleServingPrice,\n              pitcherPrice,\n              }\n            },\n  \n            _type == \"wineSection\" => {\n              subsections[]{\n                _key,\n                _type,\n                title,\n  \n                items[]{\n                  _key,\n                  _type,\n                  title,\n                  description,\n                  glassPrice,\n                  bottlePrice\n                }\n              }\n            },\n  \n            images[]{\n              _key,\n              _type,\n  \n              _type == \"menuImage\" => {\n                layout,\n  \n                image{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                }\n              },\n  \n              _type == \"menuImageDiptych\" => {\n                leftImage{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                },\n  \n                rightImage{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  ": MENU_PAGE_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

@@ -26,8 +26,7 @@ export const menuSection = defineType({
         layout: 'radio',
       },
       initialValue: 'blue',
-      validation: (rule) =>
-        rule.required().error('Select a background color.'),
+      validation: (rule) => rule.required().error('Select a background color.'),
     }),
     defineField({
       name: 'content',
@@ -37,9 +36,9 @@ export const menuSection = defineType({
       of: [
         defineArrayMember({type: 'foodSection'}),
         defineArrayMember({type: 'wineSection'}),
+        defineArrayMember({type: 'simpleDrinkSection'}),
       ],
-      validation: (rule) =>
-        rule.required().min(1).error('Add at least one content group.'),
+      validation: (rule) => rule.required().min(1).error('Add at least one content group.'),
     }),
   ],
 

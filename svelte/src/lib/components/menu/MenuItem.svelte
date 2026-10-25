@@ -17,14 +17,14 @@
 
 <div class="self-center w-full sm:w-auto">
 	<div
-		class="grid grid-cols-[1fr_50px] px-[15px] gap-md-4 trim-cap sm:grid-cols-[300px_50px] sm:px-[0px]"
+		class="grid grid-cols-[1fr_50px] px-[15px] gap-md-3 trim-cap sm:grid-cols-[350px_50px] sm:px-[0px]"
 	>
 		<div>
-			<div class="flex flex-row flex-wrap items-baseline gap-xs-3">
+			<div class="flex flex-row flex-wrap items-baseline gap-x-xs-3 gap-y-[10px]">
 				<p class="body-serif small-caps trim-cap">{item.title}</p>
 
 				{#if item.koreantitle}
-					<p class="font-korean trim-cap text-[12px]">{item.koreantitle}</p>
+					<p class="font-korean trim-cap text-[10.6px] relative -top-[1.3px]">{item.koreantitle}</p>
 				{/if}
 			</div>
 			{#if item.description}
@@ -39,7 +39,7 @@
 	</div>
 	{#each item.addons ?? [] as addon (addon._key)}
 		<div
-			class="grid grid-cols-[1fr_50px] px-[15px] gap-md-4 trim-cap sm:grid-cols-[300px_50px] sm:px-[0px]"
+			class="grid grid-cols-[1fr_50px] px-[15px] gap-md-3 trim-cap sm:grid-cols-[350px_50px] sm:px-[0px]"
 		>
 			<div>
 				<p class="body-serif small-caps trim-cap pt-sm-3 sm:pl-md-4">{addon.title}</p>

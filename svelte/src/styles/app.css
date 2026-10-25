@@ -32,6 +32,11 @@ body {
 	animation-delay: 0.2s; /* Matches the duration of the fade-out */
 }
 
+::view-transition-old(site-nav),
+::view-transition-new(site-nav) {
+	animation: none;
+}
+
 /* Step 4: Define standard keyframes without overlapping transparency */
 @keyframes fade-out {
 	from {

@@ -1,5 +1,5 @@
 <section
-	class="relative aspect-[3/2] sm:aspect-[640/265] w-auto flex-col bg-jade-white/80 pl-md-3 text-aegean"
+	class="relative aspect-[3/2] md:aspect-[3/1] sm:aspect-[640/265] w-auto flex-col bg-jade-white/80 pl-md-3 text-aegean"
 	aria-labelledby="newsletter-heading"
 >
 	<div class="absolute top-md-3 trim-cap">
