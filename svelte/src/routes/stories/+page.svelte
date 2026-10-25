@@ -68,34 +68,7 @@
 			: data.blogPosts.filter((post) => post.categories?.includes(selectedCategory))
 	);
 
-	//TBD IF WERE USING CAROUSELS
-	let playlistCarousel: HTMLDivElement;
-	let recipeCarousel: HTMLDivElement;
-
-	const swiperOptions = {
-		cssMode: true,
-		slidesPerView: 'auto',
-		spaceBetween: 15,
-		slidesOffsetAfter: 15,
-		slidesOffsetBefore: 22,
-		mousewheel: true,
-		breakpoints: {
-			1300: {
-				slidesPerView: 3,
-				slidesOffsetBefore: 170
-			}
-		}
-	} satisfies SwiperOptions;
-
-	onMount(() => {
-		const playlistSwiper = new Swiper(playlistCarousel, swiperOptions);
-		const recipeSwiper = new Swiper(recipeCarousel, swiperOptions);
-
-		return () => {
-			playlistSwiper.destroy(true, true);
-			recipeSwiper.destroy(true, true);
-		};
-	});
+	let recipePosts = $derived(data.blogPosts.filter((post) => post.categories?.includes('recipe')));
 </script>
 
 <section class="w-full">
@@ -136,9 +109,9 @@
 		</ul>
 	</nav>
 
-	<div class="bg-jade-white">
+	<div class="bg-jade-white pb-lg-5">
 		<div
-			class="page-x grid grid-cols-1 gap-x-md-4 pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))] pt-lg-4 sm:grid-cols-3 lg:mx-lg-6"
+			class="page-x grid grid-cols-1 gap-x-md-4 gap-y-lg-4 pt-lg-4 sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6"
 		>
 			{#each filteredPosts as post (post._id)}
 				<BlogCard {post} />
@@ -146,50 +119,35 @@
 		</div>
 	</div>
 
-	<div class="hidden pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))]">
-		<p class="pb-lg-5 nav-title-serif text-jjokbit ml-md-3 lg:ml-lg-6">
+	<div class="bg-web-grey">
+		<p class="pb-[71px] nav-title-serif text-jjokbit page-x pt-sm-3 sm:pt-lg-4">
 			Han’s Playlist<br /><span class="text-ash"
 				>The secret recipe for a great time shared at the table.</span
 			>
 		</p>
-		<div bind:this={playlistCarousel} class="swiper flex items-center">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide !w-[460px]"><PlaylistCard /></div>
-				<div class="swiper-slide !w-[460px]"><PlaylistCard /></div>
-				<div class="swiper-slide !w-[460px]"><PlaylistCard /></div>
-				<div class="swiper-slide !w-[460px]"><PlaylistCard /></div>
-				<div class="swiper-slide !w-[460px]"><PlaylistCard /></div>
-				<div class="swiper-slide !w-[460px]"><PlaylistCard /></div>
+		<div class="w-full overflow-x-auto scrollbar-none">
+			<div
+				class="page-x grid grid-flow-col auto-cols-[90%] gap-x-sm-3 sm:gap-x-md-4
+			pb-lg-5 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6"
+			>
+				<div class=""><PlaylistCard /></div>
+				<div class=""><PlaylistCard /></div>
+				<div class=""><PlaylistCard /></div>
 			</div>
 		</div>
 	</div>
 
-	<div class="hidden pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))]">
-		<p class="pb-lg-5 nav-title-serif text-jjokbit ml-md-3 lg:ml-lg-6">
+	<div class="">
+		<p class="pb-[71px] nav-title-serif text-jjokbit page-x pt-sm-3 sm:pt-lg-4">
 			Han’s Recipes<br /><span class="text-ash">From our kitchen to yours.</span>
 		</p>
-		<div bind:this={recipeCarousel} class="swiper flex items-center">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide !w-[460px]"><RecipeCard /></div>
-				<div class="swiper-slide !w-[460px]"><RecipeCard /></div>
-				<div class="swiper-slide !w-[460px]"><RecipeCard /></div>
-				<div class="swiper-slide !w-[460px]"><RecipeCard /></div>
-				<div class="swiper-slide !w-[460px]"><RecipeCard /></div>
-				<div class="swiper-slide !w-[460px]"><RecipeCard /></div>
+		<div class="bg-jade-white w-full overflow-x-auto scrollbar-none">
+			<div class="page-x grid grid-flow-col auto-cols-[90%] gap-x-sm-3 sm:gap-x-md-4
+			pb-lg-5 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6">
+				{#each recipePosts as post (post._id)}
+					<BlogCard {post} />
+				{/each}
 			</div>
 		</div>
 	</div>
 </section>
-
-<style>
-	.swiper {
-		width: 100%;
-	}
-
-	.swiper-slide {
-		font-size: 18px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-</style>

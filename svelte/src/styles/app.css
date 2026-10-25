@@ -59,11 +59,12 @@ body {
 
 	--spacing-xs-1: 2px;
 	--spacing-xs-2: 5px;
-	--spacing-md-3: 22px;
 	--spacing-lg-7: 74px;
 	--spacing-xl-6: 248px;
 
+	--breakpoint-xl: 1600px;
 	--breakpoint-lg: 1300px;
+	--breakpoint-footer-break: 1400px;
 	--breakpoint-sm: 1024px;
 	--breakpoint-md: 600px;
 	--breakpoint-md-card: 900px;
@@ -90,7 +91,7 @@ body {
 	--color-doenjang: #7d4403;
 	--color-ganjang: #2a0600;
 	--color-ash: #a3a3a3;
-	--color-web-grey: #f0eee7;
+	--color-web-grey: #f0eee9;
 	--color-celestial: #0276e2;
 	--color-untitled: #f6f7e7;
 	--color-aegean: #002336;

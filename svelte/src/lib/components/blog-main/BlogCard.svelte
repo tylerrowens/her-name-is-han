@@ -32,20 +32,37 @@
 		</div>
 
 		<div>
-			<p class="pt-sm-3 body-serif small-caps trim-cap transition-colors duration-200 ease-out hover:text-ash">{post.title}</p>
-			<div class="pt-md-4 pb-lg-4 small-serif leading-[.35]">
+			<p
+				class="pt-sm-3 body-serif small-caps trim-cap transition-colors duration-200 ease-out hover:text-ash"
+			>
+				{post.title}
+			</p>
+			<div class="pt-md-4 small-serif leading-[.35]">
 				<p><span class="small-caps trim-cap">by</span> {post.author}</p>
 				<p class="small-caps pt-xs-3 trim-cap">{formattedCategories}</p>
 				{#if dateParts}
-				<div class="pt-sm-3 trim-cap">
-					<time class="date-stamp" datetime={post.publishedDate ?? undefined}>
-						{dateParts.year}<span class="font-korean text-[10px]">년</span>
-
-						{dateParts.month}<span class="font-korean">월</span>
-
-						{dateParts.day}<span class="font-korean">일</span>
-					</time>
-				</div>
+					<div class="pt-sm-3 trim-cap">
+						<time datetime={post.publishedDate ?? undefined}>
+							<span class="font-['Fresco_Stamp'] font-normal text-[13.5px] tracking-[1px] pr-[.5px]"
+								>{dateParts.year}
+							</span><span
+								class="font-['Sun_Batang_Medium'] font-medium text-[10.5px] pr-[10px] relative -top-[1.3px]"
+								>년</span
+							><span
+								class="font-['Fresco_Stamp'] font-normal text-[13.5px] tracking-[1px] pr-[.5px]"
+								>{dateParts.month}
+							</span><span
+								class="font-['Sun_Batang_Medium'] font-medium text-[10.5px] pr-[4.5px] relative -top-[1.3px]"
+								>월</span
+							><span
+								class="font-['Fresco_Stamp'] font-normal text-[13.5px] tracking-[1px] pr-[.5px]"
+								>{dateParts.day}
+							</span><span
+								class="font-['Sun_Batang_Medium'] font-medium text-[10.5px] relative -top-[1.3px]"
+								>일</span
+							>
+						</time>
+					</div>
 				{/if}
 			</div>
 		</div>

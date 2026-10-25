@@ -119,6 +119,35 @@
 		restoreScrollOnClose = false;
 		mobileNavOpen = false;
 	}
+
+	import { onMount } from 'svelte';
+
+	let now = $state<Date | null>(null);
+
+	onMount(() => {
+		now = new Date();
+
+		const interval = setInterval(() => {
+			now = new Date();
+		}, 1000);
+
+		return () => clearInterval(interval);
+	});
+
+	let dateParts = $derived(
+		now
+			? new Intl.DateTimeFormat('en-US', {
+					timeZone: 'America/New_York',
+					year: 'numeric',
+					month: '2-digit',
+					day: '2-digit'
+				}).formatToParts(now)
+			: []
+	);
+
+	let year = $derived(dateParts.find((part) => part.type === 'year')?.value ?? '');
+	let month = $derived(dateParts.find((part) => part.type === 'month')?.value ?? '');
+	let day = $derived(dateParts.find((part) => part.type === 'day')?.value ?? '');
 </script>
 
 <svelte:body onmouseleave={() => (openDropdown = null)} />
@@ -226,39 +255,82 @@
 	</div>
 
 	{#if page.url.pathname !== '/'}
-		<footer class="relative h-[350px] w-full overflow-hidden bg-aegean" inert={mobileNavOpen}>
+		<footer
+			class="relative h-[calc(100dvh_-_60px)] sm:h-[307px] w-full overflow-hidden bg-aegean"
+			inert={mobileNavOpen}
+		>
 			<div
-				class="ml-md-3 mr-md-3 lg:ml-lg-6 absolute inset-x-0 bottom-[35px] grid grid-cols-[1fr_640px] items-end gap-md-4"
+				class="page-x absolute inset-x-0 top-[15px] bottom-[15px] sm:bottom-[50px] sm:top-[50px] grid grid-cols-1 sm:grid-cols-[1fr_500px] grid-rows-[auto_1fr] sm:grid-rows-1 items-end gap-md-4 text-ash nav-serif"
 			>
-				<div class="text-ash body-serif">
-					<p class="small-caps pb-sm-3">Connect with us</p>
+				<div
+					class="flex h-full flex-col gap-0 sm:gap-[70px]
+	justify-between footer-break:flex-row footer-break:items-end
+	footer-break:justify-start order-2 sm:order-1"
+				>
+					<div class="flex flex-1 items-center justify-center sm:block sm:flex-none">
+						<div class="flex flex-col text-center sm:text-left">
+							{#if now}
+								<p class="">
+									<span
+										class="font-['Fresco_Stamp'] font-normal text-[15.5px] sm:text-[14.5px] tracking-[1px] pr-[.5px]"
+										>{year}</span
+									><span
+										class="font-['Sun_Batang_Medium'] font-medium text-[12px] sm:text-[11.5px] pr-[10px] relative -top-[1.3px]"
+										>년</span
+									><span
+										class="font-['Fresco_Stamp'] font-normal text-[15.5px] sm:text-[14.5px] tracking-[1px] pr-[.5px]"
+										>{month}</span
+									><span
+										class="font-['Sun_Batang_Medium'] font-medium text-[12px] sm:text-[11.5px] pr-[4.5px] relative -top-[1.3px]"
+										>월</span
+									><span
+										class="font-['Fresco_Stamp'] font-normal text-[15.5px] sm:text-[14.5px] tracking-[1px] pr-[.5px]"
+										>{day}</span
+									><span
+										class="font-['Sun_Batang_Medium'] font-medium text-[12px] sm:text-[11.5px] relative -top-[1.3px]"
+										>일</span
+									>
+								</p>
+								<p class="nav-serif small-caps">
+									{now.toLocaleTimeString('en-US', {
+										hour: 'numeric',
+										minute: '2-digit',
+										hour12: true
+									})}
+								</p>
+							{/if}
+						</div>
+					</div>
+					<div>
+						<p class="small-caps pb-sm-3">Connect with us</p>
 
-					<dl class="inline-grid grid-cols-[max-content_max-content] gap-x-md-3">
-						<dt class="small-caps">Social</dt>
-						<dd>
-							<a
-								class="transition-colors duration-200 ease-out hover:text-jade-white"
-								href="https://www.instagram.com/"
-								target="_blank"
-								rel="noreferrer"
-							>
-								Instagram <span>&#x2197;</span>
-							</a>
-						</dd>
+						<dl class="inline-grid grid-cols-[max-content_max-content] gap-x-md-3">
+							<dt class="small-caps">Social</dt>
+							<dd>
+								<a
+									class="transition-colors duration-200 ease-out hover:text-jade-white underline underline-offset-2"
+									href="https://www.instagram.com/hernameishan/?hl=en"
+									target="_blank"
+									rel="noreferrer"
+								>
+									Instagram
+								</a>
+							</dd>
 
-						<dt class="small-caps">Contact</dt>
-						<dd>
-							<a
-								class="transition-colors duration-200 ease-out hover:text-jade-white"
-								href="mailto:hernameishan@handhospitality.com"
-							>
-								hernameishan@handhospitality.com <span>&#x2197;</span>
-							</a>
-						</dd>
-					</dl>
+							<dt class="small-caps">Contact</dt>
+							<dd>
+								<a
+									class="transition-colors duration-200 ease-out hover:text-jade-white underline underline-offset-2"
+									href="mailto:hernameishan@handhospitality.com"
+								>
+									hernameishan@handhospitality.com
+								</a>
+							</dd>
+						</dl>
+					</div>
 				</div>
 
-				<div class="w-full justify-self-end">
+				<div class="w-full self-start sm:self-end justify-self-end order-1 sm:order-2">
 					<NewsletterForm />
 				</div>
 			</div>
