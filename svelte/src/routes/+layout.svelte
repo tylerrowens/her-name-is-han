@@ -256,7 +256,7 @@
 
 	{#if page.url.pathname !== '/'}
 		<footer
-			class="relative h-[calc(100dvh_-_60px)] md:h-[700px] sm:h-[307px] w-full overflow-hidden bg-aegean"
+			class="relative z-30 h-[calc(100dvh_-_60px)] md:h-[700px] sm:h-[307px] w-full overflow-hidden bg-aegean"
 			inert={mobileNavOpen}
 		>
 			<div

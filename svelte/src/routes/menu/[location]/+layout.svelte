@@ -9,29 +9,30 @@
 </script>
 
 <header
-	class="hidden page-x fixed top-[60px] h-[60px] py-sm-3 inset-x-0 z-50 grid grid-cols-[1fr_auto_1fr] content-center bg-jade-white"
+	class="page-x fixed inset-x-0 top-[40px] z-40 grid h-[60px]
+	grid-cols-[1fr_auto_1fr] bg-jade-white"
 >
-	<nav class="justify-self-start flex gap-md-3 card-serif-2 small-caps items-center">
-		<p>Nomad Menu</p>
-	</nav>
-	<nav class="justify-self-start flex gap-xs-3 nav-serif small-caps items-center">
+	<nav class="flex self-end justify-self-start gap-xs-3 nav-serif small-caps">
 		<a
-			class="inline-flex w-[110px] aspect-[145/33] items-center justify-center rounded-[3px] bg-web-grey text-aegean transition-colors duration-200 ease-out hover:text-web-grey hover:bg-aegean"
+			class="inline-flex w-[110px] aspect-[145/33] items-center justify-center rounded-t-[3px] bg-web-grey text-aegean"
 			>Brunch</a
 		>
 		<a
-			class="inline-flex w-[110px] aspect-[145/33] items-center justify-center rounded-[3px] bg-web-grey text-aegean transition-colors duration-200 ease-out hover:text-web-grey hover:bg-aegean"
+			class="inline-flex w-[110px] aspect-[145/33] items-center justify-center rounded-t-[3px] bg-web-grey text-aegean"
 			>Lunch</a
 		>
 		<a
-			class="inline-flex w-[110px] aspect-[145/33] items-center justify-center rounded-[3px] bg-web-grey text-aegean transition-colors duration-200 ease-out hover:text-web-grey hover:bg-aegean"
+			class="inline-flex w-[110px] aspect-[145/33] items-center justify-center rounded-t-[3px] bg-menu-blue text-aegean"
 			>Dinner</a
 		>
 	</nav>
-	<nav class="justify-self-end flex gap-md-3 nav-serif small-caps items-center">
+	<nav class="flex self-start justify-self-start gap-md-3 pt-[16px] body-serif small-caps">
+		<p>Nomad</p>
+	</nav>
+	<nav class="flex self-start justify-self-end gap-md-3 pt-[16px] nav-serif small-caps">
 		<a
-			class="inline-flex gap-1 w-[110px] aspect-[145/33] items-center justify-center rounded-[3px] bg-web-grey text-aegean transition-colors duration-200 ease-out hover:text-web-grey hover:bg-aegean"
-			>Order <span>&#x2197;</span></a
+			class="inline-flex w-[120px] aspect-[145/33] items-center justify-center gap-1
+		rounded-[3px] bg-aegean text-jade-white">Order <span>&#x2197;</span></a
 		>
 	</nav>
 </header>

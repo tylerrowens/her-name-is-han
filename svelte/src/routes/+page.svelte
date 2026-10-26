@@ -29,10 +29,10 @@
 	let day = $derived(dateParts.find((part) => part.type === 'day')?.value ?? '');
 </script>
 
-<section class="relative flex h-[100dvh] w-full flex-col justify-end pb-[30px]">
-	<div
-		class="absolute flex gap-[10px] flex-col top-[138px] left-1/2 -translate-x-1/2 text-center z-10"
-	>
+<section
+	class="grid h-[100dvh] w-full grid-rows-[auto_minmax(0,1fr)] gap-[30px] pt-[138px] pb-[30px]"
+>
+	<div class="flex flex-col gap-[10px] justify-self-center text-center">
 		{#if now}
 			<p class="trim-cap">
 				<span class="font-['Fresco_Stamp'] font-normal text-[15.5px] tracking-[1px] pr-[.5px]"
@@ -61,7 +61,7 @@
 		{/if}
 	</div>
 	<video
-		class="h-auto w-full mx-auto max-w-[1550px] page-x lg:px-[150px] sm:px-[100px]"
+		class="min-h-0 h-full w-full mx-auto max-w-[1550px] page-x sm:px-[100px] lg:px-[150px] object-contain object-bottom"
 		autoplay
 		muted
 		playsinline

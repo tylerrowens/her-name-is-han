@@ -12,9 +12,9 @@
 	import SimpleDrinkSection from '$lib/components/menu/SimpleDrinkSection.svelte';
 </script>
 
-<div class="pt-[120px]">
+<div class="pt-[100px]">
 	<div
-		class="[--menu-offset:120px] [--title-expanded:400px] [--title-collapsed:100px]
+		class="relative [--menu-offset:100px] [--title-expanded:400px] [--title-collapsed:100px]
 	sm:grid sm:grid-cols-2 sm:grid-rows-[auto_auto]"
 	>
 		{#each sections as section, index (section._key)}
@@ -33,6 +33,16 @@
 						<SimpleDrinkSection section={group} />
 					{/if}
 				{/each}
+				<div
+					aria-hidden="true"
+					class="pointer-events-none absolute fixed inset-y-0 top-[100px] left-1/2 z-30 hidden w-[25px]
+				bg-[linear-gradient(to_right,rgba(0,0,0,0.035),transparent)] sm:block"
+				></div>
+				<div
+				aria-hidden="true"
+				class="pointer-events-none absolute fixed inset-y-0 top-[100px] right-1/2 z-30 hidden w-[25px]
+			bg-[linear-gradient(to_left,rgba(0,0,0,0.035),transparent)] sm:block"
+			></div>
 			</div>
 		{/each}
 	</div>
