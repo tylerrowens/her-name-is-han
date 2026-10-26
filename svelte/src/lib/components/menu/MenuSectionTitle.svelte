@@ -6,21 +6,22 @@
 	type Section = NonNullable<Menu['sections']>[number];
 	type MenuSection = Extract<Section, { _type: 'menuSection' }>;
 
-	const backgroundClasses = {
-		blue: 'bg-menu-blue',
-		purple: 'bg-menu-purple',
-		yellow: 'bg-menu-yellow'
-	} as const;
+	const backgroundClasses: Record<string, string> = {
+		dinner: 'bg-menu-blue',
+		lunch: 'bg-menu-purple',
+		brunch: 'bg-menu-yellow'
+	};
 
 	interface Props {
 		row: number;
 		endRow: number;
 		section: MenuSection;
+		meal: string;
 	}
 
-	let { row, endRow, section }: Props = $props();
+	let { row, endRow, section, meal }: Props = $props();
 
-	let backgroundClass = $derived(backgroundClasses[section.backgroundColor ?? 'blue']);
+	let backgroundClass = $derived(backgroundClasses[meal] ?? 'bg-menu-blue');
 </script>
 
 <div

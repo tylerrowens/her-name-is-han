@@ -18,7 +18,12 @@
 	sm:grid sm:grid-cols-2 sm:grid-rows-[auto_auto]"
 	>
 		{#each sections as section, index (section._key)}
-			<MenuSectionTitle {section} row={index + 1} endRow={sections.length + 1} />
+			<MenuSectionTitle
+				{section}
+				meal={data.menuContents.menu?.slug ?? ''}
+				row={index + 1}
+				endRow={sections.length + 1}
+			/>
 			<div
 				style:--section-row={index + 1}
 				class="flex flex-col gap-lg-4 sm:col-start-2 sm:row-start-[var(--section-row)]
@@ -39,10 +44,10 @@
 				bg-[linear-gradient(to_right,rgba(0,0,0,0.035),transparent)] sm:block"
 				></div>
 				<div
-				aria-hidden="true"
-				class="pointer-events-none absolute fixed inset-y-0 top-[100px] right-1/2 z-30 hidden w-[25px]
+					aria-hidden="true"
+					class="pointer-events-none absolute fixed inset-y-0 top-[100px] right-1/2 z-30 hidden w-[25px]
 			bg-[linear-gradient(to_left,rgba(0,0,0,0.035),transparent)] sm:block"
-			></div>
+				></div>
 			</div>
 		{/each}
 	</div>

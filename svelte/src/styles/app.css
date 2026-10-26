@@ -37,6 +37,31 @@ body {
 	animation: none;
 }
 
+/* Switching between meals: update the subnav immediately */
+::view-transition-old(menu-subnav),
+::view-transition-new(menu-subnav) {
+	animation: none;
+}
+
+/* Leaving the menu: don't leave the old subnav hanging */
+::view-transition-old(menu-subnav):only-child {
+	opacity: 0;
+}
+
+/* Entering the menu: bring it in with the page */
+::view-transition-new(menu-subnav):only-child {
+	animation: menu-subnav-enter 300ms ease both;
+}
+
+@keyframes menu-subnav-enter {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
 /* Step 4: Define standard keyframes without overlapping transparency */
 @keyframes fade-out {
 	from {
