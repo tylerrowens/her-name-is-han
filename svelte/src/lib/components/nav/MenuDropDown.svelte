@@ -27,7 +27,8 @@
 			<div class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-baseline pb-[20px]">
 				<a
 					href={`/menu/${location.slug}/${firstMenu.slug}`}
-					class="nav-title-serif pr-xs-2 trim-cap">{location.name}</a
+					class="nav-title-serif pr-xs-2 trim-cap transition-colors duration-200 ease-out hover:text-aegean/40"
+					>{location.name}</a
 				>
 				<span class="dots flex-1 opacity-25"></span>
 				<div class="justify-self-end pl-xs-2 nav-serif small-caps trim-cap">
@@ -35,7 +36,7 @@
 						{#if meal.slug}
 							{#if index > 0},
 							{/if}
-							<a href={`/menu/${location.slug}/${meal.slug}`}>{meal.title}</a>
+							<a href={`/menu/${location.slug}/${meal.slug}`} class="transition-colors duration-200 ease-out hover:text-aegean/40">{meal.title}</a>
 						{/if}
 					{/each}
 				</div>

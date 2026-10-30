@@ -312,7 +312,7 @@ export const MENU_PAGE_QUERY = defineQuery(`
           _key,
           _type,
           title,
-          backgroundColor,
+          koreanTitle,
   
           content[]{
             _key,

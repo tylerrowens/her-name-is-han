@@ -17,7 +17,7 @@
 
 <div class="self-center w-full sm:w-auto">
 	<div
-		class="grid grid-cols-[1fr_50px] px-[15px] gap-md-4 trim-cap sm:grid-cols-[300px_50px] sm:px-[0px]"
+		class="grid grid-cols-[1fr_50px] px-[15px] gap-md-4 trim-cap sm:grid-cols-[350px_50px] sm:px-[0px]"
 	>
 		<div>
 			<div class="flex flex-row flex-wrap items-baseline gap-xs-3">
@@ -32,7 +32,7 @@
 				{/if}
 			</div>
 		</div>
-		<div class="grid grid-cols-[20px_10px_20px] trim-cap">
+		<div class="grid grid-cols-[25px_10px_25px] trim-cap">
 			{#if item.singleServingPrice != null}
 				<p
 					class="body-serif tabular-nums oldstyle-nums trim-cap text-center"

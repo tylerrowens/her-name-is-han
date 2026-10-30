@@ -30,7 +30,7 @@
 </script>
 
 <section
-	class="grid h-[100dvh] w-full grid-rows-[auto_minmax(0,1fr)] gap-[30px] pt-[138px] pb-[30px]"
+	class="grid h-[100dvh] w-full grid-rows-[auto_minmax(0,1fr)] gap-[30px] pt-[100px] pb-[30px]"
 >
 	<div class="flex flex-col gap-[10px] justify-self-center text-center">
 		{#if now}
@@ -61,7 +61,7 @@
 		{/if}
 	</div>
 	<video
-		class="min-h-0 h-full w-full mx-auto max-w-[1550px] page-x sm:px-[100px] lg:px-[150px] object-contain object-bottom"
+		class="min-h-0 h-full w-full mx-auto max-w-[1700px] page-x sm:px-[90px] object-contain object-bottom"
 		autoplay
 		muted
 		playsinline

@@ -14,19 +14,11 @@ export const menuSection = defineType({
       validation: (rule) => rule.required().error('Enter a section title.'),
     }),
     defineField({
-      name: 'backgroundColor',
-      title: 'Background Color',
+      name: 'koreanTitle',
+      title: 'Korean Section Title',
       type: 'string',
-      options: {
-        list: [
-          {title: 'Blue', value: 'blue'},
-          {title: 'Yellow', value: 'yellow'},
-          {title: 'Purple', value: 'purple'},
-        ],
-        layout: 'radio',
-      },
-      initialValue: 'blue',
-      validation: (rule) => rule.required().error('Select a background color.'),
+      description: 'Displayed in the colored sticky panel.',
+      validation: (rule) => rule.required().error('Enter a section korean title.'),
     }),
     defineField({
       name: 'content',
@@ -45,7 +37,6 @@ export const menuSection = defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'backgroundColor',
     },
   },
 })

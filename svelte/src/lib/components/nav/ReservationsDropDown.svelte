@@ -35,13 +35,16 @@
 		{#if reservation.reservationUrl}
 			<div class="pb-[20px]">
 				<div class="grid grid-cols-[auto_minmax(0,1fr)_auto] flex items-baseline">
-					<a href={reservation.reservationUrl} class="nav-title-serif pr-xs-2 trim-cap"
+					<a
+						href={reservation.reservationUrl}
+						class="nav-title-serif pr-xs-2 trim-cap transition-colors duration-200 ease-out hover:text-aegean/40"
 						>{reservation.name}</a
 					>
 					<span class="dots flex-1 opacity-25"></span>
 					<a
 						href={reservation.reservationUrl}
-						class="justify-self-end pl-xs-2 nav-serif small-caps trim-cap">Book &#x2197</a
+						class="justify-self-end pl-xs-2 nav-serif small-caps trim-cap transition-colors duration-200 ease-out hover:text-aegean/40"
+						>Book &#x2197</a
 					>
 				</div>
 				{#if menuList}

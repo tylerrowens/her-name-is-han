@@ -17,7 +17,7 @@
 	let { section }: Props = $props();
 </script>
 
-<div class="flex flex-col gap-md-4">
+<div class="flex flex-col gap-md-5">
 	{#if section.title}
 		<p class="small-caps text-center card-serif-2 trim-cap">{section.title}</p>
 	{/if}

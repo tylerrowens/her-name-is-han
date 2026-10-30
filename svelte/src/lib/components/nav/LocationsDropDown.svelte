@@ -15,14 +15,18 @@
 </script>
 
 <div class="bg-location-nav w-dvw h-auto page-x pt-[60px] pb-[30px]">
-	<a href="/locations" class="block nav-serif trim-cap pb-[30px] small-caps">Explore all</a>
+	<a
+		href="/locations"
+		class="block nav-serif trim-cap pb-[30px] small-caps transition-colors duration-200 ease-out hover:text-aegean/40"
+		>Explore all</a
+	>
 
 	{#each locations as location (location._id)}
 		{#if location.slug}
 			<div class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-baseline pb-[20px]">
 				<a
 					href={`/locations#${encodeURIComponent(location.slug)}`}
-					class="nav-title-serif pr-xs-2 trim-cap"
+					class="nav-title-serif pr-xs-2 trim-cap transition-colors duration-200 ease-out hover:text-aegean/40"
 				>
 					{location.name}
 				</a>
@@ -35,7 +39,7 @@
 							href={location.mapsUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="justify-self-end pl-xs-2 nav-serif small-caps trim-cap"
+							class="justify-self-end pl-xs-2 nav-serif small-caps trim-cap transition-colors duration-200 ease-out hover:text-aegean/40"
 							>{location.addressText}</a
 						>
 					{/if}

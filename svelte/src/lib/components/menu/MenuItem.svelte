@@ -24,11 +24,11 @@
 				<p class="body-serif small-caps trim-cap">{item.title}</p>
 
 				{#if item.koreantitle}
-					<p class="font-korean trim-cap text-[10.6px] relative -top-[1.3px]">{item.koreantitle}</p>
+					<p class="font-korean trim-cap text-[13.6px] relative -top-[1.3px]">{item.koreantitle}</p>
 				{/if}
 			</div>
 			{#if item.description}
-				<p class="small-serif trim-cap pt-sm-3">{item.description}</p>
+				<p class="nav-serif trim-cap pt-sm-3">{item.description}</p>
 			{/if}
 		</div>
 		<div>

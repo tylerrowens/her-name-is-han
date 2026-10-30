@@ -650,24 +650,10 @@
           },
           "optional": true
         },
-        "backgroundColor": {
+        "koreanTitle": {
           "type": "objectAttribute",
           "value": {
-            "type": "union",
-            "of": [
-              {
-                "type": "string",
-                "value": "blue"
-              },
-              {
-                "type": "string",
-                "value": "yellow"
-              },
-              {
-                "type": "string",
-                "value": "purple"
-              }
-            ]
+            "type": "string"
           },
           "optional": true
         },

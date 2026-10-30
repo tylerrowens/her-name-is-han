@@ -39,11 +39,16 @@
 	sm:h-[calc(100dvh-var(--menu-offset))]"
 >
 	<div
-		class="sticky top-[var(--menu-offset)]
+		class="sticky flex flex-col gap-[23px] top-[var(--menu-offset)]
 flex h-[var(--title-collapsed)] w-full
 flex-col items-center justify-center text-center
 sm:static sm:h-full"
 	>
-		<p class="trim-cap body-serif sm:about-card-serif">{section.title}</p>
+		<p class="trim-cap body-serif small-caps sm:[font-variant:normal] sm:about-card-serif">
+			{section.title}
+		</p>
+		<p class="trim-cap font-['Sun_Batang_Medium'] sm:text-[25px] text-[12px]">
+			{section.koreanTitle}
+		</p>
 	</div>
 </div>
