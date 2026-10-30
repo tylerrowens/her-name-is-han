@@ -12,7 +12,7 @@
 </script>
 
 <section>
-	<div class="grid grid-cols-1 gap-md-4 sm:grid-cols-[450px_350px]">
+	<div class="grid grid-cols-1 gap-md-4 sm:grid-cols-[600px_450px]">
 		<div class="aspect-[4/3] sm:aspect-auto overflow-hidden">
 			<img class="h-full w-full object-cover" src="images/location-1.jpg" alt="" />
 		</div>
@@ -46,7 +46,7 @@
 			</div>
 			<a
 				href={location.reservationUrl}
-				class="inline-flex self-center sm:self-start w-[190px] sm:w-[130px] aspect-[145/33] items-center justify-center rounded-[3px] bg-aegean text-jade-white nav-serif"
+				class="inline-flex self-center sm:self-start w-[190px] aspect-[145/33] items-center justify-center rounded-[3px] bg-aegean text-jade-white nav-serif"
 				>Reservations ↗</a
 			>
 		</div>

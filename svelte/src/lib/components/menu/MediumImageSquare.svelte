@@ -22,7 +22,7 @@
 {#if image.asset}
 	<article class="flex flex-col">
 		<div class="flex flex-row justify-center">
-			<div class="flex flex-col w-full sm:w-[calc(350px_+_var(--spacing-md-4))]">
+			<div class="flex flex-col w-full sm:w-[calc(400px_+_var(--spacing-md-3))]">
 				<div class="aspect-[1/1] self-center overflow-hidden">
 					<img class="h-full w-full object-cover" src={urlFor(image).url()} alt={image.alt ?? ''} />
 				</div>

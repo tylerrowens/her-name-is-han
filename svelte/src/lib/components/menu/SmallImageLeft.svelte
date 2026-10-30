@@ -21,7 +21,7 @@
 
 {#if image.asset}
 	<article class="flex flex-col items-center">
-		<div class="w-full px-[15px] sm:w-[calc(350px_+_var(--spacing-md-4))] sm:px-[0px]">
+		<div class="w-full px-[15px] sm:w-[calc(400px_+_var(--spacing-md-3))] sm:px-[0px]">
 			<div class="w-fit ml-auto">
 				<div class="aspect-[4/3] w-[140px] overflow-hidden">
 					<img class="h-full w-full object-cover" src={urlFor(image).url()} alt={image.alt ?? ''} />

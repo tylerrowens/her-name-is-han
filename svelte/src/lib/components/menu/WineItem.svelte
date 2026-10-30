@@ -17,17 +17,17 @@
 
 <div class="self-center w-full sm:w-auto">
 	<div
-		class="grid grid-cols-[1fr_50px] px-[15px] gap-md-4 trim-cap sm:grid-cols-[350px_50px] sm:px-[0px]"
+		class="grid grid-cols-[1fr_50px] px-[15px] gap-md-3 trim-cap sm:grid-cols-[350px_50px] sm:px-[0px]"
 	>
-		<div>
-			<p class="body-serif small-caps trim-cap">{item.title}</p>
+		<div class="mb-[6px]">
+			<p class="body-serif small-caps trim-cap mb-[6px]">{item.title}</p>
 
 			{#if item.description}
-				<p class="small-serif trim-cap pt-sm-3">{item.description}</p>
+				<p class="nav-serif trim-cap pt-sm-3 mb-[6px]">{item.description}</p>
 			{/if}
 		</div>
 
-		<div class="grid grid-cols-[25px_10px_25px] trim-cap">
+		<div class="grid grid-cols-[30px_10px_30px] trim-cap">
 			{#if item.glassPrice != null}
 				<p
 					class="body-serif tabular-nums oldstyle-nums trim-cap text-center"

@@ -166,11 +166,11 @@ body {
 }
 
 @utility body-serif {
-	@apply font-serif text-[23px] leading-[1] tracking-[0.4px];
+	@apply font-serif text-[23px] leading-[1] tracking-[1px];
 }
 
 @utility nav-serif {
-	@apply font-serif text-[18px] leading-[1.4] tracking-[0.4px];
+	@apply font-serif text-[17.6px] leading-[1.35] tracking-[1.12px];
 }
 
 @utility small-serif {
@@ -206,7 +206,7 @@ body {
 }
 
 @utility nav-title-serif {
-	@apply font-serif text-[29px] leading-[1.04] tracking-[-.07px];
+	@apply font-serif text-[29px] leading-[1.2] tracking-[-.07px];
 }
 
 @utility post-title-serif {

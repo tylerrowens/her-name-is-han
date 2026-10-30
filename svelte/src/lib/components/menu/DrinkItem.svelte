@@ -17,14 +17,14 @@
 
 <div class="self-center w-full sm:w-auto">
 	<div
-		class="grid grid-cols-[1fr_50px] px-[15px] gap-md-4 trim-cap sm:grid-cols-[350px_50px] sm:px-[0px]"
+		class="grid grid-cols-[1fr_50px] px-[15px] gap-md-3 trim-cap sm:grid-cols-[350px_50px] sm:px-[0px]"
 	>
 		<div>
 			<div class="flex flex-row flex-wrap items-baseline gap-xs-3">
 				<p class="body-serif small-caps trim-cap">{item.title}</p>
 
 				{#if item.koreantitle}
-					<p class="font-korean trim-cap text-[10.6px] relative -top-[1.3px]">{item.koreantitle}</p>
+					<p class="font-korean trim-cap text-[13.4px] relative -top-[2.3px]">{item.koreantitle}</p>
 				{/if}
 
 				{#if item.simpleInfo}
@@ -32,7 +32,7 @@
 				{/if}
 			</div>
 		</div>
-		<div class="grid grid-cols-[25px_10px_25px] trim-cap">
+		<div class="grid grid-cols-[30px_10px_30px] trim-cap">
 			{#if item.singleServingPrice != null}
 				<p
 					class="body-serif tabular-nums oldstyle-nums trim-cap text-center"

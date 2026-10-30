@@ -24,7 +24,7 @@
 {#if leftImage.asset && rightImage.asset}
 	<article class="flex flex-col">
 		<div class="flex justify-center">
-			<div class="grid w-full sm:w-[600px] grid-cols-2 gap-xs-3 sm:gap-sm-3">
+			<div class="grid w-full sm:w-[calc(400px_+_var(--spacing-md-3))] grid-cols-2 gap-xs-3 sm:gap-sm-3">
 				<div>
 					<div class="aspect-[3/4] overflow-hidden">
 						<img

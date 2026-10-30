@@ -4,9 +4,9 @@
 	let { data }: { data: PageData } = $props();
 </script>
 
-<section class="page-x pt-[135px] sm:px-[0px] sm:h-[100dvh]">
+<section class="page-x pt-[135px] sm:px-[0px]">
 	<div class="flex flex-col pb-[120px]">
-		<div class="w-full max-w-[350px] page-x sm:px-[0px] text-center trim-cap self-center nav-serif">
+		<div class="w-full max-w-[450px] page-x sm:px-[0px] text-center trim-cap self-center nav-serif">
 			<p class="pb-md-3">
 				We’re here for all of life’s moments. Walk-ins are always welcome, and online reservations
 				are available for parties of up to 7.

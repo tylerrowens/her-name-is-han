@@ -164,7 +164,7 @@
 		class:text-aegean={!heroHeader}
 	>
 		<nav
-			class="hidden sm:flex justify-self-start flex gap-md-3 nav-serif small-caps trim-cap items-center"
+			class="hidden sm:flex justify-self-start flex gap-md-3 nav-serif small-caps trim-cap items-end"
 		>
 			<button
 				type="button"
@@ -193,7 +193,7 @@
 				onclick={() => (openDropdown = 'reservations')}>Reservations &#x2197</button
 			>
 		</nav>
-		<nav class="sm:hidden flex justify-self-start items-center nav-serif small-caps trim-cap">
+		<nav class="sm:hidden flex justify-self-start items-end nav-serif small-caps trim-cap">
 			<button
 				type="button"
 				aria-expanded={mobileNavOpen}
@@ -203,18 +203,16 @@
 				{mobileNavOpen ? 'Close' : 'Menu'}
 			</button>
 		</nav>
-		<a href="/" class="card-serif-2 sm:nav-title-serif justify-center trim-cap">
+		<a href="/" class="flex justify-self-start items-end card-serif-2 sm:nav-title-serif justify-center trim-cap">
 			Her name is Han.</a
 		>
-		<nav
-			class="hidden sm:flex justify-self-end gap-md-3 nav-serif small-caps trim-cap items-center"
-		>
+		<nav class="hidden sm:flex justify-self-end gap-md-3 nav-serif small-caps trim-cap items-end">
 			<a href="/about">About</a>
 			<a href="/stories">Stories</a>
 			<a href="/shop">Shop</a>
 			<button>Cart (1)</button>
 		</nav>
-		<nav class="sm:hidden flex justify-self-end items-center nav-serif small-caps trim-cap">
+		<nav class="sm:hidden flex justify-self-end items-end nav-serif small-caps trim-cap">
 			<button> (1) </button>
 		</nav>
 	</header>

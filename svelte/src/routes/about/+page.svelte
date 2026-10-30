@@ -6,14 +6,14 @@
 </script>
 
 <section class="page-x">
-	<div class="flex flex-row justify-center pt-[135px] card-serif-2 gap-md-4 sm:gap-lg-6">
+	<div class="flex flex-row justify-center pt-[135px] nav-serif small-caps gap-md-4 sm:gap-lg-6">
 		<nav>Our Story</nav>
 		<nav>Contact</nav>
 		<nav>Press</nav>
 	</div>
-	<div class="flex flex-col pt-[95px] w-full md:max-w-[350px] mx-auto gap-[50px]">
-		<p class="card-serif-2 text-center">
-			Our story began with the memory of one family’s ordinary days.
+	<div class="flex flex-col pt-[95px] w-full md:max-w-[400px] mx-auto gap-[50px]">
+		<p class="card-serif-2 sm:nav-title-serif s text-center">
+			<span class="small-caps">Our story began</span> with the memory of one family’s ordinary days.
 		</p>
 		<p class="nav-serif text-left">
 			Waking up to the familiar sound of chopping vegetables in the kitchen. The aroma of steaming
