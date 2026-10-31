@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import HomeNewsletterForm from '$lib/components/HomeNewsletterForm.svelte';
 
 	let now = $state<Date | null>(null);
 
@@ -30,8 +31,14 @@
 </script>
 
 <section
-	class="grid h-[100dvh] w-full grid-rows-[auto_minmax(0,1fr)] gap-[30px] pt-[100px] pb-[30px]"
+	class="grid relative h-[100dvh] w-full grid-rows-[auto_minmax(0,1fr)] gap-[30px] pt-[100px] pb-[30px]"
 >
+	<div
+		class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 rotate-[-3.5deg] 
+		sm:top-auto sm:right-[50px] sm:left-auto sm:translate-x-0 sm:translate-y-0 sm:pt-[70px]"
+	>
+		<HomeNewsletterForm />
+	</div>
 	<div class="flex flex-col gap-[10px] justify-self-center text-center">
 		{#if now}
 			<p class="trim-cap">
