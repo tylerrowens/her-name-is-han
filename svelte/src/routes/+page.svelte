@@ -35,19 +35,19 @@
 	<div class="flex flex-col gap-[10px] justify-self-center text-center">
 		{#if now}
 			<p class="trim-cap">
-				<span class="font-['Fresco_Stamp'] font-normal text-[15.5px] tracking-[1px] pr-[.5px]"
+				<span class="font-['Fresco_Stamp'] font-normal text-[15.5px] tracking-[1.6px] pr-[.5px]"
 					>{year}</span
 				><span
-					class="font-['Sun_Batang_Medium'] font-medium text-[12px] pr-[10px] relative -top-[1.3px]"
+					class="font-['Sun_Batang_Medium'] font-medium text-[13.1px] pr-[10px] relative -top-[1.8px]"
 					>년</span
-				><span class="font-['Fresco_Stamp'] font-normal text-[15.5px] tracking-[1px] pr-[.5px]"
+				><span class="font-['Fresco_Stamp'] font-normal text-[15.5px] tracking-[1.6px] pr-[.5px]"
 					>{month}</span
 				><span
-					class="font-['Sun_Batang_Medium'] font-medium text-[12px] pr-[4.5px] relative -top-[1.3px]"
+					class="font-['Sun_Batang_Medium'] font-medium text-[13.1px] pr-[4.5px] relative -top-[1.8px]"
 					>월</span
-				><span class="font-['Fresco_Stamp'] font-normal text-[15.5px] tracking-[1px] pr-[.5px]"
+				><span class="font-['Fresco_Stamp'] font-normal text-[15.5px] tracking-[1.6px] pr-[.5px]"
 					>{day}</span
-				><span class="font-['Sun_Batang_Medium'] font-medium text-[12px] relative -top-[1.3px]"
+				><span class="font-['Sun_Batang_Medium'] font-medium text-[13.1px] relative -top-[1.8px]"
 					>일</span
 				>
 			</p>

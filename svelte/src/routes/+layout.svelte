@@ -203,7 +203,7 @@
 				{mobileNavOpen ? 'Close' : 'Menu'}
 			</button>
 		</nav>
-		<a href="/" class="flex justify-self-start items-end card-serif-2 sm:nav-title-serif justify-center trim-cap">
+		<a href="/" class="flex justify-self-start items-end body-serif sm:card-serif justify-center trim-cap">
 			Her name is Han.</a
 		>
 		<nav class="hidden sm:flex justify-self-end gap-md-3 nav-serif small-caps trim-cap items-end">

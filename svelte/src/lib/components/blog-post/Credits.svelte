@@ -11,18 +11,18 @@
 <article class="bg-chamgireum text-doenjang">
 	<div class="flex flex-col h-[600px] w-full justify-center items-center page-x sm:mx-[0px]">
 		{#each credits.credits as credit (credit._key)}
-			<p class="card-serif-2 text-center w-full sm:w-[550px]">
+			<p class="body-serif text-center w-full sm:w-[550px]">
 				{credit.creditTitle} <br />
 				{credit.creditName}
 			</p>
 		{/each}
-		<p class="card-serif-2 text-center w-full sm:w-[500px] mt-md-4">
+		<p class="body-serif text-center w-full sm:w-[500px] mt-md-4">
 			{credits.additionalInfo}
 		</p>
 	</div>
 
 	<div class="flex flex-row justify-center gap-md-3 pb-md-4">
 		<p class="body-serif small-caps self-end">Stories by</p>
-		<p class="nav-title-serif self-end">Her name is Han.</p>
+		<p class="card-serif self-end">Her name is Han.</p>
 	</div>
 </article>

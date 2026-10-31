@@ -17,7 +17,7 @@
 			<img class="h-full w-full object-cover" src="images/location-1.jpg" alt="" />
 		</div>
 		<div class="flex flex-col gap-md-4 sm:justify-between">
-			<p class="trim-cap card-serif-2 sm:nav-title-serif">{location.name}</p>
+			<p class="trim-cap body-serif sm:card-serif">{location.name}</p>
 			{#if location.description}
 				<div class="trim-cap nav-serif"><PortableText value={location.description} /></div>
 			{/if}

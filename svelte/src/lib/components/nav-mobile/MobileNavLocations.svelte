@@ -40,7 +40,7 @@
 						<span class="dots block w-full opacity-25"></span>
 						<a href={`/locations#${encodeURIComponent(location.slug)}`}>
 							<div class="py-md-3 flex flex-col gap-sm-3">
-								<h1 class="card-serif-2 trim-cap">{location.name}</h1>
+								<h1 class="body-serif trim-cap">{location.name}</h1>
 								{#if location.addressText}
 									<p class="nav-serif small-caps trim-cap">{location.addressText}</p>
 								{/if}

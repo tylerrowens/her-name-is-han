@@ -81,7 +81,7 @@
 				class="absolute inset-0 z-10 flex items-center justify-center text-jade-white text-center"
 			>
 				<div class="text-center">
-					<p class="post-title-serif trim-cap small-caps">{data.storiesPage?.englishTitle}</p>
+					<p class="nav-serif trim-cap small-caps">{data.storiesPage?.englishTitle}</p>
 					<p class="font-korean text-[14px] trim-cap pt-xs-3">{data.storiesPage?.koreanTitle}</p>
 				</div>
 			</div>
@@ -91,7 +91,7 @@
 
 	<nav class="overflow-x-auto scrollbar-none pr-[10px]" aria-label="Story categories">
 		<ul
-			class="flex page-x flex-row flex-nowrap gap-md-4 justify-start sm:justify-center py-sm-3 card-serif-2"
+			class="flex page-x flex-row flex-nowrap gap-md-4 justify-start sm:justify-center py-sm-3 body-serif"
 		>
 			{#each categories as category}
 				<li class="shrink-0 last:pr-[15px] sm:last:pr-[0px]">
@@ -120,7 +120,7 @@
 	</div>
 
 	<div class="bg-web-grey">
-		<p class="pb-[71px] nav-title-serif text-jjokbit page-x pt-sm-3 sm:pt-lg-4">
+		<p class="pb-[71px] card-serif text-jjokbit page-x pt-sm-3 sm:pt-lg-4">
 			Han’s Playlist<br /><span class="text-ash"
 				>The secret recipe for a great time shared at the table.</span
 			>
@@ -138,7 +138,7 @@
 	</div>
 
 	<div class="">
-		<p class="pb-[71px] nav-title-serif text-jjokbit page-x pt-sm-3 sm:pt-lg-4">
+		<p class="pb-[71px] card-serif text-jjokbit page-x pt-sm-3 sm:pt-lg-4">
 			Han’s Recipes<br /><span class="text-ash">From our kitchen to yours.</span>
 		</p>
 		<div class="bg-jade-white w-full overflow-x-auto scrollbar-none">

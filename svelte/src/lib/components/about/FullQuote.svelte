@@ -4,7 +4,7 @@
 
 <article class="w-full">
 	<div
-		class="aspect-[4/5] sm:aspect-[7/6] flex flex-col justify-between w-full overflow-hidden text-blue-4 bg-white-1 px-[20px] pt-[20px] pb-[20px]"
+		class="aspect-[4/5] sm:aspect-[7/6] flex flex-col justify-between w-full overflow-hidden text-celestial bg-white px-[20px] pt-[20px] pb-[20px]"
 	>
 		<div
 			class="flex flex-row w-full justify-between sm:justify-center sm:gap-[50px] nav-serif sm:body-serif"
@@ -32,7 +32,7 @@
 			</p>
 		</div>
 
-		<div class="flex card-serif-2 sm:card-serif text-center">
+		<div class="flex body-serif sm:card-serif text-center">
 			<p>
 				“Think of Her name is Han as the Alicia Vikander of New York restaurants: at first, you
 				might say, ‘Who?’ but once you look her up, you’re like, ‘Oh right, she’s incredible.’ ”
@@ -48,7 +48,7 @@
 			</p>
 		</div>
 		<div
-			class="flex card-serif-2 sm:card-serif text-center justify-center underline decoration-[1.5px] underline-offset-6"
+			class="flex body-serif sm:card-serif text-center justify-center underline decoration-[1.5px] underline-offset-6"
 		>
 			<p>Read ↗</p>
 		</div>

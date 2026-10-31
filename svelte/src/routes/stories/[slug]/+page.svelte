@@ -10,7 +10,6 @@
 	import InstructionsBlock from '$lib/components/blog-post/InstructionsBlock.svelte';
 	import PostHeader from '$lib/components/blog-post/PostHeader.svelte';
 	import Credits from '$lib/components/blog-post/Credits.svelte';
-	import BlogNav from '$lib/components/blog-post/BlogNav.svelte';
 
 	let { data }: PageProps = $props();
 </script>

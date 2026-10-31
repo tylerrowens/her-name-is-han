@@ -4,7 +4,7 @@
 >
 	<div class="absolute top-md-3 trim-cap">
 		<p class="nav-serif small-caps">Newsletter</p>
-		<h2 class="card-serif-2 pt-sm-3">For more stories, dishes, <br /> and memories.</h2>
+		<h2 class="body-serif pt-sm-3">For more stories, dishes, <br /> and memories.</h2>
 	</div>
 	<form class="absolute inset-x-md-3 bottom-md-3" method="POST" action="/api/newsletter">
 		<input type="hidden" name="source" value="footer" />

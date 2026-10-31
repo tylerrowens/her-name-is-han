@@ -50,7 +50,7 @@
 						<span class="dots block w-full opacity-25"></span>
 						<a href={reservation.reservationUrl}>
 							<div class="py-md-3 flex flex-col gap-sm-3">
-								<h1 class="card-serif-2 trim-cap">{reservation.name}</h1>
+								<h1 class="body-serif trim-cap">{reservation.name}</h1>
 								{#if menuList}
 									<p class="nav-serif small-caps trim-cap">Open for {menuList}</p>
 								{/if}

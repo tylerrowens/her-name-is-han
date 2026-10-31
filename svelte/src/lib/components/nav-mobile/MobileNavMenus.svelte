@@ -44,7 +44,7 @@
 						<span class="dots block w-full opacity-25"></span>
 						<a href={`/menu/${location.slug}/${firstMenu.slug}`}>
 							<div class="py-md-3 flex flex-col gap-sm-3">
-								<h1 class="card-serif-2 trim-cap">{location.name}</h1>
+								<h1 class="body-serif trim-cap">{location.name}</h1>
 								<p class="nav-serif small-caps trim-cap">17 E 31st, New York, ny 10016</p>
 							</div>
 						</a>

@@ -26,7 +26,7 @@
 			<div class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-baseline pb-[20px]">
 				<a
 					href={`/locations#${encodeURIComponent(location.slug)}`}
-					class="nav-title-serif pr-xs-2 trim-cap transition-colors duration-200 ease-out hover:text-aegean/40"
+					class="card-serif pr-xs-2 trim-cap transition-colors duration-200 ease-out hover:text-aegean/40"
 				>
 					{location.name}
 				</a>

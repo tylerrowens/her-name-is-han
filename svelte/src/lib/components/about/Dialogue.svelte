@@ -4,7 +4,7 @@
 
 <article class="w-full">
 	<div
-		class="aspect-[3/4] w-full bg-blue-13 flex flex-col overflow-hidden justify-between items-center px-[50px] py-[30px] nav-serif sm:body-serif"
+		class="aspect-[3/4] w-full bg-location-nav flex flex-col overflow-hidden justify-between items-center px-[50px] py-[30px] nav-serif sm:body-serif"
 	>
 	<p>★★★★★</p>
 		<div>

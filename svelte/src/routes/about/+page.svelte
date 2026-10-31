@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Dialogue from '$lib/components/about/Dialogue.svelte';
 	import FullQuote from '$lib/components/about/FullQuote.svelte';
-	import SimpleQuote from '$lib/components/about/SimpleQuote.svelte';
 	import StaggeredQuote from '$lib/components/about/StaggeredQuote.svelte';
 </script>
 
@@ -12,8 +11,8 @@
 		<nav>Press</nav>
 	</div>
 	<div class="flex flex-col pt-[95px] w-full md:max-w-[400px] mx-auto gap-[50px]">
-		<p class="card-serif-2 sm:nav-title-serif s text-center">
-			<span class="small-caps">Our story began</span> with the memory of one family’s ordinary days.
+		<p class="body-serif sm:card-serif s text-center">
+			<span>Our story began</span> with the memory of one family’s ordinary days.
 		</p>
 		<p class="nav-serif text-left">
 			Waking up to the familiar sound of chopping vegetables in the kitchen. The aroma of steaming
@@ -56,10 +55,10 @@
 				<Dialogue />
 			</div>
 			<div
-			class="sticky flex justify-self-center rotate-[-3.69deg] md-card:w-[90%] opacity-95 mb-[200px] w-full top-[120px]"
-		>
-			<FullQuote />
-		</div>
+				class="sticky flex justify-self-center rotate-[-3.69deg] md-card:w-[90%] opacity-95 mb-[200px] w-full top-[120px]"
+			>
+				<FullQuote />
+			</div>
 		</div>
 	</section>
 </div>

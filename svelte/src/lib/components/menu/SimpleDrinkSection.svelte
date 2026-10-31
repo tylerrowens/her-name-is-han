@@ -18,7 +18,7 @@
 
 <div class="flex flex-col gap-md-4">
 	{#if section.title}
-		<p class="small-caps text-center card-serif-2 trim-cap">{section.title}</p>
+		<p class="small-caps text-center body-serif trim-cap">{section.title}</p>
 	{/if}
 	<div class="flex flex-col gap-sm-3">
 		{#each section.items ?? [] as item (item._key)}

@@ -18,7 +18,7 @@
 
 <div class="flex flex-col gap-md-4">
 	{#if section.title}
-		<p class="card-serif-2 small-caps trim-cap text-center">
+		<p class="body-serif small-caps trim-cap text-center">
 			{section.title}
 		</p>
 	{/if}

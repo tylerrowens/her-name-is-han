@@ -4,7 +4,7 @@
 
 <section class="pt-[135px]">
 	<div class="text-center">
-		<p class="post-title-serif small-caps trim-cap">shop</p>
+		<p class="nav-serif small-caps trim-cap">shop</p>
 		<p class="font-korean text-[14px] trim-cap pt-xs-3">가게</p>
 	</div>
 	<div class="w-full py-lg-4">
@@ -22,7 +22,7 @@
 	</div>
 	<nav class="overflow-x-auto scrollbar-none bg-jade-white pr-[10px]" aria-label="Story categories">
 		<ul
-			class="flex page-x flex-row flex-nowrap gap-md-4 justify-start sm:justify-center py-sm-3 card-serif-2"
+			class="flex page-x flex-row flex-nowrap gap-md-4 justify-start sm:justify-center py-sm-3 body-serif"
 		>
 			<li class="shrink-0 last:pr-[15px] sm:last:pr-[0px]">
 				<button type="button">
