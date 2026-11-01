@@ -147,7 +147,7 @@ body {
 }
 
 @utility small-serif {
-	@apply font-serif text-[12px] leading-[1.22] tracking-[0.4px];
+	@apply font-serif text-[14px] leading-[1.22] tracking-[0.4px];
 }
 
 /* FONT MODIFICATIONS */

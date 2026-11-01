@@ -58,7 +58,7 @@
 	</nav>
 	<div class="bg-jade-white">
 		<div
-			class="page-x grid grid-cols-1 gap-x-md-4 pb-[calc(var(--spacing-lg-6)_-_var(--spacing-lg-4))] pt-lg-4 sm:grid-cols-3 lg:mx-lg-6"
+			class="page-x grid grid-cols-1 gap-x-md-4 gap-y-lg-4 pt-lg-4 pb-lg-5 sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6"
 		>
 			<ProductCard />
 			<ProductCard />

@@ -10,7 +10,7 @@
 			>
 				Classic Tee
 			</p>
-			<div class="pt-sm-3 pb-lg-4 small-serif leading-[.35]">
+			<div class="pt-sm-3 small-serif leading-[.35]">
 				<p>Made with soft, breathable cotton.</p>
 				<div class="pt-md-4 body-serif trim-cap">$30</div>
 			</div>
