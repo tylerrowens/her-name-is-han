@@ -15,7 +15,7 @@
 <article class="flex flex-col my-lg-5 page-x sm:mx-[0px]">
 	<div class="flex flex-row justify-center">
 		<div class="flex flex-col w-full sm:w-[800px]">
-			<div class="aspect-[4/3] self-center overflow-hidden">
+			<div class="aspect-[4/3] w-full self-center overflow-hidden">
 				<Media {media} />
 			</div>
 			{#if caption}
