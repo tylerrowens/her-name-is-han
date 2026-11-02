@@ -12,9 +12,9 @@
 	import SimpleDrinkSection from '$lib/components/menu/SimpleDrinkSection.svelte';
 </script>
 
-<div class="pt-[145px]">
+<div class="pt-[145px] sm:pt-[100px]">
 	<div
-		class="relative [--menu-offset:145px] [--title-expanded:400px] [--title-collapsed:100px]
+		class="relative [--menu-offset:145px] sm:[--menu-offset:100px] [--title-expanded:400px] [--title-collapsed:100px]
 	sm:grid sm:grid-cols-2 sm:grid-rows-[auto_auto]"
 	>
 		{#each sections as section, index (section._key)}
