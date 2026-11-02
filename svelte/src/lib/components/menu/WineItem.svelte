@@ -17,7 +17,7 @@
 
 <div class="self-center w-full sm:w-auto">
 	<div
-		class="grid grid-cols-[1fr_50px] px-[15px] gap-md-3 trim-cap sm:grid-cols-[350px_50px] sm:px-[0px]"
+		class="grid grid-cols-[1fr_70px] px-[15px] gap-md-3 trim-cap sm:grid-cols-[320px_80px] sm:px-[0px]"
 	>
 		<div class="mb-[6px]">
 			<p class="body-serif small-caps trim-cap mb-[6px]">{item.title}</p>
@@ -27,7 +27,7 @@
 			{/if}
 		</div>
 
-		<div class="grid grid-cols-[30px_10px_30px] trim-cap">
+		<div class="grid justify-self-end grid-cols-[30px_10px_30px] sm:grid-cols-[35px_10px_35px] trim-cap">
 			{#if item.glassPrice != null}
 				<p
 					class="body-serif tabular-nums oldstyle-nums trim-cap text-center"

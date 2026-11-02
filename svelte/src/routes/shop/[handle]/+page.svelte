@@ -1,4 +1,4 @@
-<section class="page-x pt-[135px] ">
+<section class="page-x pt-[135px]">
 	<div class="flex flex-col pb-[75px] w-full sm:w-[886px] mx-auto">
 		<div class="trim-cap nav-serif">
 			<p class="pb-md-3 nav-serif small-caps">&lt; BACK TO STORE</p>
