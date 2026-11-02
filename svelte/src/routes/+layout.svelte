@@ -299,7 +299,7 @@
 							{/if}
 						</div>
 					</div>
-					<div>
+					<div class="small-serif sm:nav-serif">
 						<p class="small-caps pb-sm-3">Connect with us</p>
 
 						<dl class="inline-grid grid-cols-[max-content_max-content] gap-x-md-3">

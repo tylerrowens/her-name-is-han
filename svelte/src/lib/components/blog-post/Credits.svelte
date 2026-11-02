@@ -9,20 +9,20 @@
 </script>
 
 <article class="bg-chamgireum text-doenjang">
-	<div class="flex flex-col h-[600px] w-full justify-center items-center page-x sm:mx-[0px]">
+	<div class="flex flex-col h-[600px] w-full justify-center items-center page-x sm:mx-[0px] gap-md-4">
 		{#each credits.credits as credit (credit._key)}
 			<p class="body-serif text-center w-full sm:w-[550px]">
 				{credit.creditTitle} <br />
 				{credit.creditName}
 			</p>
 		{/each}
-		<p class="body-serif text-center w-full sm:w-[500px] mt-md-4">
+		<p class="body-serif text-center w-full sm:w-[500px]">
 			{credits.additionalInfo}
 		</p>
 	</div>
 
-	<div class="flex flex-row justify-center gap-md-3 pb-md-4">
-		<p class="body-serif small-caps self-end">Stories by</p>
-		<p class="card-serif self-end">Her name is Han.</p>
+	<div class="flex flex-row items-baseline justify-center gap-sm-3 sm:gap-md-3 pb-md-4">
+		<p class="nav-serif sm:body-serif small-caps">Stories by</p>
+		<p class="body-serif sm:card-serif">Her name is Han.</p>
 	</div>
 </article>

@@ -17,13 +17,15 @@
 
 <article class="page-x sm:mx-[0px]">
 	<div class="flex flex-col my-lg-5">
-		<h1 class="self-center body-serif sm:large-serif text-center w-full sm:w-[600px]">{post.title}</h1>
+		<h1 class="self-center about-card-serif sm:large-serif text-center w-full sm:w-[600px]">
+			{post.title}
+		</h1>
 	</div>
 
 	<div
-		class="flex flex-col text-center sm:text-left sm:flex-row justify-center sm:gap-[200px] my-lg-5"
+		class="flex flex-col text-center sm:text-left sm:flex-row justify-center gap-xs-3 sm:gap-[200px] my-lg-5"
 	>
-		<p class="body-serif"><span class="small-caps">By</span> {post.author}</p>
+		<p class="nav-serif sm:body-serif"><span class="small-caps">By</span> {post.author}</p>
 		<div>
 			<p class="trim-cap">
 				<span class="font-['Fresco_Stamp'] font-normal text-[15.5px] tracking-[1.6px] pr-[.5px]"
@@ -55,7 +57,7 @@
 
 	{#if post.featuredText}
 		<div class="flex flex-col my-lg-4">
-			<div class="w-full sm:w-[440px] self-center body-serif">
+			<div class="w-full sm:w-[440px] self-center nav-serif">
 				<PortableText value={post.featuredText} components={{ marks: { smallCaps: SmallCaps } }} />
 			</div>
 		</div>
