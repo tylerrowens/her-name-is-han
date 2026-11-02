@@ -154,7 +154,7 @@
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 <div class="flex min-h-dvh flex-col relative">
 	<div
-		class="pointer-events-none fixed inset-x-0 top-0 z-30 h-[50px] bg-jade-white transition-opacity duration-400 linear"
+		class="pointer-events-none fixed inset-x-0 top-0 z-30 h-[60px] bg-jade-white transition-opacity duration-400 linear"
 		class:opacity-0={heroHeader}
 		class:opacity-100={!heroHeader}
 	></div>

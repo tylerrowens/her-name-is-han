@@ -47,19 +47,33 @@ export const BLOG_POST_QUERY = defineQuery(`
             ...,
 
             _type == "postImage" => {
-                image {
-                    alt,
-                    crop,
-                    hotspot,
-                    asset-> {
-                        _id,
-                        url,
-                        metadata {
-                            dimensions
-                        }
-                    }
+                media {
+        mediaType,
+        image {
+            alt,
+            crop,
+            hotspot,
+            asset-> {
+                _id,
+                url,
+                metadata {
+                    dimensions
                 }
-            },
+            }
+        },
+        video {
+            asset-> {
+                _id,
+                assetId,
+                playbackId,
+                filename,
+                status,
+                "aspectRatio": data.aspect_ratio,
+                "duration": data.duration
+            }
+        }
+    }
+},
 
             _type == "imageDiptych" => {
                 image1 {

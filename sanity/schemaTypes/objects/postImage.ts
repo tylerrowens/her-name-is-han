@@ -6,17 +6,14 @@ export const postImage = defineType({
   type: 'object',
   fields: [
     defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      name: 'media',
+      title: 'Media',
+      type: 'mainMedia',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'size',
-      title: 'Image Size',
+      title: 'Media Size',
       type: 'string',
       options: {
         list: [
@@ -38,19 +35,22 @@ export const postImage = defineType({
   preview: {
     select: {
       size: 'size',
-      media: 'image',
+      mediaType: 'media.mediaType',
+      image: 'media.image',
     },
-    prepare({size, media}) {
+    prepare({size, mediaType, image}) {
       const sizeTitles: Record<string, string> = {
-        large: 'Large Image',
-        medium: 'Medium Image',
-        small: 'Small Image',
-        tiny: 'Tiny Image',
+        large: 'Large',
+        medium: 'Medium',
+        small: 'Small',
+        tiny: 'Tiny',
       }
 
+      const label = mediaType === 'video' ? 'Video' : 'Image'
+
       return {
-        title: sizeTitles[size] ?? 'Image',
-        media,
+        title: `${sizeTitles[size] ?? 'Post'} ${label}`,
+        media: mediaType === 'image' ? image : undefined,
       }
     },
   },
