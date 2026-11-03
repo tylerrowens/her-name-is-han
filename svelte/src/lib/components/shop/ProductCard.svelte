@@ -1,7 +1,16 @@
+<script lang="ts">
+	interface Props {
+		src?: string;
+		href: string;
+	}
+
+	let { src, href }: Props = $props();
+</script>
+
 <section>
-	<a href="">
+	<a {href}>
 		<div class="aspect-[3/4] w-full overflow-hidden">
-			<img class="h-full w-full object-cover" src="images/location-1.jpg" alt="" />
+			<img class="h-full w-full object-cover" {src} alt="" />
 		</div>
 
 		<div>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ProductCard from '$lib/components/shop/ProductCard.svelte';
+	import { placeholderProducts } from '$lib/data/placeholderProducts';
 </script>
 
 <section class="pt-[135px]">
@@ -60,12 +61,9 @@
 		<div
 			class="page-x grid grid-cols-1 gap-x-md-4 gap-y-lg-4 pt-lg-4 pb-lg-5 sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6"
 		>
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
+			{#each placeholderProducts as product (product.handle)}
+				<ProductCard src={product.src} href={`/shop/${product.handle}`} />
+			{/each}
 		</div>
 	</div>
 </section>

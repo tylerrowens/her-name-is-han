@@ -1,14 +1,20 @@
+<script lang="ts">
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
+</script>
+
 <section class="page-x pt-[135px]">
 	<div class="flex flex-col pb-[75px] w-full sm:w-[886px] mx-auto">
 		<div class="trim-cap nav-serif">
-			<p class="pb-md-3 nav-serif small-caps">&lt; BACK TO STORE</p>
+			<a href="/shop" class="pb-md-3 nav-serif small-caps transition-colors duration-200 ease-out hover:text-ash">&lt; BACK TO STORE</a>
 		</div>
 	</div>
 	<div class="w-100dvw">
 		<div class="flex flex-col justify-center items-center pb-[120px] gap-[120px]">
 			<div class="grid grid-cols-1 gap-md-4 sm:grid-cols-[400px_450px]">
 				<div class="aspect-[3/4] sm:w-[400px] self-start overflow-hidden">
-					<img class="h-full w-full object-cover" src="/images/location-1.jpg" alt="" />
+					<img class="w-full object-cover" src={data.product.src} alt={data.product.title} />
 				</div>
 				<div class="flex flex-col gap-md-4">
 					<p class="trim-cap card-serif">Han’s Table Bojagi Tote</p>

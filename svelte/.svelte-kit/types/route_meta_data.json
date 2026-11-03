@@ -22,6 +22,7 @@
 		"src/routes/+layout.server.ts"
 	],
 	"/shop/[handle]": [
+		"src/routes/shop/[handle]/+page.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/stories": [

@@ -9,7 +9,9 @@
 </script>
 
 <article class="bg-chamgireum text-doenjang">
-	<div class="flex flex-col h-[600px] w-full justify-center items-center page-x sm:mx-[0px] gap-md-4">
+	<div
+		class="flex flex-col h-[600px] w-full justify-center items-center page-x sm:mx-[0px] gap-md-4"
+	>
 		{#each credits.credits as credit (credit._key)}
 			<p class="body-serif text-center w-full sm:w-[550px]">
 				{credit.creditTitle} <br />
