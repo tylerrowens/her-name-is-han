@@ -2,15 +2,31 @@
 	import Dialogue from '$lib/components/about/Dialogue.svelte';
 	import FullQuote from '$lib/components/about/FullQuote.svelte';
 	import StaggeredQuote from '$lib/components/about/StaggeredQuote.svelte';
+
+	function scrollToSection(id: string) {
+		const target = document.getElementById(id);
+		if (!target) return;
+
+		const offset = 100;
+		const top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+		window.scrollTo({
+			top,
+			behavior: 'smooth'
+		});
+	}
 </script>
 
 <section class="page-x">
 	<div class="flex flex-row justify-center pt-[135px] nav-serif small-caps gap-md-4 sm:gap-lg-6">
-		<nav>Our Story</nav>
-		<nav>Contact</nav>
-		<nav>Press</nav>
+		<button type="button" onclick={() => scrollToSection('our-story')}> Our Story </button>
+		<button type="button" onclick={() => scrollToSection('contact')}> Contact </button>
+		<button type="button" onclick={() => scrollToSection('press')}> Press </button>
 	</div>
-	<div class="flex flex-col pt-[95px] w-full md:max-w-[400px] mx-auto gap-[50px]">
+	<div
+		class="flex flex-col pt-[95px] w-full md:max-w-[400px] mx-auto gap-[50px] scroll-mt-[150px]"
+		id="our-story"
+	>
 		<p class="body-serif sm:card-serif s text-center">
 			<span>Our story began</span> with the memory of one family’s ordinary days.
 		</p>
@@ -23,7 +39,10 @@
 			a place that turns one family’s memory into a living story, connecting us all.
 		</p>
 	</div>
-	<div class="flex sm:flex-row text-center gap-[50px] justify-center pt-[50px] flex-col nav-serif">
+	<div
+		class="scroll-mt-[100px] flex sm:flex-row text-center gap-[50px] justify-center pt-[50px] flex-col nav-serif"
+		id="contact"
+	>
 		<div class="flex flex-col">
 			<p class="small-caps">Contact</p>
 			<p class="underline underline-offset-2">hernameishan@handhospitality.com</p>
@@ -35,7 +54,7 @@
 	</div>
 </section>
 
-<div class="overflow-x-clip">
+<div class="overflow-x-clip" id="press">
 	<section class="page-x w-full md:max-w-[1050px] mt-[135px] mx-auto">
 		<!-- The quotes container starts exactly at column 9 and spans the rest of your layout -->
 		<div class="w-full min-w-0">

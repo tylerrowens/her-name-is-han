@@ -47,6 +47,9 @@
 		class="fixed bottom-[15px] left-1/2 -translate-x-1/2 z-50 flex self-start justify-self-end gap-md-3 sm:static sm:left-auto sm:translate-x-0 sm:pt-[21px] nav-serif small-caps"
 	>
 		<a
+			href="https://order.online/business/18111/store/26902?pickup=true&redirected=true"
+			target="_blank"
+			rel="noopener noreferrer"
 			class="inline-flex w-[190px] sm:w-[120px] aspect-[145/33] items-center justify-center gap-1
 		rounded-[3px] bg-aegean text-jade-white leading-none trim-cap"
 			><span class="inline-flex items-center gap-1 -translate-y-[1px]">
