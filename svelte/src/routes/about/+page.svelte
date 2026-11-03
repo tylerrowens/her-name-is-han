@@ -19,9 +19,27 @@
 
 <section class="page-x">
 	<div class="flex flex-row justify-center pt-[135px] nav-serif small-caps gap-md-4 sm:gap-lg-6">
-		<button type="button" onclick={() => scrollToSection('our-story')}> Our Story </button>
-		<button type="button" onclick={() => scrollToSection('contact')}> Contact </button>
-		<button type="button" onclick={() => scrollToSection('press')}> Press </button>
+		<button
+			class="transition-colors duration-200 ease-out hover:text-ash"
+			type="button"
+			onclick={() => scrollToSection('our-story')}
+		>
+			Our Story
+		</button>
+		<button
+			class="transition-colors duration-200 ease-out hover:text-ash"
+			type="button"
+			onclick={() => scrollToSection('contact')}
+		>
+			Contact
+		</button>
+		<button
+			class="transition-colors duration-200 ease-out hover:text-ash"
+			type="button"
+			onclick={() => scrollToSection('press')}
+		>
+			Press
+		</button>
 	</div>
 	<div
 		class="flex flex-col pt-[95px] w-full md:max-w-[400px] mx-auto gap-[50px] scroll-mt-[150px]"

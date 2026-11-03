@@ -45,6 +45,8 @@
 					<span class="dots flex-1 opacity-25"></span>
 					<a
 						href={reservation.reservationUrl}
+						target="_blank"
+						rel="noopener noreferrer"
 						class="justify-self-end pl-xs-2 nav-serif small-caps trim-cap transition-colors duration-200 ease-out hover:text-aegean/40"
 						>Book &#x2197</a
 					>

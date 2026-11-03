@@ -46,6 +46,8 @@
 			</div>
 			<a
 				href={location.reservationUrl}
+				target="_blank"
+				rel="noopener noreferrer"
 				class="inline-flex self-center sm:self-start w-[190px] aspect-[145/33] items-center justify-center rounded-[3px] bg-aegean text-jade-white nav-serif"
 				>Reservations ↗</a
 			>
