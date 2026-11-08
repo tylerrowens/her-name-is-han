@@ -35,7 +35,7 @@
 		<div class="grid grid-cols-[30px_10px_30px] sm:grid-cols-[35px_10px_35px] trim-cap">
 			{#if item.singleServingPrice != null}
 				<p
-					class="body-serif tabular-nums oldstyle-nums trim-cap text-center"
+					class="nav-serif tabular-nums oldstyle-nums trim-cap text-center"
 					class:col-start-3={item.pitcherPrice == null}
 				>
 					{item.singleServingPrice}
@@ -43,12 +43,12 @@
 			{/if}
 
 			{#if item.singleServingPrice != null && item.pitcherPrice != null}
-				<p class="body-serif trim-cap text-center">/</p>
+				<p class="nav-serif trim-cap text-center">/</p>
 			{/if}
 
 			{#if item.pitcherPrice != null}
 				<p
-					class="body-serif tabular-nums oldstyle-nums trim-cap text-center"
+					class="nav-serif tabular-nums oldstyle-nums trim-cap text-center"
 					class:col-start-3={item.singleServingPrice == null}
 				>
 					{item.pitcherPrice}

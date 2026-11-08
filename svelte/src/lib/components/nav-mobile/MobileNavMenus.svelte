@@ -30,9 +30,6 @@
 				<h1 class="text-[18px] small-caps trim-cap">menu</h1>
 			</div>
 		</div>
-		<h2 class="text-center nav-serif small-caps trim-cap pt-sm-3 underline underline-offset-5">
-			By Location
-		</h2>
 	</div>
 	<div class="flex flex-1 items-center justify-center">
 		<div class="flex flex-col justify-center w-full">

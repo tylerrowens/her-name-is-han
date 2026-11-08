@@ -30,7 +30,7 @@
 		<div class="grid justify-self-end grid-cols-[30px_10px_30px] sm:grid-cols-[35px_10px_35px] trim-cap">
 			{#if item.glassPrice != null}
 				<p
-					class="body-serif tabular-nums oldstyle-nums trim-cap text-center"
+					class="nav-serif tabular-nums oldstyle-nums trim-cap text-center"
 					class:col-start-3={item.bottlePrice == null}
 				>
 					{item.glassPrice}
@@ -38,12 +38,12 @@
 			{/if}
 
 			{#if item.glassPrice != null && item.bottlePrice != null}
-				<p class="body-serif trim-cap text-center">/</p>
+				<p class="nav-serif trim-cap text-center">/</p>
 			{/if}
 
 			{#if item.bottlePrice != null}
 				<p
-					class="body-serif tabular-nums oldstyle-nums trim-cap text-center"
+					class="nav-serif tabular-nums oldstyle-nums trim-cap text-center"
 					class:col-start-3={item.glassPrice == null}
 				>
 					{item.bottlePrice}

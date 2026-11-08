@@ -27,9 +27,6 @@
 				<h1 class="text-[18px] small-caps trim-cap">Locations</h1>
 			</a>
 		</div>
-		<h2 class="text-center nav-serif small-caps trim-cap pt-sm-3 underline underline-offset-5">
-			Explore All
-		</h2>
 	</div>
 	<div class="flex flex-1 items-center justify-center">
 		<div class="flex flex-col justify-center w-full">

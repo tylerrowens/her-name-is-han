@@ -27,9 +27,7 @@
 	}
 </script>
 
-<div class="bg-reservation-nav w-dvw h-auto page-x pt-[60px] pb-[30px]">
-	<div class="nav-serif trim-cap pb-[30px] small-caps">book A Reservation below</div>
-
+<div class="bg-reservation-nav w-dvw h-auto page-x pt-[70px] pb-[30px]">
 	{#each reservations as reservation (reservation._id)}
 		{@const menuList = formatMenus(reservation.menus)}
 		{#if reservation.reservationUrl}

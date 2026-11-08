@@ -14,7 +14,7 @@
 </script>
 
 <header
-	class="page-x fixed inset-x-0 top-[60px] sm:top-[40px] z-29
+	class="page-x sm:pl-[31px] fixed inset-x-0 top-[60px] sm:top-[40px] z-29
 	grid grid-cols-1 grid-rows-[auto_auto] gap-y-[26px]
 	sm:grid-cols-[1fr_auto_1fr] sm:grid-rows-1
 	h-auto sm:h-[60px] bg-jade-white [view-transition-name:menu-subnav]"
@@ -44,7 +44,7 @@
 		<p>{location?.name}</p>
 	</nav>
 	<nav
-		class="fixed bottom-[15px] left-1/2 -translate-x-1/2 z-50 flex self-start justify-self-end gap-md-3 sm:static sm:left-auto sm:translate-x-0 sm:pt-[21px] nav-serif small-caps"
+		class="hidden fixed bottom-[15px] left-1/2 -translate-x-1/2 z-50 flex self-start justify-self-end gap-md-3 sm:static sm:left-auto sm:translate-x-0 sm:pt-[21px] nav-serif small-caps"
 	>
 		<a
 			href="https://order.online/business/18111/store/26902?pickup=true&redirected=true"

@@ -33,7 +33,7 @@
 		</div>
 		<div>
 			{#if item.price != null}
-				<p class="body-serif tabular-nums oldstyle-nums trim-cap text-right">{item.price}</p>
+				<p class="nav-serif tabular-nums oldstyle-nums trim-cap text-right">{item.price}</p>
 			{/if}
 		</div>
 	</div>
@@ -46,7 +46,7 @@
 			</div>
 			<div>
 				{#if addon.price != null}
-					<p class="body-serif tabular-nums oldstyle-nums trim-cap pt-sm-3 text-right">
+					<p class="nav-serif tabular-nums oldstyle-nums trim-cap pt-sm-3 text-right">
 						{addon.price}
 					</p>
 				{/if}

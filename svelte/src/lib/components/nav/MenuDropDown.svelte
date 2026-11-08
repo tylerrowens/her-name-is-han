@@ -19,8 +19,7 @@
 	let { menus }: Props = $props();
 </script>
 
-<div class="bg-menu-nav w-dvw h-auto page-x pt-[60px] pb-[30px]">
-	<div class="nav-serif trim-cap pb-[30px] small-caps">By Location</div>
+<div class="bg-menu-nav w-dvw h-auto page-x pt-[70px] pb-[30px]">
 	{#each menus as location (location._id)}
 		{@const firstMenu = location.menus?.[0]}
 		{#if location.slug && firstMenu?.slug}
@@ -36,7 +35,10 @@
 						{#if meal.slug}
 							{#if index > 0},
 							{/if}
-							<a href={`/menu/${location.slug}/${meal.slug}`} class="transition-colors duration-200 ease-out hover:text-aegean/40">{meal.title}</a>
+							<a
+								href={`/menu/${location.slug}/${meal.slug}`}
+								class="transition-colors duration-200 ease-out hover:text-aegean/40">{meal.title}</a
+							>
 						{/if}
 					{/each}
 				</div>
