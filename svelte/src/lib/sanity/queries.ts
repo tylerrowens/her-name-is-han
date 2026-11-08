@@ -281,7 +281,9 @@ export const MENU_NAV_QUERY = defineQuery(`
       "menus": (menus[]->)[_type == "menu" && defined(slug.current)]{
         _id,
         title,
-        "slug": slug.current
+        "slug": slug.current,
+        backgroundColor,
+        titleTextColor,
       }
     }
 `);
@@ -321,6 +323,8 @@ export const MENU_PAGE_QUERY = defineQuery(`
         _id,
         title,
         "slug": slug.current,
+        backgroundColor,
+        titleTextColor,
   
         sections[]{
           _key,

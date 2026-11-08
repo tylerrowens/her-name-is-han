@@ -5,11 +5,30 @@
 
 	type Section = NonNullable<Menu['sections']>[number];
 	type MenuSection = Extract<Section, { _type: 'menuSection' }>;
+	type MenuColor = NonNullable<Menu['backgroundColor']>;
 
-	const backgroundClasses: Record<string, string> = {
-		dinner: 'bg-menu-blue',
-		lunch: 'bg-menu-purple',
-		brunch: 'bg-menu-yellow'
+	const backgroundClasses: Record<MenuColor, string> = {
+		brown: 'bg-hnih-brown',
+		beige: 'bg-hnih-beige',
+		coolGrey: 'bg-hnih-cool-grey',
+		warmGrey: 'bg-hnih-warm-grey',
+		lightNavy: 'bg-hnih-light-navy',
+		mediumNavy: 'bg-hnih-medium-navy',
+		darkNavy: 'bg-hnih-dark-navy',
+		yellow: 'bg-hnih-yellow',
+		green: 'bg-hnih-green',
+		blue: 'bg-hnih-blue'
+	};
+
+	const titleTextClasses = {
+		white: 'text-jade-white',
+		yellow: 'text-hnih-yellow'
+	};
+
+	const defaultColorsByMeal: Partial<Record<string, MenuColor>> = {
+		dinner: 'blue',
+		lunch: 'green',
+		brunch: 'yellow'
 	};
 
 	interface Props {
@@ -17,11 +36,17 @@
 		endRow: number;
 		section: MenuSection;
 		meal: string;
+		backgroundColor: Menu['backgroundColor'];
+		titleTextColor: Menu['titleTextColor'];
 	}
 
-	let { row, endRow, section, meal }: Props = $props();
+	let { row, endRow, section, meal, backgroundColor, titleTextColor }: Props = $props();
 
-	let backgroundClass = $derived(backgroundClasses[meal] ?? 'bg-menu-blue');
+	let backgroundClass = $derived(
+		backgroundClasses[backgroundColor ?? defaultColorsByMeal[meal] ?? 'blue']
+	);
+
+	let titleTextClass = $derived(titleTextColor ? titleTextClasses[titleTextColor] : 'text-aegean');
 </script>
 
 <div
@@ -32,6 +57,7 @@
 	top-[calc(var(--menu-offset)+var(--title-collapsed)-var(--title-expanded))]
 	flex h-[var(--title-expanded)] items-center
 	{backgroundClass}
+	{titleTextClass}
 	sm:top-[var(--menu-offset)]
 	sm:col-start-1
 	sm:row-start-[var(--section-row)]

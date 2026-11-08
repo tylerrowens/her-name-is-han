@@ -7,9 +7,27 @@
 	let location = $derived(data.menuNav.find((item) => item.slug === page.params.location));
 
 	const mealColors: Record<string, string> = {
-		brunch: 'bg-menu-yellow',
-		lunch: 'bg-menu-purple',
-		dinner: 'bg-menu-blue'
+		brown: 'bg-hnih-brown',
+		beige: 'bg-hnih-beige',
+		coolGrey: 'bg-hnih-cool-grey',
+		warmGrey: 'bg-hnih-warm-grey',
+		lightNavy: 'bg-hnih-light-navy',
+		mediumNavy: 'bg-hnih-medium-navy',
+		darkNavy: 'bg-hnih-dark-navy',
+		yellow: 'bg-hnih-yellow',
+		green: 'bg-hnih-green',
+		blue: 'bg-hnih-blue'
+	};
+
+	const defaultColorsByMeal: Record<string, string> = {
+		brunch: 'yellow',
+		lunch: 'green',
+		dinner: 'blue'
+	};
+
+	const textColors: Record<string, string> = {
+		white: 'text-jade-white',
+		yellow: 'text-hnih-yellow'
 	};
 </script>
 
@@ -29,8 +47,14 @@
 				href={`/menu/${page.params.location}/${meal.slug}`}
 				aria-current={page.params.meal === meal.slug ? 'page' : undefined}
 				class="inline-flex flex-1 sm:flex-none sm:w-[110px] h-md-4 sm:h-auto sm:aspect-[145/33] items-center justify-center
-			rounded-t-[5px] text-aegean
-			{page.params.meal === meal.slug ? (mealColors[meal.slug] ?? 'bg-web-grey') : 'bg-web-grey'}"
+			rounded-t-[5px]
+			{page.params.meal === meal.slug
+					? (mealColors[meal.backgroundColor ?? defaultColorsByMeal[meal.slug ?? ''] ?? 'blue'] ??
+						'bg-hnih-blue')
+					: 'bg-web-grey'}
+		{page.params.meal === meal.slug
+					? (textColors[meal.titleTextColor ?? ''] ?? 'text-aegean')
+					: 'text-aegean'}"
 			>
 				{meal.title}
 			</a>

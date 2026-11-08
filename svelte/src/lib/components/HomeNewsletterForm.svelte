@@ -1,5 +1,5 @@
 <section
-	class="flex aspect-[4/2] sm:aspect-[3.5/4] w-90 sm:w-[280px] xl:w-[330px] flex-col
+	class="flex aspect-[4/2] md-card:aspect-[3.5/4] w-90 md-card:w-[280px] xl:w-[330px] flex-col
 	bg-menu-yellow/60 p-sm-3 text-aegean"
 	aria-labelledby="newsletter-heading"
 >
@@ -11,7 +11,7 @@
 	<img
 		src="/images/corn.jpg"
 		alt="Sweet corn bingsu"
-		class="hidden sm:block aspect-[16/8] sm:aspect-[16/10] w-full object-cover"
+		class="hidden md-card:block sm:aspect-[16/10] w-full object-cover"
 	/>
 
 	<h2 id="newsletter-heading" class="body-serif trim-cap mt-sm-3">

@@ -89,7 +89,7 @@ body {
 	--breakpoint-xl: 1600px;
 	--breakpoint-lg: 1300px;
 	--breakpoint-footer-break: 1400px;
-	--breakpoint-sm: 1024px;
+	--breakpoint-sm: 1075px;
 	--breakpoint-md: 600px;
 	--breakpoint-md-card: 900px;
 
@@ -158,6 +158,10 @@ body {
 	@apply font-serif text-[16px] leading-[1.35] tracking-[1.12px];
 }
 
+@utility nav-serif-small {
+	@apply font-serif text-[15px] leading-[1.35] tracking-[1.12px];
+}
+
 @utility small-serif {
 	@apply font-serif text-[14px] leading-[1.22] tracking-[0.4px];
 }
@@ -176,5 +180,5 @@ body {
 /* GLOBAL SITE BORDER */
 
 @utility page-x {
-	@apply px-[15px] sm:px-[50px] lg:px-[50px];
+	@apply px-[15px] lg:px-[50px];
 }

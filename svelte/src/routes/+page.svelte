@@ -35,7 +35,7 @@
 >
 	<div
 		class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 rotate-[-3.5deg] 
-		sm:top-auto sm:right-[50px] sm:left-auto sm:translate-x-0 sm:translate-y-0 sm:pt-[70px]"
+		md-card:top-auto md-card:right-[50px] md-card:left-auto md-card:translate-x-0 md-card:translate-y-0 md-card:pt-[70px]"
 	>
 		<HomeNewsletterForm />
 	</div>

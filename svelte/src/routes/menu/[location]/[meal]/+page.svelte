@@ -21,6 +21,8 @@
 			<MenuSectionTitle
 				{section}
 				meal={data.menuContents.menu?.slug ?? ''}
+				backgroundColor={data.menuContents.menu?.backgroundColor ?? null}
+				titleTextColor={data.menuContents.menu?.titleTextColor ?? null}
 				row={index + 1}
 				endRow={sections.length + 1}
 			/>

@@ -68,6 +68,36 @@ export const menu = defineType({
       ],
     }),
     defineField({
+      name: 'backgroundColor',
+      title: 'Menu card color',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Brown', value: 'brown'},
+          {title: 'Beige', value: 'beige'},
+          {title: 'Cool Grey', value: 'coolGrey'},
+          {title: 'Warm Grey', value: 'warmGrey'},
+          {title: 'Light Navy', value: 'lightNavy'},
+          {title: 'Medium Navy', value: 'mediumNavy'},
+          {title: 'Dark Navy', value: 'darkNavy'},
+          {title: 'Yellow', value: 'yellow'},
+          {title: 'Green', value: 'green'},
+          {title: 'Blue', value: 'blue'},
+        ],
+      },
+    }),
+    defineField({
+      name: 'titleTextColor',
+      title: 'Menu card text color',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'White', value: 'white'},
+          {title: 'Yellow', value: 'yellow'},
+        ],
+      },
+    }),
+    defineField({
       name: 'sections',
       title: 'Menu Sections',
       type: 'array',

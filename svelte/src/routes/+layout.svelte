@@ -164,7 +164,7 @@
 		class:text-aegean={!heroHeader}
 	>
 		<nav
-			class="hidden sm:flex justify-self-start flex gap-md-3 nav-serif small-caps trim-cap items-baseline"
+			class="hidden sm:flex justify-self-start flex gap-sm-3 lg:gap-md-3 small-serif small-caps nav-serif-small lg:nav-serif trim-cap items-baseline"
 		>
 			<button
 				type="button"
@@ -226,21 +226,21 @@
 						stroke-width="1.3"
 						aria-hidden="true"
 					>
-						<path d="M0 0.5H20" />
+						<path d="M0 0.65H20" />
 						<path d="M0 7.5H20" />
-						<path d="M0 14.5H20" />
+						<path d="M0 14.35H20" />
 					</svg>
 				{/if}
 			</button>
 		</nav>
 		<a
 			href="/"
-			class="flex justify-self-start items-end body-serif sm:card-serif justify-center trim-cap"
+			class="flex justify-self-start items-end body-serif lg:card-serif justify-center trim-cap"
 		>
 			Her name is Han.</a
 		>
 		<nav
-			class="hidden sm:flex justify-self-end gap-md-3 nav-serif small-caps trim-cap items-baseline"
+			class="hidden sm:flex justify-self-end gap-sm-3 lg:gap-md-3 nav-serif-small lg:nav-serif small-caps trim-cap items-baseline"
 		>
 			<a href="/about">About</a>
 			<a href="/stories">Stories</a>

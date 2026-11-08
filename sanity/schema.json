@@ -1383,6 +1383,72 @@
         },
         "optional": true
       },
+      "backgroundColor": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "brown"
+            },
+            {
+              "type": "string",
+              "value": "beige"
+            },
+            {
+              "type": "string",
+              "value": "coolGrey"
+            },
+            {
+              "type": "string",
+              "value": "warmGrey"
+            },
+            {
+              "type": "string",
+              "value": "lightNavy"
+            },
+            {
+              "type": "string",
+              "value": "mediumNavy"
+            },
+            {
+              "type": "string",
+              "value": "darkNavy"
+            },
+            {
+              "type": "string",
+              "value": "yellow"
+            },
+            {
+              "type": "string",
+              "value": "green"
+            },
+            {
+              "type": "string",
+              "value": "blue"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "titleTextColor": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "white"
+            },
+            {
+              "type": "string",
+              "value": "yellow"
+            }
+          ]
+        },
+        "optional": true
+      },
       "sections": {
         "type": "objectAttribute",
         "value": {
