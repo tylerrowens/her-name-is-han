@@ -12,7 +12,15 @@
 	import SimpleDrinkSection from '$lib/components/menu/SimpleDrinkSection.svelte';
 </script>
 
-<div class="pt-[145px] sm:pt-[100px]">
+<svelte:head>
+	<style>
+		html {
+			overscroll-behavior-y: none;
+		}
+	</style>
+</svelte:head>
+
+<div class="pt-[143px] sm:pt-[100px]">
 	<div
 		class="relative [--menu-offset:145px] sm:[--menu-offset:100px] [--title-expanded:400px] [--title-collapsed:100px]
 	sm:grid sm:grid-cols-2 sm:grid-rows-[auto_auto]"
@@ -42,12 +50,12 @@
 				{/each}
 				<div
 					aria-hidden="true"
-					class="pointer-events-none absolute fixed inset-y-0 top-[100px] left-1/2 z-30 hidden w-[25px]
+					class="pointer-events-none absolute fixed inset-y-0 top-[120px] left-1/2 z-30 hidden w-[25px]
 				bg-[linear-gradient(to_right,rgba(0,0,0,0.035),transparent)] sm:block"
 				></div>
 				<div
 					aria-hidden="true"
-					class="pointer-events-none absolute fixed inset-y-0 top-[100px] right-1/2 z-30 hidden w-[25px]
+					class="pointer-events-none absolute fixed inset-y-0 top-[120px] right-1/2 z-30 hidden w-[25px]
 			bg-[linear-gradient(to_left,rgba(0,0,0,0.035),transparent)] sm:block"
 				></div>
 			</div>

@@ -1,5 +1,5 @@
 <section
-	class="flex aspect-[4/2] md-card:aspect-[3.5/4] w-90 md-card:w-[280px] xl:w-[330px] flex-col
+	class="flex aspect-[4/2] md-card:aspect-[3.5/4] w-85 md-card:w-[280px] xl:w-[330px] flex-col
 	bg-menu-yellow/60 p-sm-3 text-aegean"
 	aria-labelledby="newsletter-heading"
 >

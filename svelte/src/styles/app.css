@@ -119,22 +119,22 @@ body {
 	--color-menu-blue: #d2eaec;
 	--color-menu-yellow: #ffffd3;
 	--color-menu-purple: #c5daff;
-	--color-menu-nav: #0066A4;
-	--color-location-nav: #4B311F;
-	--color-reservation-nav: #082D85;
+	--color-menu-nav: #c8e7ff;
+	--color-location-nav: #d0f0f6;
+	--color-reservation-nav: #b7ebff;
 	--color-white: #ffffff;
 
 	/* COLORS FROM HNIH TEAM */
-	--color-hnih-brown: #664D3C;
-	--color-hnih-beige: #FFF7E3;
-	--color-hnih-cool-grey: #E1F4FD;
-	--color-hnih-warm-grey: #F1EFEF;
-	--color-hnih-light-navy: #0067A4;
-	--color-hnih-medium-navy: #072E84;
+	--color-hnih-brown: #664d3c;
+	--color-hnih-beige: #fff7e3;
+	--color-hnih-cool-grey: #e1f4fd;
+	--color-hnih-warm-grey: #f1efef;
+	--color-hnih-light-navy: #0067a4;
+	--color-hnih-medium-navy: #072e84;
 	--color-hnih-dark-navy: #061638;
-	--color-hnih-yellow: #FFFBC9;
-	--color-hnih-green: #E3F7CD;
-	--color-hnih-blue: #C9E5FF;
+	--color-hnih-yellow: #fffbc9;
+	--color-hnih-green: #e3f7cd;
+	--color-hnih-blue: #c9e5ff;
 }
 
 /* FONT SIZES */
