@@ -38,6 +38,8 @@
  * The above values will be the same _even if_ different values for `ENVIRONMENT` or `PUBLIC_BASE_URL` are set at runtime, as they are statically replaced in your code with their build time values.
  */
 declare module '$env/static/private' {
+	export const SHOPIFY_STOREFRONT_ACCESS_TOKEN: string;
+	export const SHOPIFY_STORE_DOMAIN: string;
 	export const TERM_PROGRAM: string;
 	export const NODE: string;
 	export const INIT_CWD: string;
@@ -180,6 +182,8 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
+		SHOPIFY_STOREFRONT_ACCESS_TOKEN: string;
+		SHOPIFY_STORE_DOMAIN: string;
 		TERM_PROGRAM: string;
 		NODE: string;
 		INIT_CWD: string;

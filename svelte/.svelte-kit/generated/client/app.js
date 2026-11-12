@@ -29,7 +29,7 @@ export const dictionary = {
 		"/about": [~4],
 		"/locations": [~5],
 		"/menu/[location]/[meal]": [~6,[2]],
-		"/shop": [7],
+		"/shop": [~7],
 		"/shop/[handle]": [~8],
 		"/stories": [~9],
 		"/stories/[slug]": [~10]

@@ -1,33 +1,86 @@
 <script lang="ts">
-	import type { PageProps } from './$types';
+	import type { PageData } from './$types';
 
-	let { data }: PageProps = $props();
+	let { data }: { data: PageData } = $props();
+
+	let price = $derived(data.product.priceRange.minVariantPrice);
+
+	let formattedPrice = $derived(
+		new Intl.NumberFormat('en-US', {
+			style: 'currency',
+			currency: price.currencyCode,
+			trailingZeroDisplay: 'stripIfInteger'
+		}).format(Number(price.amount))
+	);
+
+	const sizeLabels: Partial<Record<string, string>> = {
+		small: 's',
+		medium: 'm',
+		large: 'l'
+	};
+
+	let visibleOptions = $derived(
+		data.product.options.filter(
+			(option) =>
+				!(
+					option.name === 'Title' &&
+					option.values.length === 1 &&
+					option.values[0] === 'Default Title'
+				)
+		)
+	);
 </script>
 
 <section class="page-x pt-[135px]">
 	<div class="flex flex-col pb-[75px] w-full sm:w-[886px] mx-auto">
 		<div class="trim-cap nav-serif">
-			<a href="/shop" class="pb-md-3 nav-serif small-caps transition-colors duration-200 ease-out hover:text-ash">&lt; BACK TO STORE</a>
+			<a
+				href="/shop"
+				class="pb-md-3 nav-serif small-caps transition-colors duration-200 ease-out hover:text-ash"
+				>&lt; BACK TO STORE</a
+			>
 		</div>
 	</div>
 	<div class="w-100dvw">
 		<div class="flex flex-col justify-center items-center pb-[120px] gap-[120px]">
 			<div class="grid grid-cols-1 gap-md-4 sm:grid-cols-[400px_450px]">
 				<div class="aspect-[3/4] sm:w-[400px] self-start overflow-hidden">
-					<img class="w-full object-cover" src={data.product.src} alt={data.product.title} />
+					{#if data.product.featuredImage?.url}
+						<img
+							src={data.product.featuredImage.url}
+							alt={data.product.featuredImage.altText ?? data.product.title}
+						/>
+					{/if}
 				</div>
 				<div class="flex flex-col gap-md-4">
-					<p class="trim-cap card-serif">Han’s Table Bojagi Tote</p>
+					<p class="trim-cap card-serif">{data.product.title}</p>
 					<div class="flex flex-col gap-sm-3">
-						<p class="trim-cap body-serif sm:body-serif">$70</p>
-						<p class="trim-cap small-serif small-caps">One Size</p>
+						<p class="trim-cap body-serif">{formattedPrice}</p>
+						<div>
+							{#each visibleOptions as option}
+								<div class="flex gap-x-xs-3">
+									{#each option.values as value}
+										<button
+											type="button"
+											class="body-serif sm:nav-serif small-caps transition-colors duration-200 ease-out hover:text-ash"
+											aria-label={value}
+										>
+											{option.name.toLowerCase() === 'size'
+												? (sizeLabels[value.trim().toLowerCase()] ?? value)
+												: value}
+										</button>
+									{/each}
+								</div>
+							{/each}
+						</div>
 					</div>
 					<div class="flex flex-col gap-lg-5">
 						<p class="trim-cap body-serif sm:nav-serif">
-							Hand sewn with recycled cotton scraps, this tote features the Han table symbol
-							imagined in a bojagi patchwork pattern.
+							{data.product.description}
 						</p>
-						<p class="trim-cap body-serif sm:nav-serif underline underline-offset-4 small-caps">
+						<p
+							class="trim-cap body-serif sm:nav-serif underline underline-offset-4 small-caps transition-colors duration-200 ease-out hover:text-ash"
+						>
 							Add to cart
 						</p>
 					</div>

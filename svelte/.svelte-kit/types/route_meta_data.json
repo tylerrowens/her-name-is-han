@@ -19,6 +19,7 @@
 		"src/routes/+layout.server.ts"
 	],
 	"/shop": [
+		"src/routes/shop/+page.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/shop/[handle]": [

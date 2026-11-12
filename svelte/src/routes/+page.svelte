@@ -28,14 +28,29 @@
 	let year = $derived(dateParts.find((part) => part.type === 'year')?.value ?? '');
 	let month = $derived(dateParts.find((part) => part.type === 'month')?.value ?? '');
 	let day = $derived(dateParts.find((part) => part.type === 'day')?.value ?? '');
+
+	let isWiggling = $state(false);
+
+	function startWiggle(event: PointerEvent) {
+		if (event.pointerType === 'touch') return;
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+		isWiggling = true;
+	}
 </script>
 
 <section
 	class="grid relative h-[100dvh] w-full grid-rows-[auto_minmax(0,1fr)] gap-[30px] pt-[100px] pb-[30px]"
 >
 	<div
-		class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 rotate-[-3.5deg] 
-		md-card:top-auto md-card:right-[50px] md-card:left-auto md-card:translate-x-0 md-card:translate-y-0 md-card:pt-[70px]"
+		onpointerenter={startWiggle}
+		onanimationend={(event) => {
+			if (event.target === event.currentTarget) isWiggling = false;
+		}}
+		class="absolute z-40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 rotate-[-3.5deg]
+		md-card:top-auto md-card:right-[50px] md-card:left-auto md-card:translate-x-0 md-card:translate-y-0 md-card:pt-[80px] {isWiggling
+			? 'sm:animate-[newsletter-wiggle_600ms_cubic-bezier(0.22,1,0.36,1)]'
+			: ''}"
 	>
 		<HomeNewsletterForm />
 	</div>

@@ -1,27 +1,47 @@
 <script lang="ts">
-	interface Props {
-		src?: string;
-		href: string;
-	}
+	import type { ShopifyProduct } from '$lib/types/shopify';
+	import { resolve } from '$app/paths';
 
-	let { src, href }: Props = $props();
+	type Props = {
+		product: ShopifyProduct;
+	};
+
+	let { product }: Props = $props();
+
+	let price = $derived(product.priceRange.minVariantPrice);
+
+	let formattedPrice = $derived(
+		new Intl.NumberFormat('en-US', {
+			style: 'currency',
+			currency: price.currencyCode,
+			trailingZeroDisplay: 'stripIfInteger'
+		}).format(Number(price.amount))
+	);
 </script>
 
 <section>
-	<a {href}>
+	<a href={resolve(`/shop/${product.handle}`)}>
 		<div class="aspect-[3/4] w-full overflow-hidden">
-			<img class="h-full w-full object-cover" {src} alt="" />
+			{#if product.featuredImage?.url}
+				<img
+					src={product.featuredImage.url}
+					alt={product.featuredImage.altText ?? product.title}
+					class="h-full w-full object-cover"
+				/>
+			{/if}
 		</div>
 
 		<div>
 			<p
 				class="pt-sm-3 body-serif small-caps trim-cap transition-colors duration-200 ease-out hover:text-ash"
 			>
-				Classic Tee
+				{product.title}
 			</p>
-			<div class="pt-sm-3 small-serif leading-[.35]">
-				<p>Made with soft, breathable cotton.</p>
-				<div class="pt-md-4 body-serif trim-cap">$30</div>
+			<div class="pt-sm-3 small-serif">
+				<p>{product.description}</p>
+				<div class="pt-md-4 body-serif trim-cap">
+					{formattedPrice}
+				</div>
 			</div>
 		</div>
 	</a>
