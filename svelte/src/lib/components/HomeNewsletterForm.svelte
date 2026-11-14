@@ -5,7 +5,6 @@
 >
 	<div class="flex items-center justify-between">
 		<p class="small-serif trim-cap small-caps mb-sm-3">Newsletter</p>
-		<!-- Put your close button here if this card is dismissible -->
 	</div>
 
 	<img

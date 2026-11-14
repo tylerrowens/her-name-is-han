@@ -54,8 +54,13 @@ body {
 }
 
 @keyframes newsletter-wiggle {
-	0%, 100% { rotate: -3.5deg; }
-	50% { rotate: 5deg; }
+	0%,
+	100% {
+		rotate: -3.5deg;
+	}
+	50% {
+		rotate: 5deg;
+	}
 }
 
 @keyframes menu-subnav-enter {
@@ -160,7 +165,7 @@ body {
 }
 
 @utility nav-serif {
-	@apply font-serif text-[16px] leading-[1.35] tracking-[1.12px];
+	@apply font-serif text-[16px] leading-[1.15] tracking-[1.12px];
 }
 
 @utility nav-serif-small {

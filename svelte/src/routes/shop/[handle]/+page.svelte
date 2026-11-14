@@ -1,5 +1,9 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { goto } from '$app/navigation';
+	import type { ShopifyVariant } from '$lib/types/shopify';
+	import { page } from '$app/state';
+	import { getContext } from 'svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -29,6 +33,84 @@
 				)
 		)
 	);
+
+	const addToCart = getContext<(variantId: string) => Promise<void>>('addToCart');
+
+	function getVariantUrlId(id: string) {
+		return id.split('/').at(-1);
+	}
+
+	let variants = $derived(data.variants);
+
+	let variantUrlId = $derived(page.url.searchParams.get('variant'));
+
+	let fallbackVariant = $derived(
+		variants.find((variant) => variant.availableForSale) ?? variants[0]
+	);
+
+	let selectedVariant = $derived(
+		variants.find((variant) => getVariantUrlId(variant.id) === variantUrlId) ?? fallbackVariant
+	);
+
+	function selectOption(optionName: string, optionValue: string) {
+		if (!selectedVariant) return;
+
+		const nextOptions = Object.fromEntries(
+			selectedVariant.selectedOptions.map(({ name, value }) => [name, value] as const)
+		);
+
+		nextOptions[optionName] = optionValue;
+
+		const matchingVariant = variants.find((variant) =>
+			variant.selectedOptions.every(({ name, value }) => nextOptions[name] === value)
+		);
+
+		if (!matchingVariant) return;
+
+		updateVariantUrl(matchingVariant);
+	}
+
+	function isOptionSelected(optionName: string, optionValue: string) {
+		return (
+			selectedVariant?.selectedOptions.some(
+				({ name, value }) => name === optionName && value === optionValue
+			) ?? false
+		);
+	}
+
+	function updateVariantUrl(variant: ShopifyVariant) {
+		const variantId = getVariantUrlId(variant.id);
+
+		if (!variantId) return;
+
+		const url = new URL(page.url);
+		url.searchParams.set('variant', variantId);
+
+		void goto(url, {
+			replaceState: true,
+			keepFocus: true,
+			noScroll: true
+		});
+	}
+
+	let addToCartPending = $state(false);
+	let addToCartError = $state('');
+
+	async function handleAddToCart() {
+		const variant = selectedVariant;
+		if (!variant?.availableForSale || addToCartPending) return;
+
+		addToCartPending = true;
+		addToCartError = '';
+
+		try {
+			await addToCart(variant.id);
+		} catch {
+			addToCartError = 'Couldn’t add this item. Please try again.';
+		} finally {
+			addToCartPending = false;
+		}
+	}
 </script>
 
 <section class="page-x pt-[135px]">
@@ -64,6 +146,8 @@
 											type="button"
 											class="body-serif sm:nav-serif small-caps transition-colors duration-200 ease-out hover:text-ash"
 											aria-label={value}
+											aria-pressed={isOptionSelected(option.name, value)}
+											onclick={() => selectOption(option.name, value)}
 										>
 											{option.name.toLowerCase() === 'size'
 												? (sizeLabels[value.trim().toLowerCase()] ?? value)
@@ -78,11 +162,14 @@
 						<p class="trim-cap body-serif sm:nav-serif">
 							{data.product.description}
 						</p>
-						<p
-							class="trim-cap body-serif sm:nav-serif underline underline-offset-4 small-caps transition-colors duration-200 ease-out hover:text-ash"
+						<button
+							type="button"
+							class="self-start trim-cap body-serif sm:nav-serif underline underline-offset-4 small-caps transition-colors duration-200 ease-out hover:text-ash"
+							disabled={!selectedVariant?.availableForSale || addToCartPending}
+							onclick={handleAddToCart}
 						>
 							Add to cart
-						</p>
+						</button>
 					</div>
 					<p class="trim-cap small-serif text-ash">
 						After successfully placing an order you will receive an email confirming that your

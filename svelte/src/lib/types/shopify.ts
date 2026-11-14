@@ -70,6 +70,7 @@ export type ProductByHandleResponse = {
 export type ShopifyCart = {
     id: string;
     checkoutUrl: string;
+    totalQuantity: number;
     cost: {
         subtotalAmount: {
             amount: string;

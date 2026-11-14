@@ -6,6 +6,7 @@
 	import MenuDropDown from '$lib/components/nav/MenuDropDown.svelte';
 	import ReservationsDropDown from '$lib/components/nav/ReservationsDropDown.svelte';
 	import MobileNavOverlay from '$lib/components/nav-mobile/MobileNavOverlay.svelte';
+	import CartDrawer from '$lib/components/shop/CartDrawer.svelte';
 	import { headerHeroContext, type ReportHeaderHero } from '$lib/nav/header-hero-context';
 	import { setContext } from 'svelte';
 	import { page } from '$app/state';
@@ -13,10 +14,26 @@
 	import { onNavigate } from '$app/navigation';
 	import { fade } from 'svelte/transition';
 	import type { LayoutProps } from './$types';
+	import type { ShopifyCart } from '$lib/types/shopify';
 
 	let { children, data }: LayoutProps = $props();
 
 	onNavigate((navigation) => {
+		const from = navigation.from?.url;
+		const to = navigation.to?.url;
+
+		const isVariantChange =
+			from &&
+			to &&
+			from.pathname === to.pathname &&
+			from.searchParams.get('variant') !== to.searchParams.get('variant');
+
+		if (!document.startViewTransition || isVariantChange) {
+			return () => {
+				closeMobileNavForNavigation();
+			};
+		}
+
 		if (!document.startViewTransition) {
 			return () => {
 				closeMobileNavForNavigation();
@@ -148,6 +165,54 @@
 	let year = $derived(dateParts.find((part) => part.type === 'year')?.value ?? '');
 	let month = $derived(dateParts.find((part) => part.type === 'month')?.value ?? '');
 	let day = $derived(dateParts.find((part) => part.type === 'day')?.value ?? '');
+
+	let cart = $state<ShopifyCart | null>(null);
+	let cartOpen = $state(false);
+	let addToCartPending = $state(false);
+
+	async function addToCart(variantId: string) {
+		const response = await fetch('/api/cart/add', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ variantId })
+		});
+
+		const result = (await response.json()) as {
+			cart?: ShopifyCart;
+			error?: string;
+		};
+
+		if (!response.ok || !result.cart) {
+			throw new Error(result.error ?? 'Failed to add to cart');
+		}
+
+		cart = result.cart;
+		cartOpen = true;
+	}
+
+	setContext('addToCart', addToCart);
+
+	async function removeCartLine(lineId: string) {
+		const response = await fetch('/api/cart/remove', {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify({ lineId })
+		});
+
+		const result = (await response.json()) as {
+			cart?: ShopifyCart;
+			error?: string;
+		};
+
+		if (!response.ok || !result.cart) {
+			console.error(result.error ?? 'Failed to remove cart line');
+			return;
+		}
+
+		cart = result.cart;
+	}
 </script>
 
 <svelte:body onmouseleave={() => (openDropdown = null)} />
@@ -245,20 +310,18 @@
 			<a href="/about">About</a>
 			<a href="/stories">Stories</a>
 			<a href="/shop">Shop</a>
-			<button>Cart (1)</button>
+			<button type="button" onclick={() => (cartOpen = !cartOpen)}>Cart</button>
 			<a
 				href="https://order.online/business/18111/store/26902?pickup=true&redirected=true"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="inline-flex w-[190px] sm:w-[120px] aspect-[145/33] pb-[1px] items-center justify-center gap-1
 		rounded-[3px] bg-aegean text-jade-white leading-none trim-cap"
-				><span class="inline-flex items-center gap-1">
-					Order <span>&#x2197;</span>
-				</span></a
+				><span class="inline-flex items-center gap-1"> Order &#x2197; </span></a
 			>
 		</nav>
 		<nav class="sm:hidden flex justify-self-end items-end nav-serif small-caps trim-cap">
-			<button> (1) </button>
+			<button>Cart</button>
 		</nav>
 	</header>
 
@@ -291,6 +354,15 @@
 				{/if}
 			</div>
 		{/if}
+	</div>
+
+	<div class="absolute pt-[80px] right-[15px] lg:right-[50px]">
+		<CartDrawer
+			{cart}
+			open={cartOpen}
+			onClose={() => (cartOpen = false)}
+			onRemoveLine={removeCartLine}
+		/>
 	</div>
 
 	<div class="flex-1" inert={mobileNavOpen}>

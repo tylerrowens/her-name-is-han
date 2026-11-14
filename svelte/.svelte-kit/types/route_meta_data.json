@@ -7,6 +7,12 @@
 		"src/routes/about/+page.server.ts",
 		"src/routes/+layout.server.ts"
 	],
+	"/api/cart/add": [
+		"src/routes/api/cart/add/+server.ts"
+	],
+	"/api/cart/remove": [
+		"src/routes/api/cart/remove/+server.ts"
+	],
 	"/locations": [
 		"src/routes/locations/+page.server.ts",
 		"src/routes/+layout.server.ts"
