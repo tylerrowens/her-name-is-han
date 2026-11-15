@@ -221,6 +221,16 @@ export const STORIES_PAGE_QUERY = defineQuery(`
                 }
             }
 
+        },
+        playlistCards[]{
+	        _key,
+          cardTitle,
+          title,
+          author,
+	        backgroundColor,
+	        textColor,
+	        image,
+	        spotifyUrl
         }
     }
 `);

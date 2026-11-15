@@ -13,6 +13,9 @@
 	"/api/cart/remove": [
 		"src/routes/api/cart/remove/+server.ts"
 	],
+	"/api/newsletter": [
+		"src/routes/api/newsletter/+server.ts"
+	],
 	"/locations": [
 		"src/routes/locations/+page.server.ts",
 		"src/routes/+layout.server.ts"

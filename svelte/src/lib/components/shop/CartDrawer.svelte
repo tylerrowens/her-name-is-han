@@ -2,7 +2,7 @@
 	import type { ShopifyCart } from '$lib/types/shopify';
 
 	type Props = {
-		cart: ShopifyCart | null;
+		cart: Omit<ShopifyCart, 'id'> | null;
 		open: boolean;
 		onClose: () => void;
 		onRemoveLine: (lineId: string) => Promise<void>;
@@ -92,11 +92,12 @@
 						Subtotal {formatPrice(cart.cost.subtotalAmount)}
 					</div>
 				{/if}
-				<div
+				<a
+					href={cart?.checkoutUrl}
 					class="trim-cap small-serif lg:nav-serif transition-colors duration-200 ease-out hover:text-ash"
 				>
 					Checkout &#x2197;
-				</div>
+				</a>
 			</footer>
 		{:else}
 			<p class="trim-cap small-serif lg:nav-serif">Your cart is empty.</p>

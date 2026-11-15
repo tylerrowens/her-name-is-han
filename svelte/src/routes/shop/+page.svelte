@@ -21,42 +21,6 @@
 			</video>
 		</div>
 	</div>
-	<nav class="overflow-x-auto scrollbar-none bg-jade-white pr-[10px]" aria-label="Story categories">
-		<ul
-			class="flex page-x flex-row flex-nowrap gap-md-4 justify-start sm:justify-center py-sm-3 body-serif"
-		>
-			<li class="shrink-0 last:pr-[15px] sm:last:pr-[0px]">
-				<button type="button">
-					View All
-					<span class="[font-variant-position:super]">1</span>
-				</button>
-			</li>
-			<li class="shrink-0 last:pr-[15px] sm:last:pr-[0px]">
-				<button type="button">
-					Merch
-					<span class="[font-variant-position:super]">8</span>
-				</button>
-			</li>
-			<li class="shrink-0 last:pr-[15px] sm:last:pr-[0px]">
-				<button type="button">
-					Collaborations
-					<span class="[font-variant-position:super]">10</span>
-				</button>
-			</li>
-			<li class="shrink-0 last:pr-[15px] sm:last:pr-[0px]">
-				<button type="button">
-					Food
-					<span class="[font-variant-position:super]">9</span>
-				</button>
-			</li>
-			<li class="shrink-0 last:pr-[15px] sm:last:pr-[0px]">
-				<button type="button">
-					Artifacts
-					<span class="[font-variant-position:super]">3</span>
-				</button>
-			</li>
-		</ul>
-	</nav>
 	<div class="bg-jade-white">
 		<div
 			class="page-x grid grid-cols-1 gap-x-md-4 gap-y-lg-4 pt-lg-4 pb-lg-5 sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6"

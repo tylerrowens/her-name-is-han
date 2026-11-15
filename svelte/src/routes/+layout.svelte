@@ -166,7 +166,8 @@
 	let month = $derived(dateParts.find((part) => part.type === 'month')?.value ?? '');
 	let day = $derived(dateParts.find((part) => part.type === 'day')?.value ?? '');
 
-	let cart = $state<ShopifyCart | null>(null);
+	let updatedCart = $state<Omit<ShopifyCart, 'id'> | null>(null);
+	let cart = $derived(updatedCart ?? data.savedCart);
 	let cartOpen = $state(false);
 	let addToCartPending = $state(false);
 
@@ -186,7 +187,7 @@
 			throw new Error(result.error ?? 'Failed to add to cart');
 		}
 
-		cart = result.cart;
+		updatedCart = result.cart;
 		cartOpen = true;
 	}
 
@@ -211,7 +212,7 @@
 			return;
 		}
 
-		cart = result.cart;
+		updatedCart = result.cart;
 	}
 </script>
 

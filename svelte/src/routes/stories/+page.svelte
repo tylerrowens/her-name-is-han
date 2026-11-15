@@ -4,12 +4,7 @@
 	import type { PageData } from './$types';
 	import BlogCard from '$lib/components/blog-main/BlogCard.svelte';
 	import PlaylistCard from '$lib/components/blog-main/PlaylistCard.svelte';
-	import Swiper from 'swiper';
 	import Media from '$lib/components/Media.svelte';
-	import 'swiper/css';
-	import 'swiper/css/bundle';
-	import RecipeCard from '$lib/components/blog-main/RecipeCard.svelte';
-	import type { SwiperOptions } from 'swiper/types';
 
 	let { data }: { data: PageData } = $props();
 
@@ -130,9 +125,9 @@
 				class="page-x grid grid-flow-col auto-cols-[90%] gap-x-sm-3 sm:gap-x-md-4
 			pb-lg-5 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-3 md:grid-flow-col md:grid-cols-none md:auto-cols-[min(90%,600px)] lg:mx-lg-5 xl:mx-lg-6"
 			>
-				<div class=""><PlaylistCard /></div>
-				<div class=""><PlaylistCard /></div>
-				<div class=""><PlaylistCard /></div>
+				{#each data.storiesPage?.playlistCards ?? [] as card (card._key)}
+					<div><PlaylistCard {card} /></div>
+				{/each}
 			</div>
 		</div>
 	</div>

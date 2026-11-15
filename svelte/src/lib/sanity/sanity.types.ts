@@ -318,6 +318,23 @@ export type StoriesPage = {
   englishTitle?: string;
   koreanTitle?: string;
   topBanner?: MainMedia;
+  playlistCards?: Array<{
+    cardTitle?: SimplePortableText;
+    title?: string;
+    author?: string;
+    backgroundColor?: "brown" | "beige" | "coolGrey" | "warmGrey" | "lightNavy" | "mediumNavy" | "darkNavy" | "yellow" | "green" | "blue";
+    textColor?: "brown" | "beige" | "coolGrey" | "warmGrey" | "lightNavy" | "mediumNavy" | "darkNavy" | "yellow" | "green" | "blue";
+    image?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    spotifyUrl?: string;
+    _type: "playlistCard";
+    _key: string;
+  }>;
 };
 
 export type BlogPostReference = {
@@ -759,7 +776,7 @@ export type BLOG_OVERVIEW_QUERY_RESULT = Array<{
 
 // Source: ../svelte/src/lib/sanity/queries.ts
 // Variable: STORIES_PAGE_QUERY
-// Query: *[ _type == "storiesPage" ][0] {        _id,        englishTitle,        koreanTitle,        topBanner {            mediaType,            image {                alt,                crop,                hotspot,                asset-> {                    _id,                    url,                    metadata {                        dimensions                    }                }            },            video {                asset-> {                    _id,                    assetId,                    playbackId,                    filename,                    status,                    "aspectRatio": data.aspect_ratio,                    "duration": data.duration                }            }        }    }
+// Query: *[ _type == "storiesPage" ][0] {        _id,        englishTitle,        koreanTitle,        topBanner {            mediaType,            image {                alt,                crop,                hotspot,                asset-> {                    _id,                    url,                    metadata {                        dimensions                    }                }            },            video {                asset-> {                    _id,                    assetId,                    playbackId,                    filename,                    status,                    "aspectRatio": data.aspect_ratio,                    "duration": data.duration                }            }        },        playlistCards[]{	        _key,          cardTitle,          title,          author,	        backgroundColor,	        textColor,	        image,	        spotifyUrl        }    }
 export type STORIES_PAGE_QUERY_RESULT = {
   _id: string;
   englishTitle: string | null;
@@ -790,6 +807,22 @@ export type STORIES_PAGE_QUERY_RESULT = {
       } | null;
     } | null;
   } | null;
+  playlistCards: Array<{
+    _key: string;
+    cardTitle: SimplePortableText | null;
+    title: string | null;
+    author: string | null;
+    backgroundColor: "beige" | "blue" | "brown" | "coolGrey" | "darkNavy" | "green" | "lightNavy" | "mediumNavy" | "warmGrey" | "yellow" | null;
+    textColor: "beige" | "blue" | "brown" | "coolGrey" | "darkNavy" | "green" | "lightNavy" | "mediumNavy" | "warmGrey" | "yellow" | null;
+    image: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+    spotifyUrl: string | null;
+  }> | null;
 } | null;
 
 // Source: ../svelte/src/lib/sanity/queries.ts
@@ -1057,7 +1090,7 @@ declare global {
   interface SanityQueries {
     "\n    *[\n        _type == \"blogPost\" &&\n        slug.current == $slug\n    ] [0] {\n        _id,\n        title,\n        \"slug\": slug.current,\n        author,\n        publishedDate,\n        \"categories\": coalesce(categories, []),\n\n        mainMedia {\n            mediaType,\n\n            image {\n                alt,\n                crop,\n                hotspot,\n                asset-> {\n                    _id,\n                    url,\n                    metadata {\n                        dimensions\n                    }\n                }\n            },\n\n            video {\n                asset-> {\n                    _id,\n                    assetId,\n                    playbackId,\n                    filename,\n                    status,\n                    \"aspectRatio\": data.aspect_ratio,\n                    \"duration\": data.duration\n                }\n            }\n        },\n\n        featuredText,\n\n        content[] {\n            ...,\n\n            _type == \"postImage\" => {\n                media {\n        mediaType,\n        image {\n            alt,\n            crop,\n            hotspot,\n            asset-> {\n                _id,\n                url,\n                metadata {\n                    dimensions\n                }\n            }\n        },\n        video {\n            asset-> {\n                _id,\n                assetId,\n                playbackId,\n                filename,\n                status,\n                \"aspectRatio\": data.aspect_ratio,\n                \"duration\": data.duration\n            }\n        }\n    }\n},\n\n            _type == \"imageDiptych\" => {\n                image1 {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                            dimensions\n                        }\n                    }\n                },\n                image2 {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                            dimensions\n                        }\n                    }\n                }\n            }\n        },\n\n        credits,\n\n        relatedStories[]-> {\n            _id,\n            title,\n            \"slug\": slug.current,\n            author,\n            publishedDate,\n            \"categories\": coalesce(categories, []),\n            mainMedia {\n                mediaType,\n\n                image {\n                    alt,\n                    crop,\n                    hotspot,\n                    asset-> {\n                        _id,\n                        url,\n                        metadata {\n                        dimensions\n                        }\n                    }\n                },\n\n                video {\n                    asset-> {\n                        _id,\n                        assetId,\n                        playbackId,\n                        filename,\n                        status,\n                        \"aspectRatio\": data.aspect_ratio,\n                        \"duration\": data.duration\n                    }\n                }\n            }\n        \n        }\n    }\n": BLOG_POST_QUERY_RESULT;
     "\n    *[\n        _type == \"blogPost\" &&\n        defined(slug.current)\n    ] | order(publishedDate desc) {\n        _id,\n        title,\n        \"slug\": slug.current,\n        author,\n        publishedDate,\n        \"categories\": coalesce(categories, []),\n\n                mainMedia {\n            mediaType,\n\n            image {\n                alt,\n                crop,\n                hotspot,\n                asset-> {\n                    _id,\n                    url,\n                    metadata {\n                        dimensions\n                    }\n                }\n            },\n\n            video {\n                asset-> {\n                    _id,\n                    assetId,\n                    playbackId,\n                    filename,\n                    status,\n                    \"aspectRatio\": data.aspect_ratio,\n                    \"duration\": data.duration\n                }\n            }\n        }\n    }\n": BLOG_OVERVIEW_QUERY_RESULT;
-    "\n    *[ _type == \"storiesPage\" ][0] {\n        _id,\n        englishTitle,\n        koreanTitle,\n        topBanner {\n            mediaType,\n\n            image {\n                alt,\n                crop,\n                hotspot,\n                asset-> {\n                    _id,\n                    url,\n                    metadata {\n                        dimensions\n                    }\n                }\n            },\n\n            video {\n                asset-> {\n                    _id,\n                    assetId,\n                    playbackId,\n                    filename,\n                    status,\n                    \"aspectRatio\": data.aspect_ratio,\n                    \"duration\": data.duration\n                }\n            }\n\n        }\n    }\n": STORIES_PAGE_QUERY_RESULT;
+    "\n    *[ _type == \"storiesPage\" ][0] {\n        _id,\n        englishTitle,\n        koreanTitle,\n        topBanner {\n            mediaType,\n\n            image {\n                alt,\n                crop,\n                hotspot,\n                asset-> {\n                    _id,\n                    url,\n                    metadata {\n                        dimensions\n                    }\n                }\n            },\n\n            video {\n                asset-> {\n                    _id,\n                    assetId,\n                    playbackId,\n                    filename,\n                    status,\n                    \"aspectRatio\": data.aspect_ratio,\n                    \"duration\": data.duration\n                }\n            }\n\n        },\n        playlistCards[]{\n\t        _key,\n          cardTitle,\n          title,\n          author,\n\t        backgroundColor,\n\t        textColor,\n\t        image,\n\t        spotifyUrl\n        }\n    }\n": STORIES_PAGE_QUERY_RESULT;
     "\n    *[_type == \"location\"] | order(_createdAt asc) {\n        _id,\n        name,\n        \"slug\": slug.current,\n        locationType,\n\n        images[] {\n            _key,\n            alt,\n            crop,\n            hotspot,\n            asset-> {\n                _id,\n                url,\n                metadata {\n                    dimensions\n                }\n            }\n        },\n\n        description,\n\n        hours[] {\n            _key,\n            days,\n            times,\n        },\n\n        address,\n        mapsUrl,\n        phone,\n        reservationUrl,\n        additionalInformation,\n    }\n": LOCATIONS_PAGE_QUERY_RESULT;
     "\n    *[_type == \"location\"] | order(_createdAt asc) {\n        _id,\n        name,\n        \"slug\": slug.current,\n        locationType,\n        \"addressText\": pt::text(address),\n        mapsUrl,\n    }\n": LOCATIONS_NAV_QUERY_RESULT;
     "\n*[_type == \"location\" && defined(slug.current)] | order(_createdAt asc) {\n      _id,\n      name,\n      \"slug\": slug.current,\n      \"menus\": (menus[]->)[_type == \"menu\" && defined(slug.current)]{\n        _id,\n        title,\n        \"slug\": slug.current,\n        backgroundColor,\n        titleTextColor,\n      }\n    }\n": MENU_NAV_QUERY_RESULT;

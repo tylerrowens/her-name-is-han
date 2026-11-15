@@ -1,3 +1,28 @@
+<script lang="ts">
+	let message = $state('');
+
+	async function handleSubmit(event: SubmitEvent) {
+		event.preventDefault();
+
+		const formElement = event.currentTarget;
+		if (!(formElement instanceof HTMLFormElement)) return;
+
+		try {
+			const response = await fetch('/api/newsletter', {
+				method: 'POST',
+				body: new FormData(formElement)
+			});
+
+			const result = await response.json();
+			message = result.message;
+
+			if (response.ok) formElement.reset();
+		} catch {
+			message = 'Couldn’t submit your signup. Please try again.';
+		}
+	}
+</script>
+
 <section
 	class="flex aspect-[4/2] md-card:aspect-[3.5/4] w-85 md-card:w-[280px] xl:w-[330px] flex-col
 	bg-menu-yellow/60 p-sm-3 text-aegean"
@@ -17,7 +42,7 @@
 		For more stories, dishes, and memories.
 	</h2>
 
-	<form class="mt-auto w-full" method="POST" action="/api/newsletter">
+	<form class="mt-auto w-full" method="POST" action="/api/newsletter" onsubmit={handleSubmit}>
 		<input type="hidden" name="source" value="home" />
 
 		<div class="flex items-end border-b border-aegean">
@@ -35,6 +60,6 @@
 			/>
 			<button class="text-[15px] small-caps shrink-0 py-xs-2" type="submit"> ( Submit ) </button>
 		</div>
-		<p class="sr-only" aria-live="polite"></p>
+		<p role="status" class="pt-xs-3 small-serif">{message}</p>
 	</form>
 </section>
