@@ -64,6 +64,8 @@
 			/>
 			<button class="text-[15px] small-caps shrink-0 py-xs-2" type="submit"> ( Submit ) </button>
 		</div>
-		<p role="status" class="pt-xs-3 small-serif">{message}</p>
+		<p role="status" class={subscribed || !message ? 'sr-only' : 'pt-xs-3 small-serif'}>
+			{message}
+		</p>
 	</form>
 </section>
