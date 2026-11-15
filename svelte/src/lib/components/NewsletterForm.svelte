@@ -1,5 +1,6 @@
 <script lang="ts">
 	let message = $state('');
+	let subscribed = $state(false);
 
 	async function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
@@ -15,6 +16,9 @@
 
 			const result = await response.json();
 			message = result.message;
+			subscribed = response.ok;
+
+			if (subscribed) formElement.reset();
 
 			if (response.ok) formElement.reset();
 		} catch {
@@ -41,13 +45,13 @@
 	>
 		<input type="hidden" name="source" value="footer" />
 		<div class="flex border-b items-end">
-			<label class="sr-only" for="newsletter-email">Email</label>
+			<p role="status" class:sr-only={subscribed || !message}>{message}</p>
 			<input
 				id="newsletter-email"
 				class="nav-serif small-caps min-w-0 appearance-none border-0 ring-0 flex-1 bg-transparent py-xs-2 px-[0px] outline-none placeholder:text-ash"
 				name="email"
 				type="email"
-				placeholder="Email"
+				placeholder={subscribed ? message : 'Email'}
 				autocomplete="email"
 				inputmode="email"
 				required
