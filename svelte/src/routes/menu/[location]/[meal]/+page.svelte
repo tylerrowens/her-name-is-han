@@ -20,7 +20,7 @@
 	</style>
 </svelte:head>
 
-<div class="pt-[143px] sm:pt-[100px]">
+<div class="pt-[140px] sm:pt-[100px]">
 	<div
 		class="relative [--menu-offset:145px] sm:[--menu-offset:100px] [--title-expanded:400px] [--title-collapsed:100px]
 	sm:grid sm:grid-cols-2 sm:grid-rows-[auto_auto]"
