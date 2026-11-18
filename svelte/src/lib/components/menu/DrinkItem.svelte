@@ -21,7 +21,7 @@
 	>
 		<div>
 			<div class="flex flex-row flex-wrap items-baseline gap-xs-3">
-				<p class="body-serif small-caps trim-cap">{item.title}</p>
+				<p class="body-serif small-caps trim-cap text-pretty">{item.title}</p>
 
 				{#if item.koreantitle}
 					<p class="font-korean trim-cap text-[13.4px] relative -top-[2.3px]">{item.koreantitle}</p>

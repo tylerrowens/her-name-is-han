@@ -20,14 +20,16 @@
 		class="grid grid-cols-[1fr_70px] px-[15px] gap-md-3 trim-cap sm:grid-cols-[320px_80px] sm:px-[0px]"
 	>
 		<div class="mb-[6px]">
-			<p class="body-serif small-caps trim-cap mb-[6px]">{item.title}</p>
+			<p class="body-serif small-caps trim-cap mb-[6px] text-pretty">{item.title}</p>
 
 			{#if item.description}
-				<p class="nav-serif trim-cap pt-sm-3 mb-[6px]">{item.description}</p>
+				<p class="nav-serif trim-cap pt-sm-3 mb-[6px] text-pretty">{item.description}</p>
 			{/if}
 		</div>
 
-		<div class="grid justify-self-end grid-cols-[30px_10px_30px] sm:grid-cols-[35px_10px_35px] trim-cap">
+		<div
+			class="grid justify-self-end grid-cols-[30px_10px_30px] sm:grid-cols-[35px_10px_35px] trim-cap"
+		>
 			{#if item.glassPrice != null}
 				<p
 					class="nav-serif tabular-nums oldstyle-nums trim-cap text-center"

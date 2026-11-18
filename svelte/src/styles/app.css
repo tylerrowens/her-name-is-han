@@ -161,11 +161,11 @@ body {
 }
 
 @utility body-serif {
-	@apply font-serif text-[22px] leading-[1] tracking-[1px];
+	@apply font-serif text-[22px] leading-[1.1] tracking-[1px];
 }
 
 @utility nav-serif {
-	@apply font-serif text-[16px] leading-[1.15] tracking-[1.12px];
+	@apply font-serif text-[16px] leading-[1.35] tracking-[.6px];
 }
 
 @utility nav-serif-small {
@@ -173,7 +173,7 @@ body {
 }
 
 @utility small-serif {
-	@apply font-serif text-[14px] leading-[1.22] tracking-[0.4px];
+	@apply font-serif text-[14px] leading-[1.22] tracking-[0.7px];
 }
 
 /* FONT MODIFICATIONS */

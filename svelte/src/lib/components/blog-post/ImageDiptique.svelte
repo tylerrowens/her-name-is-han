@@ -30,7 +30,7 @@
 		</div>
 	</div>
 	{#if block.caption}
-		<div class="pt-sm-3 mx-auto w-full sm:w-[400px] small-serif text-center">
+		<div class="pt-sm-3 mx-auto w-full sm:w-[400px] small-serif text-center text-balance">
 			<PortableText value={block.caption} components={{ marks: { smallCaps: SmallCaps } }} />
 		</div>
 	{/if}

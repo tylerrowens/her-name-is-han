@@ -19,7 +19,7 @@
 				<Media {media} />
 			</div>
 			{#if caption}
-				<div class="pt-sm-3 w-full sm:w-[200px] small-serif text-center">
+				<div class="pt-sm-3 w-full sm:w-[200px] small-serif text-center text-balance">
 					<PortableText value={caption} components={{ marks: { smallCaps: SmallCaps } }} />
 				</div>
 			{/if}

@@ -20,15 +20,15 @@
 		class="grid grid-cols-[1fr_50px] px-[15px] gap-md-3 trim-cap sm:grid-cols-[350px_50px] sm:px-[0px]"
 	>
 		<div>
-			<div class="flex flex-row flex-wrap items-baseline gap-x-xs-3 gap-y-[15px] mb-[6px] ">
-				<p class="body-serif small-caps trim-cap">{item.title}</p>
+			<div class="flex flex-row flex-wrap items-baseline gap-x-xs-3 gap-y-[15px] mb-[6px]">
+				<p class="body-serif small-caps trim-cap text-pretty">{item.title}</p>
 
 				{#if item.koreantitle}
 					<p class="font-korean trim-cap text-[13.4px] relative -top-[2.3px]">{item.koreantitle}</p>
 				{/if}
 			</div>
 			{#if item.description}
-				<p class="nav-serif trim-cap pt-sm-3 mb-[6px]">{item.description}</p>
+				<p class="nav-serif trim-cap pt-sm-3 mb-[6px] text-pretty">{item.description}</p>
 			{/if}
 		</div>
 		<div>
@@ -42,7 +42,7 @@
 			class="grid grid-cols-[1fr_50px] px-[15px] gap-md-3 trim-cap sm:grid-cols-[350px_50px] sm:px-[0px]"
 		>
 			<div>
-				<p class="body-serif small-caps trim-cap pt-sm-3 sm:pl-md-4">{addon.title}</p>
+				<p class="body-serif small-caps trim-cap pt-sm-3 sm:pl-md-4 text-pretty">{addon.title}</p>
 			</div>
 			<div>
 				{#if addon.price != null}

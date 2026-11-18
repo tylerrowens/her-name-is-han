@@ -45,10 +45,10 @@
 		class="flex flex-col pt-[95px] w-full md:max-w-[400px] mx-auto gap-[50px] scroll-mt-[150px]"
 		id="our-story"
 	>
-		<p class="body-serif sm:card-serif s text-center">
+		<p class="body-serif sm:card-serif small-caps text-center">
 			<span>Our story began</span> with the memory of one family’s ordinary days.
 		</p>
-		<p class="nav-serif text-left">
+		<p class="nav-serif text-left text-balance text-pretty">
 			Waking up to the familiar sound of chopping vegetables in the kitchen. The aroma of steaming
 			soup filling the house. Quiet conversations lingering late into the night. Small moments,
 			remembered as warmth. <br /><br /> Today, her story continues to grow. For some, she's a

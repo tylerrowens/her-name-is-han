@@ -35,7 +35,7 @@
 				</div>
 
 				{#if image.caption}
-					<div class="pt-sm-3 small-serif text-center small-caps">
+					<div class="pt-sm-3 small-serif text-center small-caps text-balance">
 						<p>{image.caption}</p>
 					</div>
 				{/if}

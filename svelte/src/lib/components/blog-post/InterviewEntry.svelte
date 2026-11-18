@@ -13,6 +13,8 @@
 <article class="flex flex-col my-lg-5 page-x">
 	<div class="w-full sm:w-[440px] self-center">
 		<p class="body-serif text-center small-caps pb-sm-3">{block.speakerName}</p>
-		<PortableText value={block.dialogue} />
+		<div class="text-pretty">
+			<PortableText value={block.dialogue} />
+		</div>
 	</div>
 </article>

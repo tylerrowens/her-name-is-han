@@ -11,7 +11,7 @@
 </script>
 
 <article class="flex flex-col my-lg-5 nav-serif page-x sm:mx-[0px]">
-	<div class="w-full sm:w-[440px] self-center">
+	<div class="w-full sm:w-[440px] self-center text-pretty">
 		{#if block.text}
 			<PortableText value={block.text} components={{ marks: { smallCaps: SmallCaps } }} />
 		{/if}

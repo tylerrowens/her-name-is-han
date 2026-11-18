@@ -12,12 +12,24 @@
 
 	let { post }: Props = $props();
 
+	let formattedDate = $derived(post.publishedDate?.replaceAll('-', ' ') ?? '');
+
+	const dateParts = $derived.by(() => {
+		if (!post.publishedDate) return null;
+
+		const [year, month, day] = post.publishedDate.split('-');
+
+		if (!year || !month || !day) return null;
+
+		return { year, month, day };
+	});
+
 	const categoryList = $derived(post.categories.join(', ') ?? '');
 </script>
 
 <article class="page-x sm:mx-[0px]">
 	<div class="flex flex-col my-lg-5">
-		<h1 class="self-center about-card-serif sm:large-serif text-center w-full sm:w-[600px]">
+		<h1 class="self-center about-card-serif sm:large-serif text-center w-full sm:w-[700px] text-balance">
 			{post.title}
 		</h1>
 	</div>
@@ -27,23 +39,28 @@
 	>
 		<p class="nav-serif sm:body-serif"><span class="small-caps">By</span> {post.author}</p>
 		<div>
-			<p class="trim-cap">
-				<span class="font-['Fresco_Stamp'] font-normal text-[15.5px] tracking-[1.6px] pr-[.5px]"
-					>2026</span
-				><span
-					class="font-['Sun_Batang_Medium'] font-medium text-[13.1px] pr-[10px] relative -top-[1.8px]"
-					>년</span
-				><span class="font-['Fresco_Stamp'] font-normal text-[15.5px] tracking-[1.6px] pr-[.5px]"
-					>10</span
-				><span
-					class="font-['Sun_Batang_Medium'] font-medium text-[13.1px] pr-[4.5px] relative -top-[1.8px]"
-					>월</span
-				><span class="font-['Fresco_Stamp'] font-normal text-[15.5px] tracking-[1.6px] pr-[.5px]"
-					>31</span
-				><span class="font-['Sun_Batang_Medium'] font-medium text-[13.1px] relative -top-[1.8px]"
-					>일</span
-				>
-			</p>
+			{#if dateParts}
+				<p class="trim-cap">
+					<time datetime={post.publishedDate ?? undefined}>
+						<span class="font-['Fresco_Stamp'] font-normal text-[13.5px] tracking-[1px] pr-[.5px]"
+							>{dateParts.year}
+						</span><span
+							class="font-['Sun_Batang_Medium'] font-medium text-[10.5px] pr-[10px] relative -top-[1.3px]"
+							>년</span
+						><span class="font-['Fresco_Stamp'] font-normal text-[13.5px] tracking-[1px] pr-[.5px]"
+							>{dateParts.month}
+						</span><span
+							class="font-['Sun_Batang_Medium'] font-medium text-[10.5px] pr-[4.5px] relative -top-[1.3px]"
+							>월</span
+						><span class="font-['Fresco_Stamp'] font-normal text-[13.5px] tracking-[1px] pr-[.5px]"
+							>{dateParts.day}
+						</span><span
+							class="font-['Sun_Batang_Medium'] font-medium text-[10.5px] relative -top-[1.3px]"
+							>일</span
+						>
+					</time>
+				</p>
+			{/if}
 			<p class="hidden sm:block small-serif small-caps">{categoryList}</p>
 		</div>
 	</div>
@@ -57,7 +74,7 @@
 
 	{#if post.featuredText}
 		<div class="flex flex-col my-lg-4">
-			<div class="w-full sm:w-[440px] self-center nav-serif">
+			<div class="w-full sm:w-[440px] self-center nav-serif text-pretty">
 				<PortableText value={post.featuredText} components={{ marks: { smallCaps: SmallCaps } }} />
 			</div>
 		</div>

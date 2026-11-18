@@ -33,7 +33,7 @@
 
 		<div>
 			<p
-				class="pt-sm-3 body-serif small-caps trim-cap transition-colors duration-200 ease-out hover:text-ash"
+				class="pt-sm-3 body-serif small-caps trim-cap transition-colors duration-200 ease-out hover:text-ash text-balance"
 			>
 				{post.title}
 			</p>

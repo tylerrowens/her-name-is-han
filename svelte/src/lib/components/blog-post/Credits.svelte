@@ -18,13 +18,13 @@
 				{credit.creditName}
 			</p>
 		{/each}
-		<p class="body-serif text-center w-full sm:w-[500px]">
+		<p class="body-serif text-center w-full md:w-[500px] text-balance">
 			{credits.additionalInfo}
 		</p>
 	</div>
 
 	<div class="flex flex-row items-baseline justify-center gap-sm-3 sm:gap-md-3 pb-md-4">
-		<p class="nav-serif sm:body-serif small-caps">Stories by</p>
+		<p class="nav-serif small-caps">Stories by</p>
 		<p class="body-serif sm:card-serif">Her name is Han.</p>
 	</div>
 </article>

@@ -169,7 +169,24 @@
 	let updatedCart = $state<Omit<ShopifyCart, 'id'> | null>(null);
 	let cart = $derived(updatedCart ?? data.savedCart);
 	let cartOpen = $state(false);
-	let addToCartPending = $state(false);
+	let cartPanel: HTMLDivElement;
+
+	$effect(() => {
+		if (!cartOpen) return;
+
+		function handleOutsidePress(event: PointerEvent) {
+			const target = event.target;
+			if (!(target instanceof Element)) return;
+
+			if (cartPanel?.contains(target)) return;
+			if (target.closest('[data-cart-toggle]')) return;
+
+			cartOpen = false;
+		}
+
+		document.addEventListener('pointerdown', handleOutsidePress);
+		return () => document.removeEventListener('pointerdown', handleOutsidePress);
+	});
 
 	async function addToCart(variantId: string) {
 		const response = await fetch('/api/cart/add', {
@@ -230,6 +247,7 @@
 		class:text-aegean={!heroHeader}
 	>
 		<nav
+			onpointerenter={() => (cartOpen = false)}
 			class="hidden sm:flex justify-self-start flex gap-sm-3 lg:gap-md-3 small-serif small-caps nav-serif-small lg:nav-serif trim-cap items-baseline"
 		>
 			<button
@@ -311,7 +329,12 @@
 			<a href="/about">About</a>
 			<a href="/stories">Stories</a>
 			<a href="/shop">Shop</a>
-			<button type="button" onclick={() => (cartOpen = !cartOpen)}>Cart</button>
+			<button
+				type="button"
+				data-cart-toggle
+				aria-expanded={cartOpen}
+				onclick={() => (cartOpen = !cartOpen)}>Cart</button
+			>
 			<a
 				href="https://order.online/business/18111/store/26902?pickup=true&redirected=true"
 				target="_blank"
@@ -357,14 +380,16 @@
 		{/if}
 	</div>
 
-	<div class="absolute pt-[80px] right-[15px] lg:right-[50px]">
-		<CartDrawer
-			{cart}
-			open={cartOpen}
-			onClose={() => (cartOpen = false)}
-			onRemoveLine={removeCartLine}
-		/>
-	</div>
+	{#if cartOpen}
+		<div bind:this={cartPanel} class="fixed z-51 top-[80px] right-[15px] lg:right-[50px]">
+			<CartDrawer
+				{cart}
+				open={cartOpen}
+				onClose={() => (cartOpen = false)}
+				onRemoveLine={removeCartLine}
+			/>
+		</div>
+	{/if}
 
 	<div class="flex-1" inert={mobileNavOpen}>
 		{@render children()}

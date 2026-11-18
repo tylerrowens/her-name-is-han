@@ -159,7 +159,7 @@
 						</div>
 					</div>
 					<div class="flex flex-col gap-lg-5">
-						<p class="trim-cap body-serif sm:nav-serif">
+						<p class="trim-cap body-serif sm:nav-serif text-balance">
 							{data.product.description}
 						</p>
 						<button

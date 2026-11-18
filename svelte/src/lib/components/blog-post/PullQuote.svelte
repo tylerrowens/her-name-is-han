@@ -10,7 +10,9 @@
 
 <article>
 	<div class="flex flex-col my-xl-5 page-x sm:mx-[0px]">
-		<p class="body-serif sm:about-card-serif text-center self-center w-full sm:w-[800px]">
+		<p
+			class="body-serif sm:about-card-serif text-center self-center w-full sm:w-[800px] text-pretty"
+		>
 			“{block.quote}”
 		</p>
 	</div>

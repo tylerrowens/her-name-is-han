@@ -14,7 +14,7 @@
 	{#if block.instructions?.length}
 		<ol class="w-full sm:w-[440px] self-center nav-serif list-decimal pl-[1.5em]">
 			{#each block.instructions as instruction}
-				<li>{instruction}</li>
+				<li class="text-pretty">{instruction}</li>
 			{/each}
 		</ol>
 	{/if}

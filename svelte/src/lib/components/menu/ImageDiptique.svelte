@@ -34,7 +34,7 @@
 						/>
 					</div>
 					{#if leftImage.caption}
-						<div class="pt-sm-3 small-serif text-center small-caps">
+						<div class="pt-sm-3 small-serif text-center small-caps text-balance">
 							<p>{leftImage.caption}</p>
 						</div>
 					{/if}
@@ -48,7 +48,7 @@
 						/>
 					</div>
 					{#if rightImage.caption}
-						<div class="pt-sm-3 small-serif text-center small-caps">
+						<div class="pt-sm-3 small-serif text-center small-caps text-balance">
 							<p>{rightImage.caption}</p>
 						</div>
 					{/if}

@@ -19,7 +19,9 @@
 		<div class="flex flex-col gap-md-4 sm:justify-between">
 			<p class="trim-cap body-serif sm:card-serif">{location.name}</p>
 			{#if location.description}
-				<div class="trim-cap nav-serif"><PortableText value={location.description} /></div>
+				<div class="trim-cap nav-serif text-pretty">
+					<PortableText value={location.description} />
+				</div>
 			{/if}
 			<div class="grid text-center sm:text-left sm:grid-cols-[1fr_1fr] nav-serif">
 				{#if location.address}

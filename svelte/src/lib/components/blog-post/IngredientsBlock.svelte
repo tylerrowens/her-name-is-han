@@ -14,7 +14,7 @@
 	{#if block.ingredients?.length}
 		<ol class="w-full sm:w-[440px] self-center nav-serif">
 			{#each block.ingredients as ingredient}
-				<li>{ingredient}</li>
+				<li class="text-pretty">{ingredient}</li>
 			{/each}
 		</ol>
 	{/if}

@@ -38,7 +38,7 @@
 				{product.title}
 			</p>
 			<div class="pt-sm-3 small-serif">
-				<p>{product.description}</p>
+				<p class="text-balance">{product.description}</p>
 				<div class="pt-md-4 body-serif trim-cap">
 					{formattedPrice}
 				</div>
