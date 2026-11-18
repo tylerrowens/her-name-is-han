@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../styles/app.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '$lib/assets/favicon.jpg';
 	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 	import LocationsDropDown from '$lib/components/nav/LocationsDropDown.svelte';
 	import MenuDropDown from '$lib/components/nav/MenuDropDown.svelte';
@@ -234,7 +234,7 @@
 </script>
 
 <svelte:body onmouseleave={() => (openDropdown = null)} />
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<svelte:head><link rel="icon" type="image/jpeg" href={favicon} /></svelte:head>
 <div class="flex min-h-dvh flex-col relative">
 	<div
 		class="pointer-events-none fixed inset-x-0 top-0 z-30 h-[60px] bg-jade-white transition-opacity duration-400 linear"
