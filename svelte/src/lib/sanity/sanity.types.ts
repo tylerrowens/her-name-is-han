@@ -15,6 +15,40 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type SimpleQuoteCard = {
+  _type: "simpleQuoteCard";
+  quote?: string;
+  author?: string;
+  articleLink?: string;
+  backgroundColor?: "brown" | "beige" | "coolGrey" | "warmGrey" | "lightNavy" | "mediumNavy" | "darkNavy" | "yellow" | "green" | "blue";
+  textColor?: "brown" | "beige" | "coolGrey" | "warmGrey" | "lightNavy" | "mediumNavy" | "darkNavy" | "yellow" | "green" | "blue";
+};
+
+export type FullQuoteCard = {
+  _type: "fullQuoteCard";
+  source?: string;
+  publishedDate?: string;
+  bigQuote?: string;
+  smallQuote?: string;
+  articleLink?: string;
+  backgroundColor?: "brown" | "beige" | "coolGrey" | "warmGrey" | "lightNavy" | "mediumNavy" | "darkNavy" | "yellow" | "green" | "blue";
+  textColor?: "brown" | "beige" | "coolGrey" | "warmGrey" | "lightNavy" | "mediumNavy" | "darkNavy" | "yellow" | "green" | "blue";
+};
+
+export type DialogueCard = {
+  _type: "dialogueCard";
+  backgroundColor?: "brown" | "beige" | "coolGrey" | "warmGrey" | "lightNavy" | "mediumNavy" | "darkNavy" | "yellow" | "green" | "blue";
+  textColor?: "brown" | "beige" | "coolGrey" | "warmGrey" | "lightNavy" | "mediumNavy" | "darkNavy" | "yellow" | "green" | "blue";
+  introText?: string;
+  entries?: Array<{
+    name?: string;
+    quote?: string;
+    _type: "dialogueEntry";
+    _key: string;
+  }>;
+  outroText?: string;
+};
+
 export type MenuImageDiptych = {
   _type: "menuImageDiptych";
   leftImage?: MenuPhoto;
@@ -229,20 +263,56 @@ export type CreditsBlock = {
   additionalInfo?: string;
 };
 
-export type Menu = {
+export type AboutPage = {
   _id: string;
-  _type: "menu";
+  _type: "aboutPage";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  internalTitle?: string;
-  title?: string;
-  slug?: Slug;
-  backgroundColor?: "brown" | "beige" | "coolGrey" | "warmGrey" | "lightNavy" | "mediumNavy" | "darkNavy" | "yellow" | "green" | "blue";
-  titleTextColor?: "white" | "yellow";
-  sections?: Array<{
+  headline?: string;
+  story?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
     _key: string;
-  } & MenuSection>;
+  }>;
+  cards?: Array<{
+    _key: string;
+  } & FullQuoteCard | {
+    _key: string;
+  } & SimpleQuoteCard | {
+    _key: string;
+  } & DialogueCard>;
+};
+
+export type NewsletterCard = {
+  _id: string;
+  _type: "newsletterCard";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  headline?: string;
+  backgroundColor?: "brown" | "beige" | "coolGrey" | "warmGrey" | "lightNavy" | "mediumNavy" | "darkNavy" | "yellow" | "green" | "blue";
+  textColor?: "brown" | "beige" | "coolGrey" | "warmGrey" | "lightNavy" | "mediumNavy" | "darkNavy" | "yellow" | "green" | "blue";
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type SanityImageCrop = {
@@ -259,6 +329,22 @@ export type SanityImageHotspot = {
   y?: number;
   height?: number;
   width?: number;
+};
+
+export type Menu = {
+  _id: string;
+  _type: "menu";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  internalTitle?: string;
+  title?: string;
+  slug?: Slug;
+  backgroundColor?: "brown" | "beige" | "coolGrey" | "warmGrey" | "lightNavy" | "mediumNavy" | "darkNavy" | "yellow" | "green" | "blue";
+  titleTextColor?: "white" | "yellow";
+  sections?: Array<{
+    _key: string;
+  } & MenuSection>;
 };
 
 export type Slug = {
@@ -579,7 +665,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = MenuImageDiptych | MenuImage | SanityImageAssetReference | MenuPhoto | WineItem | WineSubsection | WineSection | MenuAddon | DrinkItem | MenuItem | SimpleDrinkSection | FoodSection | MenuSection | MainMedia | SimplePortableText | TextBlock | PullQuote | PostImage | InterviewEntry | InstructionsBlock | IngredientsBlock | ImageDiptych | CreditsBlock | Menu | SanityImageCrop | SanityImageHotspot | Slug | MenuReference | Location | StoriesPage | BlogPostReference | BlogPost | MuxVideoAssetReference | MuxVideo | MuxVideoAsset | MuxAssetData | MuxMasterFile | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = SimpleQuoteCard | FullQuoteCard | DialogueCard | MenuImageDiptych | MenuImage | SanityImageAssetReference | MenuPhoto | WineItem | WineSubsection | WineSection | MenuAddon | DrinkItem | MenuItem | SimpleDrinkSection | FoodSection | MenuSection | MainMedia | SimplePortableText | TextBlock | PullQuote | PostImage | InterviewEntry | InstructionsBlock | IngredientsBlock | ImageDiptych | CreditsBlock | AboutPage | NewsletterCard | SanityImageCrop | SanityImageHotspot | Menu | Slug | MenuReference | Location | StoriesPage | BlogPostReference | BlogPost | MuxVideoAssetReference | MuxVideo | MuxVideoAsset | MuxAssetData | MuxMasterFile | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 
 // Source: ../svelte/src/lib/sanity/queries.ts
 // Variable: BLOG_POST_QUERY

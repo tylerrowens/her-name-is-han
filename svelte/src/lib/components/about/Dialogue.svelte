@@ -4,9 +4,9 @@
 
 <article class="w-full">
 	<div
-		class="aspect-[3/4] w-full bg-location-nav flex flex-col overflow-hidden justify-between items-center px-[50px] py-[30px] nav-serif sm:body-serif"
+		class="aspect-[3/4] w-full bg-location-nav flex flex-col overflow-hidden justify-between items-center px-[50px] py-[30px] nav-serif text-pretty"
 	>
-	<p>★★★★★</p>
+	<p class="small-serif">★★★★★</p>
 		<div>
 			<p class="small-caps text-center">
 				( A Saturday night at Her name is Han. The weather outside is cold, but inside is warm and

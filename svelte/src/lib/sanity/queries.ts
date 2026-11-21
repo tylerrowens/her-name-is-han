@@ -283,6 +283,49 @@ export const LOCATIONS_NAV_QUERY = defineQuery(`
     }
 `);
 
+export const NEWSLETTER_CARD_QUERY = `*[_type == "newsletterCard"][0]{
+  headline,
+  backgroundColor,
+  textColor,
+  image
+}`;
+
+export const ABOUT_PAGE_QUERY = `*[_type == "aboutPage"][0]{
+  _id,
+  headline,
+  story,
+  cards[]{
+    _key,
+    _type,
+    backgroundColor,
+    textColor,
+
+    _type == "fullQuoteCard" => {
+      source,
+      publishedDate,
+      bigQuote,
+      smallQuote,
+      articleLink
+    },
+
+    _type == "simpleQuoteCard" => {
+      quote,
+      author,
+      articleLink
+    },
+
+    _type == "dialogueCard" => {
+      introText,
+      entries[]{
+        _key,
+        name,
+        quote
+      },
+      outroText
+    }
+  }
+}`;
+
 export const MENU_NAV_QUERY = defineQuery(`
 *[_type == "location" && defined(slug.current)] | order(_createdAt asc) {
       _id,

@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import type { PageData } from './$types';
 	import HomeNewsletterForm from '$lib/components/HomeNewsletterForm.svelte';
 
+	let { data }: { data: PageData } = $props();
 	let now = $state<Date | null>(null);
 
 	onMount(() => {
@@ -42,18 +44,20 @@
 <section
 	class="grid relative h-[100dvh] w-full grid-rows-[auto_minmax(0,1fr)] gap-[30px] pt-[100px] pb-[30px]"
 >
-	<div
-		onpointerenter={startWiggle}
-		onanimationend={(event) => {
-			if (event.target === event.currentTarget) isWiggling = false;
-		}}
-		class="absolute z-40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 rotate-[-3.5deg]
+	{#if data.newsletterCard}
+		<div
+			onpointerenter={startWiggle}
+			onanimationend={(event) => {
+				if (event.target === event.currentTarget) isWiggling = false;
+			}}
+			class="absolute z-40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 rotate-[-3.5deg]
 		md-card:top-auto md-card:right-[50px] md-card:left-auto md-card:translate-x-0 md-card:translate-y-0 md-card:pt-[80px] rotate-[-3.5deg] hover:rotate-[5deg]
-       transition-transform duration-[300ms]
+       transition-transform duration-[700ms]
        ease-[cubic-bezier(0.22,1,0.36,1)]"
-	>
-		<HomeNewsletterForm />
-	</div>
+		>
+			<HomeNewsletterForm card={data.newsletterCard} />
+		</div>
+	{/if}
 	<div class="flex flex-col gap-[10px] justify-self-center text-center">
 		{#if now}
 			<p class="trim-cap">

@@ -241,113 +241,115 @@
 		class:opacity-0={heroHeader}
 		class:opacity-100={!heroHeader}
 	></div>
-	<header
-		class="page-x fixed inset-x-0 top-0 z-50 grid h-[60px] w-full grid-cols-[1fr_auto_1fr] content-center py-sm-3 transition-colors duration-400 linear [view-transition-name:site-nav] items-baseline"
-		class:text-jade-white={heroHeader}
-		class:text-aegean={!heroHeader}
-	>
-		<nav
-			onpointerenter={() => (cartOpen = false)}
-			class="hidden sm:flex justify-self-start flex gap-sm-3 lg:gap-md-3 small-serif small-caps nav-serif-small lg:nav-serif trim-cap items-baseline"
+	<div class="fixed inset-x-0 top-0 z-50">
+		<header
+			class="page-x inset-x-0 z-50 grid h-[60px] w-full grid-cols-[1fr_auto_1fr] content-center py-sm-3 transition-colors duration-400 linear [view-transition-name:site-nav] items-baseline"
+			class:text-jade-white={heroHeader}
+			class:text-aegean={!heroHeader}
 		>
-			<button
-				type="button"
-				aria-expanded={openDropdown === 'menu'}
-				onpointerenter={(event) => {
-					if (event.pointerType === 'mouse') openDropdown = 'menu';
-				}}
-				onclick={() => (openDropdown = 'menu')}
+			<nav
+				onpointerenter={() => (cartOpen = false)}
+				class="hidden sm:flex justify-self-start flex gap-sm-3 lg:gap-md-3 small-serif small-caps nav-serif-small lg:nav-serif trim-cap items-baseline"
 			>
-				Menu</button
-			>
-			<button
-				type="button"
-				aria-expanded={openDropdown === 'locations'}
-				onpointerenter={(event) => {
-					if (event.pointerType === 'mouse') openDropdown = 'locations';
-				}}
-				onclick={() => (openDropdown = 'locations')}>Locations</button
-			>
-			<button
-				type="button"
-				aria-expanded={openDropdown === 'reservations'}
-				onpointerenter={(event) => {
-					if (event.pointerType === 'mouse') openDropdown = 'reservations';
-				}}
-				onclick={() => (openDropdown = 'reservations')}>Reservations &#x2197</button
-			>
-		</nav>
-		<nav class="sm:hidden flex justify-self-start items-end nav-serif small-caps trim-cap">
-			<button
-				type="button"
-				aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
-				aria-expanded={mobileNavOpen}
-				aria-controls="mobile-navigation"
-				onclick={() => (mobileNavOpen = !mobileNavOpen)}
-			>
-				{#if mobileNavOpen}
-					<svg
-						class="block h-[18px] w-auto"
-						width="16"
-						height="15"
-						viewBox="0 0 16 15"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="1.3"
-						aria-hidden="true"
-					>
-						<path d="M1 0.5L15 14.5" />
-						<path d="M1 14.5L15 0.5" />
-					</svg>
-				{:else}
-					<svg
-						class="block h-[18px] w-auto"
-						width="20"
-						height="15"
-						viewBox="0 0 20 15"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="1.3"
-						aria-hidden="true"
-					>
-						<path d="M0 0.65H20" />
-						<path d="M0 7.5H20" />
-						<path d="M0 14.35H20" />
-					</svg>
-				{/if}
-			</button>
-		</nav>
-		<a
-			href="/"
-			class="flex justify-self-start items-end body-serif lg:card-serif justify-center trim-cap"
-		>
-			Her name is Han.</a
-		>
-		<nav
-			class="hidden sm:flex justify-self-end gap-sm-3 lg:gap-md-3 nav-serif-small lg:nav-serif small-caps trim-cap items-baseline"
-		>
-			<a href="/about">About</a>
-			<a href="/stories">Stories</a>
-			<a href="/shop">Shop</a>
-			<button
-				type="button"
-				data-cart-toggle
-				aria-expanded={cartOpen}
-				onclick={() => (cartOpen = !cartOpen)}>Cart</button
-			>
+				<button
+					type="button"
+					aria-expanded={openDropdown === 'menu'}
+					onpointerenter={(event) => {
+						if (event.pointerType === 'mouse') openDropdown = 'menu';
+					}}
+					onclick={() => (openDropdown = 'menu')}
+				>
+					Menu</button
+				>
+				<button
+					type="button"
+					aria-expanded={openDropdown === 'locations'}
+					onpointerenter={(event) => {
+						if (event.pointerType === 'mouse') openDropdown = 'locations';
+					}}
+					onclick={() => (openDropdown = 'locations')}>Locations</button
+				>
+				<button
+					type="button"
+					aria-expanded={openDropdown === 'reservations'}
+					onpointerenter={(event) => {
+						if (event.pointerType === 'mouse') openDropdown = 'reservations';
+					}}
+					onclick={() => (openDropdown = 'reservations')}>Reservations &#x2197</button
+				>
+			</nav>
+			<nav class="sm:hidden flex justify-self-start items-end nav-serif small-caps trim-cap">
+				<button
+					type="button"
+					aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
+					aria-expanded={mobileNavOpen}
+					aria-controls="mobile-navigation"
+					onclick={() => (mobileNavOpen = !mobileNavOpen)}
+				>
+					{#if mobileNavOpen}
+						<svg
+							class="block h-[18px] w-auto"
+							width="16"
+							height="15"
+							viewBox="0 0 16 15"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.3"
+							aria-hidden="true"
+						>
+							<path d="M1 0.5L15 14.5" />
+							<path d="M1 14.5L15 0.5" />
+						</svg>
+					{:else}
+						<svg
+							class="block h-[18px] w-auto"
+							width="20"
+							height="15"
+							viewBox="0 0 20 15"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.3"
+							aria-hidden="true"
+						>
+							<path d="M0 0.65H20" />
+							<path d="M0 7.5H20" />
+							<path d="M0 14.35H20" />
+						</svg>
+					{/if}
+				</button>
+			</nav>
 			<a
-				href="https://order.online/business/18111/store/26902?pickup=true&redirected=true"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="inline-flex w-[190px] sm:w-[120px] aspect-[145/33] pb-[1px] items-center justify-center gap-1
-		rounded-[3px] bg-aegean text-jade-white leading-none trim-cap"
-				><span class="inline-flex items-center gap-1"> Order &#x2197; </span></a
+				href="/"
+				class="flex justify-self-start items-end body-serif lg:card-serif justify-center trim-cap"
 			>
-		</nav>
-		<nav class="sm:hidden flex justify-self-end items-end nav-serif small-caps trim-cap">
-			<button>Cart</button>
-		</nav>
-	</header>
+				Her name is Han.</a
+			>
+			<nav
+				class="hidden sm:flex justify-self-end gap-sm-3 lg:gap-md-3 nav-serif-small lg:nav-serif small-caps trim-cap items-baseline"
+			>
+				<a href="/about">About</a>
+				<a href="/stories">Stories</a>
+				<a href="/shop">Shop</a>
+				<button
+					type="button"
+					data-cart-toggle
+					aria-expanded={cartOpen}
+					onclick={() => (cartOpen = !cartOpen)}>Cart</button
+				>
+				<a
+					href="https://order.online/business/18111/store/26902?pickup=true&redirected=true"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex w-[190px] sm:w-[120px] aspect-[145/33] pb-[1px] items-center justify-center gap-1
+		rounded-[3px] bg-aegean text-jade-white leading-none trim-cap"
+					><span class="inline-flex items-center gap-1"> Order &#x2197; </span></a
+				>
+			</nav>
+			<nav class="sm:hidden flex justify-self-end items-end nav-serif small-caps trim-cap">
+				<button>Cart</button>
+			</nav>
+		</header>
+	</div>
 
 	{#if mobileNavOpen}
 		<div class="w-full h-full">

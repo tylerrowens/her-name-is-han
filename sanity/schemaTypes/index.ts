@@ -2,6 +2,8 @@ import {blogPost} from './documents/blogPost'
 import {storiesPage} from './documents/storiesPage'
 import {location} from './documents/location'
 import {menu} from './documents/menu'
+import {newsletterCard} from './documents/newsletterCard'
+import {aboutPage} from './documents/aboutPage'
 
 import {creditsBlock} from './objects/creditsBlock'
 import {imageDiptych} from './objects/imageDiptych'
@@ -24,14 +26,19 @@ import {wineSubsection} from './objects/menu/wineSubsection'
 import {wineItem} from './objects/menu/wineItem'
 import {menuPhoto} from './objects/menu/menuPhoto'
 import {menuImage} from './objects/menu/menuImage'
-import { drinkItem } from './objects/menu/drinkItem'
+import {drinkItem} from './objects/menu/drinkItem'
 import {menuImageDiptych} from './objects/menu/menuImageDiptych'
+import {dialogueCard} from './objects/dialogueCard'
+import {fullQuoteCard} from './objects/fullQuoteCard'
+import {simpleQuoteCard} from './objects/simpleQuoteCard'
 
 export const schemaTypes = [
   blogPost,
   storiesPage,
   location,
   menu,
+  newsletterCard,
+  aboutPage,
   creditsBlock,
   imageDiptych,
   ingredientsBlock,
@@ -54,4 +61,7 @@ export const schemaTypes = [
   menuPhoto,
   menuImage,
   menuImageDiptych,
+  dialogueCard,
+  fullQuoteCard,
+  simpleQuoteCard
 ]

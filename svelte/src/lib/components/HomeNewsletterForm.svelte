@@ -1,4 +1,57 @@
 <script lang="ts">
+	import { urlFor } from '$lib/sanity/image';
+
+	type Color =
+		| 'brown'
+		| 'beige'
+		| 'coolGrey'
+		| 'warmGrey'
+		| 'lightNavy'
+		| 'mediumNavy'
+		| 'darkNavy'
+		| 'yellow'
+		| 'green'
+		| 'blue';
+
+	type NewsletterCard = {
+		headline: string;
+		backgroundColor: Color;
+		textColor: Color;
+		image: Parameters<typeof urlFor>[0] | null;
+	};
+
+	let { card }: { card: NewsletterCard } = $props();
+
+	// Match these utility names to the colors defined in your Tailwind setup.
+	const backgroundClasses: Record<Color, string> = {
+		brown: 'bg-hnih-brown/60',
+		beige: 'bg-hnih-beige/60',
+		coolGrey: 'bg-hnih-cool-grey/60',
+		warmGrey: 'bg-hnih-warm-grey/60',
+		lightNavy: 'bg-hnih-light-navy/60',
+		mediumNavy: 'bg-hnih-medium-navy/60',
+		darkNavy: 'bg-hnih-dark-navy/60',
+		yellow: 'bg-hnih-yellow/60',
+		green: 'bg-hnih-green/60',
+		blue: 'bg-hnih-blue/60'
+	};
+
+	const textClasses: Record<Color, string> = {
+		brown: 'text-hnih-brown',
+		beige: 'text-hnih-beige',
+		coolGrey: 'text-hnih-cool-grey',
+		warmGrey: 'text-hnih-warm-grey',
+		lightNavy: 'text-hnih-light-navy',
+		mediumNavy: 'text-hnih-medium-navy',
+		darkNavy: 'text-hnih-dark-navy',
+		yellow: 'text-hnih-yellow',
+		green: 'text-hnih-green',
+		blue: 'text-hnih-blue'
+	};
+
+	let backgroundClass = $derived(backgroundClasses[card.backgroundColor]);
+	let textClass = $derived(textClasses[card.textColor]);
+
 	let message = $state('');
 	let subscribed = $state(false);
 
@@ -28,22 +81,20 @@
 </script>
 
 <section
-	class="flex aspect-[4/2] md-card:aspect-[3.5/4] w-85 md-card:w-[280px] xl:w-[330px] flex-col
-	bg-menu-yellow/60 p-sm-3 text-aegean"
+	class="flex aspect-[4/2] md-card:aspect-[1/1] w-85 md-card:w-[280px] flex-col
+	p-sm-3 {backgroundClass} {textClass}"
 	aria-labelledby="newsletter-heading"
 >
-	<div class="flex items-center justify-between">
-		<p class="small-serif trim-cap small-caps mb-sm-3">Newsletter</p>
-	</div>
-
-	<img
-		src="/images/corn.jpg"
-		alt="Sweet corn bingsu"
-		class="hidden md-card:block sm:aspect-[16/10] w-full object-cover"
-	/>
+	{#if card.image}
+		<img
+			src={urlFor(card.image).width(800).url()}
+			alt=""
+			class="hidden md-card:block sm:aspect-[16/9] w-full object-cover"
+		/>
+	{/if}
 
 	<h2 id="newsletter-heading" class="body-serif trim-cap mt-sm-3">
-		For more stories, dishes, and memories.
+		{card.headline}
 	</h2>
 
 	<form class="mt-auto w-full" method="POST" action="/api/newsletter" onsubmit={handleSubmit}>
