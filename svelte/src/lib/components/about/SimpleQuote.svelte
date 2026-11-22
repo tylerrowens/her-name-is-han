@@ -34,10 +34,10 @@
 	>
 		<div class="my-auto text-center">
 			<p class="w-[95%] sm:w-[70%] mx-auto">
-				{card.quote}
+				“{card.quote}”
 			</p>
 			{#if card.author}
-				<p class="mb-4 mx-auto pt-[30px]">by {card.author}</p>
+				<p class="mb-4 mx-auto pt-[30px]">—{card.author}</p>
 			{/if}
 		</div>
 		{#if card.articleLink}

@@ -12,6 +12,7 @@ export async function load() {
 			edges {
 				node {
 					id
+          availableForSale
 					title
 					handle
           description

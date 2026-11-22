@@ -19,6 +19,24 @@
 			behavior: 'smooth'
 		});
 	}
+
+	function cardTransform(key: string, typeIndex: number, type: string) {
+		let hash = 0;
+
+		for (const character of key) {
+			hash = (Math.imul(31, hash) + character.charCodeAt(0)) >>> 0;
+		}
+
+		const tilt = 2 + (hash % 51) / 10; // 2–7°
+		const x = ((hash >>> 8) % 121) - 60; // -60px to 60px
+		const yJitter = ((hash >>> 16) % 81) - 40; // -40px to 40px
+		const y = yJitter + (type === 'simpleQuoteCard' ? 90 : 0);
+		const direction = typeIndex % 2 === 0 ? -1 : 1;
+
+		return `translate(clamp(-5vw, ${x}px, 5vw), ${y}px) rotate(${direction * tilt}deg)`;
+	}
+
+	let cards = $derived(data.aboutPage.cards ?? []);
 </script>
 
 {#if data.aboutPage}
@@ -73,34 +91,38 @@
 	</section>
 
 	<div class="overflow-x-clip" id="press">
-		<section class="page-x w-full md:max-w-[1050px] mt-[135px] mx-auto">
-			{#each data.aboutPage.cards ?? [] as card, index (card._key)}
-				{#if card._type === 'fullQuoteCard'}
-					<div
-						class="sticky flex justify-self-center {index % 2 === 0
-							? 'rotate-[-3.69deg]'
-							: 'rotate-[3.69deg]'}
-			md-card:w-[85%] opacity-95 mb-[200px] w-full top-[120px]"
-					>
-						<FullQuote {card} />
-					</div>
-				{:else if card._type === 'simpleQuoteCard'}
-					<div
-						class="sticky flex justify-self-center md-card:justify-self-start
-			{index % 2 === 0 ? 'rotate-[-1.69deg]' : 'rotate-[1.69deg]'} w-full md-card:w-[65%] opacity-95
-			mb-[200px] top-[160px]"
-					>
-						<SimpleQuote {card} />
-					</div>
-				{:else if card._type === 'dialogueCard'}
-					<div
-						class="sticky flex justify-self-center md-card:justify-self-end
-			{index % 2 === 0 ? 'rotate-[-7.84deg]' : 'rotate-[7.84deg]'} w-full md-card:w-[49%] opacity-95
-			mb-[200px] top-[150px]"
-					>
-						<Dialogue {card} />
-					</div>
-				{/if}
+		<section
+			class="page-x w-full md:max-w-[1050px] mt-[135px] mx-auto
+		flex flex-col gap-[200px] pb-[50px] sm:pb-[250px]"
+		>
+			{#each cards as card, index (card._key)}
+				{@const typeIndex = cards
+					.slice(0, index)
+					.filter((previous: { _type: string }) => previous._type === card._type).length}
+				<div class="sticky top-[120px] h-[min(650px,calc(100dvh-140px))]">
+					{#if card._type === 'fullQuoteCard'}
+						<div
+							class="w-full md-card:w-[85%] mx-auto"
+							style:transform={cardTransform(card._key, typeIndex, card._type)}
+						>
+							<FullQuote {card} />
+						</div>
+					{:else if card._type === 'simpleQuoteCard'}
+						<div
+							class="w-full md-card:w-[65%] md-card:mr-auto"
+							style:transform={cardTransform(card._key, typeIndex, card._type)}
+						>
+							<SimpleQuote {card} />
+						</div>
+					{:else if card._type === 'dialogueCard'}
+						<div
+							class="w-full md-card:w-[49%] md-card:ml-auto"
+							style:transform={cardTransform(card._key, typeIndex, card._type)}
+						>
+							<Dialogue {card} />
+						</div>
+					{/if}
+				</div>
 			{/each}
 		</section>
 	</div>

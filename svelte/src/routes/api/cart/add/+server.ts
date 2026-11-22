@@ -1,7 +1,7 @@
-import { json } from "@sveltejs/kit";
-import type { RequestHandler } from "../../$types";
-import type { CartCreateResponse, CartLinesAddResponse } from "$lib/types/cart";
-import { shopifyFetch } from "$lib/server/shopify";
+import { json } from '@sveltejs/kit';
+import type { RequestHandler } from '../../$types';
+import type { CartCreateResponse, CartLinesAddResponse } from '$lib/types/cart';
+import { shopifyFetch } from '$lib/server/shopify';
 
 const createCartMutation = `
     mutation cartCreate($input: CartInput!) {
@@ -99,102 +99,125 @@ const addCartLinesMutation = `
     }
 `;
 
+const checkCartQuery = `
+	query CheckCart($id: ID!) {
+		cart(id: $id) {
+			id
+		}
+	}
+`;
+
+type CartCheckResponse = {
+	cart: { id: string } | null;
+};
+
 export const POST: RequestHandler = async ({ request, cookies }) => {
-    const { variantId } = (await request.json()) as {
-        variantId?: string;
-    };
+	const { variantId } = (await request.json()) as {
+		variantId?: string;
+	};
 
-    if (!variantId) {
-        return json (
-            {
-                error: 'Missing variantId'
-            },
-            { status: 400 }
-        );
-    }
+	if (!variantId) {
+		return json(
+			{
+				error: 'Missing variantId'
+			},
+			{ status: 400 }
+		);
+	}
 
-    const existingCartId = cookies.get('cartId');
+	let existingCartId = cookies.get('cartId');
 
-    if (existingCartId) {
-        const data = (await shopifyFetch(addCartLinesMutation, {
-            cartId: existingCartId,
-            lines: [
-                {
-                    merchandiseId: variantId,
-                    quantity: 1
-                }
-            ]
-        })) as CartLinesAddResponse;
+	if (existingCartId) {
+		const result = (await shopifyFetch(checkCartQuery, {
+			id: existingCartId
+		})) as CartCheckResponse;
 
-        const userErrors = data.cartLinesAdd.userErrors;
+		if (!result.cart) {
+			cookies.delete('cartId', { path: '/' });
+			existingCartId = undefined;
+		}
+	}
 
-        if (userErrors.length > 0) {
-            return json(
-                {
-                    error: 'Shopify cartLinesAdd user error',
-                    userErrors
-                },
-                { status: 400}
-            );
-        }
+	if (existingCartId) {
+		const data = (await shopifyFetch(addCartLinesMutation, {
+			cartId: existingCartId,
+			lines: [
+				{
+					merchandiseId: variantId,
+					quantity: 1
+				}
+			]
+		})) as CartLinesAddResponse;
 
-        const cart = data.cartLinesAdd.cart;
+		const userErrors = data.cartLinesAdd.userErrors;
 
-        if (!cart) {
-            return json(
-                {
-                    error: 'Shopify did not return a cart'
-                },
-                { status: 500 }
-            );
-        }
+		if (userErrors.length > 0) {
+			return json(
+				{
+					error: 'Shopify cartLinesAdd user error',
+					userErrors
+				},
+				{ status: 400 }
+			);
+		}
 
-        return json({ cart });
-    }
+		const cart = data.cartLinesAdd.cart;
 
-    const data = (await shopifyFetch(createCartMutation, {
-        input: {
-            lines: [
-                {
-                    merchandiseId: variantId,
-                    quantity: 1
-                }
-            ]
-        }
-    })) as CartCreateResponse;
+		if (!cart) {
+			return json(
+				{
+					error: 'Shopify did not return a cart'
+				},
+				{ status: 500 }
+			);
+		}
 
-    const userErrors = data.cartCreate.userErrors;
+		return json({ cart });
+	}
 
-    if (userErrors.length > 0) {
-        return json(
-            {
-                error: 'Shopify cartCreate user error',
-                userErrors
-            },
-            { status: 400 }
-        );
-    }
+	const data = (await shopifyFetch(createCartMutation, {
+		input: {
+			lines: [
+				{
+					merchandiseId: variantId,
+					quantity: 1
+				}
+			]
+		}
+	})) as CartCreateResponse;
 
-    const cart = data.cartCreate.cart;
+	const userErrors = data.cartCreate.userErrors;
 
-    if (!cart) {
-        return json(
-            {
-                error: 'Shopify did not return a cart'
-            },
-            { status: 500 }
-        );
-    }
+	if (userErrors.length > 0) {
+		return json(
+			{
+				error: 'Shopify cartCreate user error',
+				userErrors
+			},
+			{ status: 400 }
+		);
+	}
 
-    cookies.set('cartId', cart.id, {
-        path: '/',
-        httpOnly: true,
-        sameSite: 'lax',
-        secure: false,
-        maxAge: 60 * 60 * 24 * 30
-    });
+	const cart = data.cartCreate.cart;
 
-    return json({
-        cart
-    });
+	if (!cart) {
+		return json(
+			{
+				error: 'Shopify did not return a cart'
+			},
+			{ status: 500 }
+		);
+	}
+
+	cookies.set('cartId', cart.id, {
+		path: '/',
+		httpOnly: true,
+		sameSite: 'lax',
+		secure: false,
+		maxAge: 60 * 60 * 24 * 30
+	});
+
+	return json({
+		cart
+	});
 };

@@ -111,6 +111,10 @@
 			addToCartPending = false;
 		}
 	}
+
+	let allVariantsSoldOut = $derived(
+		variants.length > 0 && variants.every((variant) => !variant.availableForSale)
+	);
 </script>
 
 <section class="page-x pt-[135px]">
@@ -144,14 +148,13 @@
 									{#each option.values as value}
 										<button
 											type="button"
-											class="body-serif sm:nav-serif small-caps transition-colors duration-200 ease-out hover:text-ash"
-											aria-label={value}
-											aria-pressed={isOptionSelected(option.name, value)}
-											onclick={() => selectOption(option.name, value)}
+											class="self-start trim-cap body-serif sm:nav-serif underline underline-offset-4 small-caps
+									transition-colors duration-200 ease-out
+									{allVariantsSoldOut ? 'text-ash cursor-not-allowed' : 'hover:text-ash'}"
+											disabled={!selectedVariant?.availableForSale}
+											onclick={handleAddToCart}
 										>
-											{option.name.toLowerCase() === 'size'
-												? (sizeLabels[value.trim().toLowerCase()] ?? value)
-												: value}
+											{allVariantsSoldOut ? 'Out of stock' : 'Add to cart'}
 										</button>
 									{/each}
 								</div>
@@ -164,11 +167,13 @@
 						</p>
 						<button
 							type="button"
-							class="self-start trim-cap body-serif sm:nav-serif underline underline-offset-4 small-caps transition-colors duration-200 ease-out hover:text-ash"
+							class="self-start trim-cap body-serif sm:nav-serif underline underline-offset-4 small-caps
+						transition-colors duration-200 ease-out
+						{allVariantsSoldOut ? 'text-ash' : 'hover:text-ash'}"
 							disabled={!selectedVariant?.availableForSale || addToCartPending}
 							onclick={handleAddToCart}
 						>
-							Add to cart
+							{allVariantsSoldOut ? 'Out of stock' : 'Add to cart'}
 						</button>
 					</div>
 					<p class="trim-cap small-serif text-ash">

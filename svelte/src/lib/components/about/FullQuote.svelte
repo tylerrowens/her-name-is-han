@@ -61,13 +61,13 @@
 			{/if}
 		</div>
 
-		<div class="body-serif sm:card-serif text-center sm:w-[90%] sm:mx-auto">
+		<div class="body-serif sm:card-serif sm:flex hidden text-pretty text-center sm:w-[90%] sm:mx-auto">
 			<p>
 				“{card.bigQuote}”
 			</p>
 		</div>
 
-		<div class="nav-serif sm:flex justify-center hidden">
+		<div class="nav-serif sm:flex justify-center">
 			<p class="sm:w-[50%]">
 				“{card.smallQuote}”
 			</p>

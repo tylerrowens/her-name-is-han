@@ -7,6 +7,7 @@ const query = /* GraphQL */ `
 	query ProductByHandle($handle: String!) {
 		product(handle: $handle) {
 			id
+			availableForSale
 			title
 			handle
 			description
