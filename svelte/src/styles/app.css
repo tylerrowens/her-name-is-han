@@ -53,6 +53,18 @@ body {
 	animation: menu-subnav-enter 300ms ease both;
 }
 
+.site-header {
+	view-transition-name: site-header;
+}
+
+::view-transition-old(site-header) {
+	display: none;
+}
+
+::view-transition-new(site-header) {
+	animation: none;
+}
+
 @keyframes newsletter-wiggle {
 	0%,
 	100% {
@@ -123,7 +135,7 @@ body {
 	--color-doenjang: #7d4403;
 	--color-ganjang: #2a0600;
 	--color-ash: #a3a3a3;
-	--color-web-grey: #DFE0D7;
+	--color-web-grey: #dfe0d7;
 	--color-celestial: #0276e2;
 	--color-aegean: #002336;
 	--color-menu-blue: #d2eaec;

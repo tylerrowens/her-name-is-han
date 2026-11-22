@@ -243,7 +243,7 @@
 	></div>
 	<div class="fixed inset-x-0 top-0 z-50">
 		<header
-			class="page-x inset-x-0 z-50 grid h-[60px] w-full grid-cols-[1fr_auto_1fr] content-center py-sm-3 transition-colors duration-400 linear [view-transition-name:site-nav] items-baseline"
+			class="site-header page-x inset-x-0 z-50 grid h-[60px] w-full grid-cols-[1fr_auto_1fr] content-center py-sm-3 transition-colors duration-400 linear [view-transition-name:site-nav] items-baseline"
 			class:text-jade-white={heroHeader}
 			class:text-aegean={!heroHeader}
 		>
