@@ -115,6 +115,20 @@
 	let allVariantsSoldOut = $derived(
 		variants.length > 0 && variants.every((variant) => !variant.availableForSale)
 	);
+
+	function getVariantForOption(optionName: string, optionValue: string) {
+		if (!selectedVariant) return undefined;
+
+		const nextOptions = Object.fromEntries(
+			selectedVariant.selectedOptions.map(({ name, value }) => [name, value] as const)
+		);
+
+		nextOptions[optionName] = optionValue;
+
+		return variants.find((variant) =>
+			variant.selectedOptions.every(({ name, value }) => nextOptions[name] === value)
+		);
+	}
 </script>
 
 <section class="page-x pt-[135px]">
@@ -146,15 +160,21 @@
 							{#each visibleOptions as option}
 								<div class="flex gap-x-xs-3">
 									{#each option.values as value}
+										{@const optionVariant = getVariantForOption(option.name, value)}
 										<button
 											type="button"
-											class="self-start trim-cap body-serif sm:nav-serif underline underline-offset-4 small-caps
-									transition-colors duration-200 ease-out
-									{allVariantsSoldOut ? 'text-ash cursor-not-allowed' : 'hover:text-ash'}"
-											disabled={!selectedVariant?.availableForSale}
-											onclick={handleAddToCart}
+											class="self-start trim-cap body-serif sm:nav-serif small-caps
+										transition-colors duration-200 ease-out
+										{!optionVariant?.availableForSale
+												? 'line-through'
+												: isOptionSelected(option.name, value)
+													? 'text-ash'
+													: 'hover:text-ash'}"
+											disabled={!optionVariant?.availableForSale}
+											aria-pressed={isOptionSelected(option.name, value)}
+											onclick={() => selectOption(option.name, value)}
 										>
-											{allVariantsSoldOut ? 'Out of stock' : 'Add to cart'}
+											{sizeLabels[value.toLowerCase()] ?? value}
 										</button>
 									{/each}
 								</div>
