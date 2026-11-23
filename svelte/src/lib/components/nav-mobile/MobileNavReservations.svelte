@@ -31,17 +31,16 @@
 <section class="flex flex-col min-h-dvh w-full bg-reservation-nav page-x body-serif">
 	<div class="sticky top-0 pt-[135px] bg-reservation-nav z-10 pb-md-4">
 		<div class="relative flex items-center justify-center text-center">
-			<button type="button" onclick={onBack} class="absolute left-0 text-[18px] trim-cap">
+			<button type="button" onclick={onBack} class="absolute left-0 nav-serif trim-cap">
 				←
 			</button>
 			<div>
-				<h1 class="text-[18px] small-caps trim-cap">Reservations</h1>
+				<h1 class="nav-serif small-caps trim-cap">Reservations</h1>
 			</div>
 		</div>
 	</div>
 	<div class="flex flex-1 items-center justify-center">
 		<div class="flex flex-col justify-center w-full">
-			<!--REPEAT-->
 			{#each reservations as reservation (reservation._id)}
 				{@const menuList = formatMenus(reservation.menus)}
 				{#if reservation.reservationUrl}

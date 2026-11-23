@@ -22,60 +22,74 @@
 </script>
 
 {#if open}
-	<div class="bg-white w-[330px] p-sm-3 small-caps flex flex-col gap-[50px] z-1000">
-		<header class="flex items-center justify-between">
+	<div
+		class="fixed inset-x-0 top-[60px] bottom-0 z-40 flex flex-col bg-jade-white sm:bg-white p-sm-3 small-caps
+		sm:inset-auto sm:top-[60px] sm:right-[50px] sm:z-[1000]
+		sm:max-h-[calc(100dvh-80px)] sm:w-[330px]"
+	>
+		<header class="flex shrink-0 items-center justify-between">
 			<div class="small-serif trim-cap">Cart ( {cart?.totalQuantity ?? 0} )</div>
 			<button
 				type="button"
 				onclick={onClose}
-				class="small-serif trim-cap transition-colors duration-200 ease-out hover:text-ash"
-				>Close</button
+				class="hidden sm:block small-serif trim-cap transition-colors duration-200 ease-out hover:text-ash"
 			>
+				Close
+			</button>
 		</header>
-		{#if lines.length > 0}
-			{#each lines as line (line.node.id)}
-				<div class="flex flex-col gap-md-3">
-					<div class="flex pt-xs-3 border-t">
-						<div class="flex gap-xs-3 w-[190px]">
-							{#if line.node.merchandise.image}
-								<div class="h-[80px] w-[60px] shrink-0">
-									<img
-										src={line.node.merchandise.image.url}
-										alt={line.node.merchandise.image.altText ?? ''}
-									/>
+
+		<div class="mt-[50px] min-h-0 flex-auto overflow-y-auto overscroll-contain">
+			{#if lines.length > 0}
+				<div class="flex flex-col gap-[50px]">
+					{#each lines as line (line.node.id)}
+						<div class="flex border-t pt-xs-3">
+							<div class="flex min-w-0 flex-1 gap-xs-3">
+								{#if line.node.merchandise.image}
+									<div class="h-[80px] w-[60px] shrink-0">
+										<img
+											src={line.node.merchandise.image.url}
+											alt={line.node.merchandise.image.altText ?? ''}
+											class="h-full w-full object-cover"
+										/>
+									</div>
+								{/if}
+								<div class="flex min-w-0 flex-col justify-between">
+									<p class="trim-cap small-serif lg:nav-serif">
+										{line.node.merchandise.product.title}
+									</p>
+									<p class="trim-cap text-ash small-serif">
+										{#if line.node.merchandise.title !== 'Default Title'}
+											{line.node.merchandise.title}
+										{/if}
+										{#if line.node.quantity > 1}
+											( {line.node.quantity} )
+										{/if}
+									</p>
 								</div>
-							{/if}
-							<div class="flex flex-col justify-between">
+							</div>
+
+							<div class="flex w-[90px] shrink-0 flex-col items-end justify-between sm:w-[114px]">
 								<p class="trim-cap small-serif lg:nav-serif">
-									{line.node.merchandise.product.title}
+									{formatPrice(line.node.merchandise.price)}
 								</p>
-								<p class="trim-cap text-ash small-serif">
-									{#if line.node.merchandise.title !== 'Default Title'}
-										{line.node.merchandise.title}
-									{/if}
-									{#if line.node.quantity > 1}
-										( {line.node.quantity} )
-									{/if}
-								</p>
+								<button
+									type="button"
+									onclick={() => void onRemoveLine(line.node.id)}
+									class="trim-cap small-serif transition-colors duration-200 ease-out hover:text-ash"
+								>
+									Remove
+								</button>
 							</div>
 						</div>
-
-						<div class="flex flex-col items-end justify-between w-[114px]">
-							<p class="trim-cap small-serif lg:nav-serif">
-								{formatPrice(line.node.merchandise.price)}
-							</p>
-							<button
-								type="button"
-								onclick={() => void onRemoveLine(line.node.id)}
-								class="trim-cap small-serif transition-colors duration-200 ease-out hover:text-ash"
-								>remove</button
-							>
-						</div>
-					</div>
+					{/each}
 				</div>
-			{/each}
+			{:else}
+				<p class="trim-cap small-serif lg:nav-serif">Your cart is empty.</p>
+			{/if}
+		</div>
 
-			<footer class="flex items-center justify-between pt-xs-3 border-t">
+		{#if lines.length > 0}
+			<footer class="mt-[50px] flex shrink-0 items-center justify-between border-t pt-xs-3">
 				{#if cart?.cost.subtotalAmount}
 					<div class="trim-cap small-serif lg:nav-serif">
 						Subtotal {formatPrice(cart.cost.subtotalAmount)}
@@ -88,8 +102,6 @@
 					Checkout &#x2197;
 				</a>
 			</footer>
-		{:else}
-			<p class="trim-cap small-serif lg:nav-serif">Your cart is empty.</p>
 		{/if}
 	</div>
 {/if}

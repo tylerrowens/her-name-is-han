@@ -11,7 +11,7 @@
 
 <section
 	class="flex min-h-dvh w-full flex-col justify-between gap-[20px] bg-jade-white
-		pt-[135px] pb-[135px] text-center text-[18px] small-caps trim-cap"
+		pt-[135px] pb-[135px] text-center nav-serif small-caps trim-cap"
 >
 	<button class="trim-cap" type="button" onclick={onMenu}>Menu</button>
 

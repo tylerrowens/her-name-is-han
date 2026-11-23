@@ -237,7 +237,7 @@
 <svelte:head><link rel="icon" type="image/jpeg" href={favicon} /></svelte:head>
 <div class="flex min-h-dvh flex-col relative">
 	<div
-		class="pointer-events-none fixed inset-x-0 top-0 z-30 h-[60px] bg-jade-white transition-opacity duration-400 linear"
+		class="pointer-events-none fixed inset-x-0 top-0 z-31 h-[60px] bg-jade-white transition-opacity duration-400 linear"
 		class:opacity-0={heroHeader}
 		class:opacity-100={!heroHeader}
 	></div>
@@ -346,7 +346,12 @@
 				>
 			</nav>
 			<nav class="sm:hidden flex justify-self-end items-end nav-serif small-caps trim-cap">
-				<button>Cart</button>
+				<button
+				type="button"
+				data-cart-toggle
+				aria-expanded={cartOpen}
+				onclick={() => (cartOpen = !cartOpen)}>{cartOpen ? 'Close' : 'Cart'}</button
+			>
 			</nav>
 		</header>
 	</div>

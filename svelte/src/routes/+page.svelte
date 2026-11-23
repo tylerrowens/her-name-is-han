@@ -50,7 +50,7 @@
 			onanimationend={(event) => {
 				if (event.target === event.currentTarget) isWiggling = false;
 			}}
-			class="absolute z-40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 rotate-[-3.5deg]
+			class="absolute z-1 top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 rotate-[-3.5deg]
 		md-card:top-auto md-card:right-[50px] md-card:left-auto md-card:translate-x-0 md-card:translate-y-0 md-card:pt-[80px] rotate-[-3.5deg] hover:rotate-[5deg]
        transition-transform duration-[700ms]
        ease-[cubic-bezier(0.22,1,0.36,1)]"

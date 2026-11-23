@@ -23,11 +23,11 @@
 <section class="flex flex-col min-h-dvh w-full bg-menu-nav page-x body-serif">
 	<div class="sticky top-0 pt-[135px] bg-menu-nav z-10 pb-md-4">
 		<div class="relative flex items-center justify-center text-center">
-			<button type="button" onclick={onBack} class="absolute left-0 text-[18px] trim-cap">
+			<button type="button" onclick={onBack} class="absolute left-0 nav-serif trim-cap">
 				←
 			</button>
 			<div>
-				<h1 class="text-[18px] small-caps trim-cap">menu</h1>
+				<h1 class="nav-serif small-caps trim-cap">menu</h1>
 			</div>
 		</div>
 	</div>
