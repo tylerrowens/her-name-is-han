@@ -464,7 +464,7 @@
 							<dt class="small-caps">Social</dt>
 							<dd>
 								<a
-									class="transition-colors duration-200 ease-out hover:text-jade-white underline underline-offset-2"
+									class="transition-colors duration-200 ease-out hover:text-jade-white underline underline-offset-5"
 									href="https://www.instagram.com/hernameishan/?hl=en"
 									target="_blank"
 									rel="noreferrer"
@@ -476,7 +476,7 @@
 							<dt class="small-caps">Contact</dt>
 							<dd>
 								<a
-									class="transition-colors duration-200 ease-out hover:text-jade-white underline underline-offset-2"
+									class="transition-colors duration-200 ease-out hover:text-jade-white underline underline-offset-5"
 									href="mailto:hernameishan@handhospitality.com"
 								>
 									hernameishan@handhospitality.com

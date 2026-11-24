@@ -11,7 +11,7 @@
 				We’re here for all of life’s moments. Walk-ins are always welcome, and online reservations
 				are available for parties of up to 7.
 			</p>
-			<p>For groups of 8 or more, or for catering inquiries, please contact us at email</p>
+			<p>For groups of 8 or more, or for catering inquiries, please contact us at email <span class="underline underline-offset-5"><a href="mailto:hernameishan@handhospitality.com">hernameishan@handhospitality.com</a></span></p>
 		</div>
 	</div>
 	<div class="w-100dvw">
