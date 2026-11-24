@@ -87,7 +87,7 @@
 		{/if}
 	</div>
 	<video
-		class="min-h-0 h-full w-full mx-auto max-w-[1700px] page-x sm:px-[90px] object-contain object-bottom"
+		class="min-h-0 h-full w-full mx-auto lg:max-w-[1700px] xxl:max-w-[2200px] page-x sm:px-[90px] object-contain object-bottom"
 		autoplay
 		muted
 		playsinline

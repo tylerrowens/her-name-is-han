@@ -132,7 +132,7 @@
 </script>
 
 <section class="page-x pt-[135px]">
-	<div class="flex flex-col pb-[75px] w-full sm:w-[886px] mx-auto">
+	<div class="flex flex-col pb-[75px] w-full sm:w-[886px] xxl:w-[1086px] mx-auto">
 		<div class="trim-cap nav-serif">
 			<a
 				href="/shop"
@@ -143,8 +143,8 @@
 	</div>
 	<div class="w-100dvw">
 		<div class="flex flex-col justify-center items-center pb-[120px] gap-[120px]">
-			<div class="grid grid-cols-1 gap-md-4 sm:grid-cols-[400px_450px]">
-				<div class="aspect-[3/4] sm:w-[400px] self-start overflow-hidden">
+			<div class="grid grid-cols-1 gap-md-4 sm:grid-cols-[400px_450px] xxl:grid-cols-[600px_450px]">
+				<div class="aspect-[3/4] sm:w-[400px] xxl:w-[600px] self-start overflow-hidden">
 					{#if data.product.featuredImage?.url}
 						<img
 							src={data.product.featuredImage.url}

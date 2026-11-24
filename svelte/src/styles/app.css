@@ -108,6 +108,7 @@ body {
 	--font-stamp: 'Fresco Stamp', monospace;
 	--font-korean: 'Sun Batang Medium', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
 
+	--breakpoint-xxl: 2200px;
 	--breakpoint-xl: 1600px;
 	--breakpoint-lg: 1300px;
 	--breakpoint-footer-break: 1400px;

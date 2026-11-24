@@ -81,7 +81,7 @@
 </script>
 
 <section
-	class="flex aspect-[4/2] md-card:aspect-[1/1] w-85 md-card:w-[280px] flex-col
+	class="flex aspect-[4/2] md-card:aspect-[1/1] w-85 md-card:w-[280px] xxl:w-[400px] flex-col
 	p-sm-3 {backgroundClass} {textClass}"
 	aria-labelledby="newsletter-heading"
 >
@@ -89,11 +89,11 @@
 		<img
 			src={urlFor(card.image).width(800).url()}
 			alt=""
-			class="hidden md-card:block sm:aspect-[16/9] w-full object-cover"
+			class="hidden md-card:block aspect-[16/9] w-full object-cover"
 		/>
 	{/if}
 
-	<h2 id="newsletter-heading" class="body-serif trim-cap mt-sm-3">
+	<h2 id="newsletter-heading" class="body-serif trim-cap mt-sm-3 text-pretty">
 		{card.headline}
 	</h2>
 

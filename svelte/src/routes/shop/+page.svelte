@@ -23,7 +23,7 @@
 	</div>
 	<div class="bg-jade-white">
 		<div
-			class="page-x grid grid-cols-1 gap-x-md-4 gap-y-lg-4 pt-lg-4 pb-lg-5 sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6"
+			class="page-x grid grid-cols-1 gap-x-md-4 gap-y-lg-4 pt-lg-4 pb-lg-5 sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6 xxl:mx-[400px]"
 		>
 			{#each data.products as product (product.id)}
 				<ProductCard {product} />

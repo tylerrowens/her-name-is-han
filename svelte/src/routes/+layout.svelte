@@ -253,6 +253,7 @@
 			>
 				<button
 					type="button"
+					class="hover:underline underline-offset-4 {openDropdown === 'menu' ? 'underline' : ''}"
 					aria-expanded={openDropdown === 'menu'}
 					onpointerenter={(event) => {
 						if (event.pointerType === 'mouse') openDropdown = 'menu';
@@ -263,6 +264,9 @@
 				>
 				<button
 					type="button"
+					class="hover:underline underline-offset-4 {openDropdown === 'locations'
+						? 'underline'
+						: ''}"
 					aria-expanded={openDropdown === 'locations'}
 					onpointerenter={(event) => {
 						if (event.pointerType === 'mouse') openDropdown = 'locations';
@@ -271,6 +275,9 @@
 				>
 				<button
 					type="button"
+					class="hover:underline underline-offset-4 {openDropdown === 'reservations'
+						? 'underline'
+						: ''}"
 					aria-expanded={openDropdown === 'reservations'}
 					onpointerenter={(event) => {
 						if (event.pointerType === 'mouse') openDropdown = 'reservations';
@@ -327,11 +334,12 @@
 			<nav
 				class="hidden sm:flex justify-self-end gap-sm-3 lg:gap-md-3 nav-serif-small lg:nav-serif small-caps trim-cap items-baseline"
 			>
-				<a href="/about">About</a>
-				<a href="/stories">Stories</a>
-				<a href="/shop">Shop</a>
+				<a href="/about" class="hover:underline underline-offset-4">About</a>
+				<a href="/stories" class="hover:underline underline-offset-4">Stories</a>
+				<a href="/shop" class="hover:underline underline-offset-4">Shop</a>
 				<button
 					type="button"
+					class="hover:underline underline-offset-4"
 					data-cart-toggle
 					aria-expanded={cartOpen}
 					onclick={() => (cartOpen = !cartOpen)}>Cart</button
@@ -341,17 +349,17 @@
 					target="_blank"
 					rel="noopener noreferrer"
 					class="inline-flex w-[190px] sm:w-[120px] aspect-[145/33] pb-[1px] items-center justify-center gap-1
-		rounded-[3px] bg-aegean text-jade-white leading-none trim-cap"
+		rounded-[3px] bg-aegean text-jade-white leading-none trim-cap hover:bg-[#484848] transition-colors duration-200 ease-out"
 					><span class="inline-flex items-center gap-1"> Order &#x2197; </span></a
 				>
 			</nav>
 			<nav class="sm:hidden flex justify-self-end items-end nav-serif small-caps trim-cap">
 				<button
-				type="button"
-				data-cart-toggle
-				aria-expanded={cartOpen}
-				onclick={() => (cartOpen = !cartOpen)}>{cartOpen ? 'Close' : 'Cart'}</button
-			>
+					type="button"
+					data-cart-toggle
+					aria-expanded={cartOpen}
+					onclick={() => (cartOpen = !cartOpen)}>{cartOpen ? 'Close' : 'Cart'}</button
+				>
 			</nav>
 		</header>
 	</div>

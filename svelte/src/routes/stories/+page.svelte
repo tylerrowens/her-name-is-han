@@ -106,7 +106,7 @@
 
 	<div class="bg-jade-white pb-lg-5">
 		<div
-			class="page-x grid grid-cols-1 gap-x-md-4 gap-y-lg-4 pt-lg-4 sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6"
+			class="page-x grid grid-cols-1 gap-x-md-4 gap-y-lg-4 pt-lg-4 sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6 xxl:mx-[400px]"
 		>
 			{#each filteredPosts as post (post._id)}
 				<BlogCard {post} />
@@ -123,7 +123,7 @@
 		<div class="w-full overflow-x-auto scrollbar-none">
 			<div
 				class="page-x grid grid-flow-col auto-cols-[90%] gap-x-sm-3 sm:gap-x-md-4
-			pb-lg-5 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-3 md:grid-flow-col md:grid-cols-none md:auto-cols-[min(90%,600px)] lg:mx-lg-5 xl:mx-lg-6"
+			pb-lg-5 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-3 md:grid-flow-col md:grid-cols-none md:auto-cols-[min(90%,600px)] lg:mx-lg-5 xl:mx-lg-6 xxl:mx-[400px]"
 			>
 				{#each data.storiesPage?.playlistCards ?? [] as card (card._key)}
 					<div><PlaylistCard {card} /></div>
@@ -139,7 +139,7 @@
 		<div class="bg-jade-white w-full overflow-x-auto scrollbar-none">
 			<div
 				class="page-x grid grid-flow-col auto-cols-[90%] gap-x-sm-3 sm:gap-x-md-4
-			pb-lg-5 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6"
+			pb-lg-5 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-3 lg:mx-lg-5 xl:mx-lg-6 xxl:mx-[400px]"
 			>
 				{#each recipePosts as post (post._id)}
 					<BlogCard {post} />

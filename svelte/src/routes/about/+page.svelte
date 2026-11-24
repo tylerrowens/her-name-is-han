@@ -40,8 +40,10 @@
 </script>
 
 {#if data.aboutPage}
-	<section class="page-x">
-		<div class="flex flex-row justify-center pt-[135px] nav-serif small-caps gap-md-4 sm:gap-lg-6">
+	<section class="page-x flex min-h-[80svh] flex-col">
+		<div
+			class="mx-auto grid w-full max-w-[620px] grid-cols-3 pt-[135px] nav-serif small-caps text-center gap-md-4 sm:gap-lg-6"
+		>
 			<button
 				class="transition-colors duration-200 ease-out hover:text-ash"
 				type="button"
@@ -71,7 +73,7 @@
 			<p class="body-serif sm:card-serif small-caps text-center">
 				{data.aboutPage.headline}
 			</p>
-			<div class="nav-serif text-left text-balance text-pretty [&>p+p]:mt-[1em]">
+			<div class="nav-serif text-left text-balance text-pretty">
 				<PortableText value={data.aboutPage.story ?? []} />
 			</div>
 		</div>
@@ -81,11 +83,11 @@
 		>
 			<div class="flex flex-col">
 				<p class="small-caps">Contact</p>
-				<p class="underline underline-offset-2">hernameishan@handhospitality.com</p>
+				<p class="underline underline-offset-5">hernameishan@handhospitality.com</p>
 			</div>
 			<div class="flex flex-col">
 				<p class="small-caps">Instagram</p>
-				<p class="underline underline-offset-2">@hernameishan</p>
+				<p class="underline underline-offset-5">@hernameishan</p>
 			</div>
 		</div>
 	</section>
