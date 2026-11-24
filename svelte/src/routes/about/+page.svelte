@@ -73,7 +73,7 @@
 			<p class="body-serif sm:card-serif small-caps text-center">
 				{data.aboutPage.headline}
 			</p>
-			<div class="nav-serif text-left text-balance text-pretty">
+			<div class="nav-serif text-justify text-balance text-pretty">
 				<PortableText value={data.aboutPage.story ?? []} />
 			</div>
 		</div>
