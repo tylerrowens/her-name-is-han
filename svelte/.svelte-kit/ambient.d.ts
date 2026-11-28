@@ -41,6 +41,7 @@ declare module '$env/static/private' {
 	export const MAILCHIMP_API_KEY: string;
 	export const MAILCHIMP_AUDIENCE_ID: string;
 	export const MAILCHIMP_SERVER_PREFIX: string;
+	export const SANITY_VIEWER_TOKEN: string;
 	export const SHOPIFY_STOREFRONT_ACCESS_TOKEN: string;
 	export const SHOPIFY_STORE_DOMAIN: string;
 	export const TERM_PROGRAM: string;
@@ -188,6 +189,7 @@ declare module '$env/dynamic/private' {
 		MAILCHIMP_API_KEY: string;
 		MAILCHIMP_AUDIENCE_ID: string;
 		MAILCHIMP_SERVER_PREFIX: string;
+		SANITY_VIEWER_TOKEN: string;
 		SHOPIFY_STOREFRONT_ACCESS_TOKEN: string;
 		SHOPIFY_STORE_DOMAIN: string;
 		TERM_PROGRAM: string;
