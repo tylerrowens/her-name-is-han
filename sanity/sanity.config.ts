@@ -19,6 +19,6 @@ export default defineConfig({
   },
 
   document: {
-    singletons: ['newsletterCard', 'storiesPage', 'aboutPage'],
+    singletons: ['newsletterCard', 'storiesPage', 'aboutPage', 'locationsPage'],
   },
 })

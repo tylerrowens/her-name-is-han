@@ -4,6 +4,7 @@ import {location} from './documents/location'
 import {menu} from './documents/menu'
 import {newsletterCard} from './documents/newsletterCard'
 import {aboutPage} from './documents/aboutPage'
+import {locationsPage} from './documents/locationsPage'
 
 import {creditsBlock} from './objects/creditsBlock'
 import {imageDiptych} from './objects/imageDiptych'
@@ -39,6 +40,7 @@ export const schemaTypes = [
   menu,
   newsletterCard,
   aboutPage,
+  locationsPage,
   creditsBlock,
   imageDiptych,
   ingredientsBlock,

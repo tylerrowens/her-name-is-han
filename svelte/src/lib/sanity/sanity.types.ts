@@ -263,6 +263,15 @@ export type CreditsBlock = {
   additionalInfo?: string;
 };
 
+export type LocationsPage = {
+  _id: string;
+  _type: "locationsPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  info?: SimplePortableText;
+};
+
 export type AboutPage = {
   _id: string;
   _type: "aboutPage";
@@ -389,7 +398,6 @@ export type Location = {
   mapsUrl?: string;
   phone?: string;
   reservationUrl?: string;
-  additionalInformation?: SimplePortableText;
   menus?: Array<{
     _key: string;
   } & MenuReference>;
@@ -695,7 +703,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = SimpleQuoteCard | FullQuoteCard | DialogueCard | MenuImageDiptych | MenuImage | SanityImageAssetReference | MenuPhoto | WineItem | WineSubsection | WineSection | MenuAddon | DrinkItem | MenuItem | SimpleDrinkSection | FoodSection | MenuSection | MainMedia | SimplePortableText | TextBlock | PullQuote | PostImage | InterviewEntry | InstructionsBlock | IngredientsBlock | ImageDiptych | CreditsBlock | AboutPage | NewsletterCard | SanityImageCrop | SanityImageHotspot | Menu | Slug | MenuReference | Location | StoriesPage | BlogPostReference | BlogPost | MuxVideoAssetReference | MuxVideo | SanityReleaseMetadata | SystemRelease | MuxVideoAsset | MuxAssetData | MuxMasterFile | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = SimpleQuoteCard | FullQuoteCard | DialogueCard | MenuImageDiptych | MenuImage | SanityImageAssetReference | MenuPhoto | WineItem | WineSubsection | WineSection | MenuAddon | DrinkItem | MenuItem | SimpleDrinkSection | FoodSection | MenuSection | MainMedia | SimplePortableText | TextBlock | PullQuote | PostImage | InterviewEntry | InstructionsBlock | IngredientsBlock | ImageDiptych | CreditsBlock | LocationsPage | AboutPage | NewsletterCard | SanityImageCrop | SanityImageHotspot | Menu | Slug | MenuReference | Location | StoriesPage | BlogPostReference | BlogPost | MuxVideoAssetReference | MuxVideo | SanityReleaseMetadata | SystemRelease | MuxVideoAsset | MuxAssetData | MuxMasterFile | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 
 // Source: ../svelte/src/lib/sanity/queries.ts
 // Variable: BLOG_POST_QUERY
@@ -972,7 +980,7 @@ export type LOCATIONS_PAGE_QUERY_RESULT = Array<{
   mapsUrl: string | null;
   phone: string | null;
   reservationUrl: string | null;
-  additionalInformation: SimplePortableText | null;
+  additionalInformation: null;
 }>;
 
 // Source: ../svelte/src/lib/sanity/queries.ts
@@ -1201,6 +1209,13 @@ export type MENU_PAGE_QUERY_RESULT = {
   } | null;
 } | null;
 
+// Source: ../svelte/src/lib/sanity/queries.ts
+// Variable: LOCATIONS_PAGE_INFO_QUERY
+// Query: *[_type == "locationsPage"][0]{      info    }
+export type LOCATIONS_PAGE_INFO_QUERY_RESULT = {
+  info: SimplePortableText | null;
+} | null;
+
 // Query TypeMap
 declare global {
   interface SanityQueries {
@@ -1212,6 +1227,7 @@ declare global {
     "\n*[_type == \"location\" && defined(slug.current)] | order(_createdAt asc) {\n      _id,\n      name,\n      \"slug\": slug.current,\n      \"menus\": (menus[]->)[_type == \"menu\" && defined(slug.current)]{\n        _id,\n        title,\n        \"slug\": slug.current,\n        backgroundColor,\n        titleTextColor,\n      }\n    }\n": | MENU_NAV_QUERY_RESULT;
     "\n  *[_type == \"location\" && defined(reservationUrl) && reservationUrl != \"\"] | order(_createdAt asc) {\n      _id,\n      name,\n      reservationUrl,\n      \"menus\": (menus[]->)[_type == \"menu\" && defined(slug.current)]{\n        _id,\n        title,\n      }\n  }\n": | RESERVATION_NAV_QUERY_RESULT;
     "\n    *[\n      _type == \"location\" &&\n      slug.current == $location\n    ][0]{\n      _id,\n      name,\n      \"slug\": slug.current,\n  \n      \"menuMatchCount\": count(\n        (menus[]->)[\n          _type == \"menu\" &&\n          slug.current == $meal\n        ]\n      ),\n  \n      \"menu\": (menus[]->)[\n        _type == \"menu\" &&\n        slug.current == $meal\n      ][0]{\n        _id,\n        title,\n        \"slug\": slug.current,\n        backgroundColor,\n        titleTextColor,\n  \n        sections[]{\n          _key,\n          _type,\n          title,\n          koreanTitle,\n  \n          content[]{\n            _key,\n            _type,\n            title,\n  \n            _type == \"foodSection\" => {\n              items[]{\n                _key,\n                _type,\n                title,\n                koreantitle,\n                description,\n                price,\n  \n                addons[]{\n                  _key,\n                  _type,\n                  title,\n                  price\n                }\n              }\n            },\n\n            _type == \"simpleDrinkSection\" => {\n             items[]{\n               _key,\n               _type,\n               title,\n              koreantitle,\n              simpleInfo,\n              singleServingPrice,\n              pitcherPrice,\n              }\n            },\n  \n            _type == \"wineSection\" => {\n              subsections[]{\n                _key,\n                _type,\n                title,\n  \n                items[]{\n                  _key,\n                  _type,\n                  title,\n                  description,\n                  glassPrice,\n                  bottlePrice\n                }\n              }\n            },\n  \n            images[]{\n              _key,\n              _type,\n  \n              _type == \"menuImage\" => {\n                layout,\n  \n                image{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                }\n              },\n  \n              _type == \"menuImageDiptych\" => {\n                leftImage{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                },\n  \n                rightImage{\n                  _type,\n                  alt,\n                  caption,\n                  crop,\n                  hotspot,\n  \n                  asset->{\n                    _id,\n                    _type,\n                    url,\n                    metadata{\n                      dimensions,\n                      lqip\n                    }\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  ": | MENU_PAGE_QUERY_RESULT;
+    "\n    *[_type == \"locationsPage\"][0]{\n      info\n    }\n  ": | LOCATIONS_PAGE_INFO_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

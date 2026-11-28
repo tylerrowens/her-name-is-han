@@ -3,7 +3,8 @@ import type {DefaultDocumentNodeResolver} from 'sanity/structure'
 import type {SanityDocument} from 'sanity'
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType, getClient}) => {
-  if (schemaType !== 'blogPost' && schemaType !== 'menu') {
+  console.log('Document schema type:', schemaType)
+  if (!['blogPost', 'menu', 'locationsPage', 'location'].includes(schemaType)) {
     return S.document().views([S.view.form()])
   }
 
@@ -15,6 +16,10 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType,
         url: {
           origin: 'https://her-name-is-han.vercel.app',
           preview: async (doc: SanityDocument | undefined) => {
+            if (schemaType === 'locationsPage' || schemaType === 'location') {
+              return '/locations'
+            }
+
             const slug = (doc?.slug as {current?: string} | undefined)?.current
 
             if (!slug) {
@@ -25,7 +30,6 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType,
               return `/stories/${encodeURIComponent(slug)}`
             }
 
-            // References normally store the ID without the "drafts." prefix.
             const menuId = doc?._id?.replace(/^drafts\./, '')
 
             if (!menuId) {

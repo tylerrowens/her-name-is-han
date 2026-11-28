@@ -1,12 +1,12 @@
 // @ts-nocheck
 import type { PageServerLoad } from "./$types";
-import { client } from "$lib/sanity/client";
-import { LOCATIONS_PAGE_QUERY } from "$lib/sanity/queries";
+import { LOCATIONS_PAGE_QUERY, LOCATIONS_PAGE_INFO_QUERY } from "$lib/sanity/queries";
 
-export const load = async () => {
-    const locations = await client.fetch(LOCATIONS_PAGE_QUERY);
-    return {
-        locations
-    };
+export const load = async ({ locals }: Parameters<PageServerLoad>[0]) => {
+	const [locations, locationsPageInfo] = await Promise.all([
+		locals.sanity.client.fetch(LOCATIONS_PAGE_QUERY),
+		locals.sanity.client.fetch(LOCATIONS_PAGE_INFO_QUERY)
+	]);
+
+	return { locations, locationsPageInfo };
 };
-;null as any as PageServerLoad;

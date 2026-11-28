@@ -506,3 +506,9 @@ export const MENU_PAGE_QUERY = defineQuery(`
       }
     }
   `);
+
+  export const LOCATIONS_PAGE_INFO_QUERY = defineQuery(`
+    *[_type == "locationsPage"][0]{
+      info
+    }
+  `);

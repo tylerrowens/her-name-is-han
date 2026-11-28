@@ -1783,6 +1783,51 @@
     }
   },
   {
+    "name": "locationsPage",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "locationsPage"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "info": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "simplePortableText"
+        },
+        "optional": true
+      }
+    }
+  },
+  {
     "name": "aboutPage",
     "type": "document",
     "attributes": {
@@ -2755,14 +2800,6 @@
         "type": "objectAttribute",
         "value": {
           "type": "string"
-        },
-        "optional": true
-      },
-      "additionalInformation": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "inline",
-          "name": "simplePortableText"
         },
         "optional": true
       },

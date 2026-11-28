@@ -144,12 +144,6 @@ export const location = defineType({
     }),
 
     defineField({
-      name: 'additionalInformation',
-      title: 'Additional Information',
-      type: 'simplePortableText',
-    }),
-
-    defineField({
       name: 'menus',
       title: 'Menus',
       type: 'array',
