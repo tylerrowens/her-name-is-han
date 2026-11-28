@@ -16,14 +16,22 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType,
         url: {
           origin: 'https://her-name-is-han.vercel.app',
           preview: async (doc: SanityDocument | undefined) => {
-            if (schemaType === 'locationsPage' || schemaType === 'location') {
-              return '/locations'
+            if (
+              !['blogPost', 'menu', 'locationsPage', 'location', 'newsletterCard'].includes(
+                schemaType,
+              )
+            ) {
+              return S.document().views([S.view.form()])
             }
 
             const slug = (doc?.slug as {current?: string} | undefined)?.current
 
             if (!slug) {
               return new Error('Generate a slug before previewing.')
+            }
+
+            if (schemaType === 'newsletterCard') {
+              return '/'
             }
 
             if (schemaType === 'blogPost') {
