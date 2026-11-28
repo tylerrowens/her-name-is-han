@@ -35,8 +35,9 @@ const structure: StructureResolver = (S) => {
       ...S.documentTypeListItems(),
       singletonWithPreview('newsletterCard', '/'),
       singletonWithPreview('locationsPage', '/locations'),
+      singletonWithPreview('aboutPage', '/about'),
+      singletonWithPreview('storiesPage', '/stories'),
     ])
-    .singletons(['storiesPage', 'aboutPage'])
 }
 
 export default defineConfig({

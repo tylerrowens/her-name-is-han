@@ -3,8 +3,7 @@ import type {DefaultDocumentNodeResolver} from 'sanity/structure'
 import type {SanityDocument} from 'sanity'
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType, getClient}) => {
-  console.log('Document schema type:', schemaType)
-  if (!['blogPost', 'menu', 'locationsPage', 'location'].includes(schemaType)) {
+  if (!['blogPost', 'menu', 'location'].includes(schemaType)) {
     return S.document().views([S.view.form()])
   }
 
@@ -16,22 +15,14 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType,
         url: {
           origin: 'https://her-name-is-han.vercel.app',
           preview: async (doc: SanityDocument | undefined) => {
-            if (
-              !['blogPost', 'menu', 'locationsPage', 'location', 'newsletterCard'].includes(
-                schemaType,
-              )
-            ) {
-              return S.document().views([S.view.form()])
+            if (schemaType === 'location') {
+              return '/locations'
             }
 
             const slug = (doc?.slug as {current?: string} | undefined)?.current
 
             if (!slug) {
               return new Error('Generate a slug before previewing.')
-            }
-
-            if (schemaType === 'newsletterCard') {
-              return '/'
             }
 
             if (schemaType === 'blogPost') {
