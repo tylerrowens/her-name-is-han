@@ -1,19 +1,12 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { client } from '$lib/sanity/client';
 import { MENU_PAGE_QUERY } from '$lib/sanity/queries';
 
-export const load: PageServerLoad = async ({ params }) => {
-	const menuContents = await client.fetch(
-		MENU_PAGE_QUERY,
-		{
-			location: params.location,
-			meal: params.meal
-		},
-		{
-			perspective: 'published'
-		}
-	);
+export const load: PageServerLoad = async ({ params, locals }) => {
+	const menuContents = await locals.sanity.client.fetch(MENU_PAGE_QUERY, {
+		location: params.location,
+		meal: params.meal
+	});
 
 	if (!menuContents) {
 		error(404, 'Location not found');

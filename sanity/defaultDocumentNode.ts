@@ -2,8 +2,8 @@ import {Iframe} from 'sanity-plugin-iframe-pane'
 import type {DefaultDocumentNodeResolver} from 'sanity/structure'
 import type {SanityDocument} from 'sanity'
 
-export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType}) => {
-  if (schemaType !== 'blogPost') {
+export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType, getClient}) => {
+  if (schemaType !== 'blogPost' && schemaType !== 'menu') {
     return S.document().views([S.view.form()])
   }
 
@@ -14,10 +14,36 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType}
       .options({
         url: {
           origin: 'https://her-name-is-han.vercel.app',
-          preview: (doc: SanityDocument | undefined) => {
+          preview: async (doc: SanityDocument | undefined) => {
             const slug = (doc?.slug as {current?: string} | undefined)?.current
 
-            return slug ? `/stories/${encodeURIComponent(slug)}` : '/stories'
+            if (!slug) {
+              return new Error('Generate a slug before previewing.')
+            }
+
+            if (schemaType === 'blogPost') {
+              return `/stories/${encodeURIComponent(slug)}`
+            }
+
+            // References normally store the ID without the "drafts." prefix.
+            const menuId = doc?._id?.replace(/^drafts\./, '')
+
+            if (!menuId) {
+              return new Error('Save this menu before previewing.')
+            }
+
+            const locationSlug = await getClient({apiVersion: '2025-02-19'})
+              .withConfig({perspective: 'drafts', useCdn: false})
+              .fetch<string | null>(
+                `*[_type == "location" && $menuId in menus[]._ref][0].slug.current`,
+                {menuId},
+              )
+
+            if (!locationSlug) {
+              return new Error('Add this menu to a location before previewing.')
+            }
+
+            return `/menu/${encodeURIComponent(locationSlug)}/${encodeURIComponent(slug)}`
           },
           draftMode: '/preview/enable',
         },
